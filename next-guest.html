@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediction Result</title>
+  <link rel="stylesheet" href="css/next-guest.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app">
+    <!-- top bar -->
+    <header class="top-bar">
+      <img src="Logo2.png" class="logo">
+
+      <button class="menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </header>
+
+    <!-- content -->
+    <main class="content">
+      <h1 class="title">Prediction Result</h1>
+
+      <div class="risk-row">
+        <span class="risk-label">Risk</span>
+        <span class="risk-value"> </span>
+      </div>
+
+      <p class="risk-group"> </p>
+
+      <!-- risk bar -->
+      <div class="risk-bar">
+        <div class="risk-track"></div>
+        <div class="risk-thumb"></div>
+      </div>
+
+      <!-- recommendation -->
+      <section class="recommend-card">
+        <h2 class="recommend-title">คำแนะนำต่อไป</h2>
+        <p class="recommend-text">
+          ควรทำการส่งตรวจ CT Pulmonary Angiogram
+        </p>
+      </section>
+
+      <!-- buttons -->
+      <div class="btn-row">
+        <button class="btn btn-secondary">Back</button>
+      </div>
+    </main>
+  </div>
+  <script src="js/next-guest.js"></script>
+</body>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const menuBtn = document.querySelector(".menu-btn");
+    if (menuBtn) {
+      menuBtn.addEventListener("click", () => {
+        window.location.href = "ham-guest.html";  // หน้าของเมนู
+      });
+    }
+  });
+</script>
+</html>

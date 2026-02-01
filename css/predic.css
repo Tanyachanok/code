@@ -1,0 +1,366 @@
+/* Reset เล็กน้อย */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+body {
+  background: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+/* กรอบนอก (จำลองจอมือถือ) */
+.app {
+  width: 100%;
+  max-width: 400px;
+  min-height: 100vh;
+  background-color: #c3d6fa;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px 12px;
+} 
+
+.logo {
+  width: 100px;
+  height: 100px;
+  display: flex;
+}
+
+.menu-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.menu-btn span {
+  display: block;
+  width: 22px;
+  height: 2.5px;
+  border-radius: 999px;
+  background: #000;
+}
+
+/* ----------------------------------------------------
+   CARD (พื้นหลังฟอร์ม)
+---------------------------------------------------- */
+.card {
+  margin: 0 12px 16px;
+  padding: 26px 14px 32px;
+  background: linear-gradient(179.29deg, #c3d6fa 16.35%, #f0f5fe 64.9%, #c3d6fa);
+  border-radius: 32px;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.12);
+}
+
+/* ----------------------------------------------------
+   ICON
+---------------------------------------------------- */
+.label-icon {
+  width: 36px; 
+  height: 36px;
+  object-fit: contain;
+  margin-right: 6px;
+}
+
+/* ----------------------------------------------------
+   FORM STRUCTURE
+---------------------------------------------------- */
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.label-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.form-label {
+  font-weight: 600;
+  font-size: 15px;
+  color: #222;
+}
+
+.form-label.center {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+/* ----------------------------------------------------
+   DIVIDERS
+---------------------------------------------------- */
+.divider {
+  border: none;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  margin: 6px 0 18px;
+}
+
+/* ----------------------------------------------------
+   TEXT INPUT
+---------------------------------------------------- */
+.text-input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  border-radius: 12px;
+  border: none;
+  background: #ffffff;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+}
+
+.text-input::placeholder {
+  color: #b8b8b8;
+}
+
+/* ----------------------------------------------------
+   INLINE INPUT (มีหน่วยด้านขวา)
+---------------------------------------------------- */
+.inline-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.inline-group > div:first-child {
+  flex: 1;
+}
+
+.inline-input-wrapper {
+  flex: 0 0 45%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.inline-input-wrapper .text-input {
+  flex: 1;
+  background: transparent;
+  box-shadow: none;
+  padding: 10px 4px;
+}
+
+.unit {
+  font-size: 12px;
+  color: #555;
+}
+
+/* ----------------------------------------------------
+   TOGGLE BUTTON GROUP
+---------------------------------------------------- */
+.toggle-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.toggle-group input[type="radio"] {
+  display: none;
+}
+
+.toggle-option {
+  flex: 1;
+  text-align: center;
+  padding: 11px 12px;
+  font-size: 14px;
+  border-radius: 14px;
+  background: #ffffff;
+  border: 1px solid #e3e3e3;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  cursor: pointer;
+  user-select: none;
+}
+
+.ecog-group .toggle-option.small {
+  flex: 0 0 17%;
+}
+
+/* CHECKED */
+.toggle-group input[type="radio"]:checked + .toggle-option {
+  background: #ffffff;
+  border-color: #306dff;
+  color: #306dff;
+  box-shadow: 0 4px 16px rgba(50, 88, 222, 0.35);
+}
+
+/* ----------------------------------------------------
+   DROPDOWN
+---------------------------------------------------- */
+.dropdown-container {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-select {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 14px;
+  border: none;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  appearance: none;
+}
+
+.dropdown-arrow {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: #555;
+  pointer-events: none;
+}
+
+/* Focus effect */
+.text-input:focus,
+.dropdown-select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(48, 109, 255, 0.4);
+}
+
+/* ----------------------------------------------------
+   NUMBER OF PATIENT (ใหม่)
+---------------------------------------------------- */
+.patient-id-section {
+  margin-bottom: 20px;
+  margin-top: -4px;
+}
+
+.patient-label {
+  font-weight: 700;
+  font-size: 15px;
+  color: #111827;
+  margin-left: 4px;
+}
+
+.patient-pill {
+  margin-top: 8px;
+  width: 100%;
+  background: #3258de;
+  padding: 12px 14px;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(50, 88, 222, 0.45);
+}
+
+.patient-input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  text-align:left;
+}
+
+.patient-input::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ----------------------------------------------------
+   BUTTONS
+---------------------------------------------------- */
+.btn-group {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-primary {
+  width: 80%;
+  padding: 12px 0;
+  border-radius: 999px;
+  border: none;
+  background: #3258de;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 5px 18px rgba(0, 74, 255, 0.4);
+}
+
+.btn-primary:hover {
+  filter: brightness(1.05);
+}
+
+.btn-reset {
+  border: none;
+  background: transparent;
+  color: #666;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* ----------------------------------------------------
+   ERROR STATES
+---------------------------------------------------- */
+.input-error {
+  border: 2px solid #e63946 !important;
+}
+
+.select-error {
+  border: 2px solid #e63946 !important;
+}
+
+.radio-error {
+  outline: 2px solid #e63946;
+  border-radius: 6px;
+}
+
+.hidden { 
+  display: none; 
+}
+
+/* แถว Gender ให้ไอคอนอยู่ซ้าย ปุ่มอยู่ขวา */
+.gender-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* label-row ไม่ต้องมี margin ล่างเยอะ เพราะมีปุ่มอยู่ข้าง ๆ */
+.gender-row .label-row {
+  margin-bottom: 0;
+}
+
+/* ปุ่ม Male ให้หน้าตาเป็น pill สีน้ำเงิน */
+.gender-pill {
+  padding: 8px 80px;
+  border-radius: 999px;
+  border: none;
+  cursor: default;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+
+  background-color: #3258de;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+  /* กันไม่ให้ปุ่มยืดเต็มบล็อก */
+  white-space: nowrap;
+}

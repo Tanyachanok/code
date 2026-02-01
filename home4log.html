@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PE Predictor • Home</title>
+
+  <!-- Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/home4log.css" />
+</head>
+<body>
+  <header>
+    <button class="menu-btn" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+  <main class="page">
+    <section class="card" aria-labelledby="appTitle">
+      <img src="Logo1.png" class="logo">
+      <h6 id="appTitle" class="title">PE Predictor</h6>
+
+      <form class="form" action="#" method="post" novalidate>
+        <!-- Number of Patient -->
+        <div class="field">
+          <label for="count">Hospital Number</label>
+          <div class="input-wrap">
+            <input id="count" name="count" type="number" inputmode="numeric" min="1"
+                   placeholder="Number of Patient" required />
+          </div>
+        </div>
+
+        <hr class="divider" aria-hidden="true" />
+
+        <!-- Sex -->
+        <div class="field sex-row">
+          <div class="sex-label">
+            <img src="gender.svg" class="sex-icon">
+            <span>Gender</span>
+          </div>
+
+          <fieldset class="segmented" aria-label="Sex">
+            <input type="radio" id="male"   name="sex" value="male"   checked>
+            <label for="male">Male</label>
+
+            <input type="radio" id="female" name="sex" value="female">
+            <label for="female">Female</label>
+          </fieldset>
+        </div>
+
+        <button type="submit" class="btn-primary">Next</button>
+      </form>
+    </section>
+  </main>
+  <script src="js/home4log.js"></script>
+</body>
+</html>

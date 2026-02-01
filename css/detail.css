@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  :root {
+    --color-white: #ffffff;
+    --blue-bg: #c3d6fa;
+    --input-bg: #c9d9ff;
+  }
+  
+  /* Background */
+  body {
+    min-height: 100vh;
+    background: linear-gradient(168.86deg, var(--blue-bg) 28.89%, var(--color-white));
+    padding: 16px 20px;
+  }
+  
+  /* Top bar */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+  
+  /* Hamburger */
+  .menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+  }
+  
+  .menu div {
+    width: 26px;
+    height: 3px;
+    background: #000;
+    border-radius: 4px;
+  }
+  
+  /* Profile wrapper */
+  .profile-wrapper {
+    margin-top: 40px;
+  }
+  
+  .avatar {
+    width: 170px;
+    height: 170px;
+    border-radius: 50%;
+    background: #d9d9d9;
+    margin: 0px auto;   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 64px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    position: relative;
+    z-index: 2;
+}
+  
+  .card {
+    background: #ffffff;
+    margin-top: -85px;
+    border-radius: 32px 32px 0 0;
+    padding: 110px 20px 32px;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 1;
+  }
+  
+  .card h2 {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 28px;
+  }
+  
+  /* Read-only fields */
+  .field {
+    margin-bottom: 18px;
+  }
+  
+  .field label {
+    font-size: 14px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 6px;
+  }
+  
+  .display-field {
+    width: 100%;
+    background: var(--input-bg);
+    padding: 12px 14px;
+    border-radius: 14px;
+  
+    font-size: 14px;
+    color: #000;
+  
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.12);
+  }
+  
+  /* Button */
+  .btn {
+    display: block;
+    width: 55%;
+    margin: 20px auto 4px;
+    padding: 12px;
+    background: #3258De;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 16px;
+  }
+  
+  .btn:hover {
+    background: #1844c8;
+  }
+  

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width">
+
+    <link rel="stylesheet" href="css/predic.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <!-- Top bar -->
+        <header class="header">
+          <img src="Logo2.png" class="logo">
+        
+          <button class="menu-btn" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </header>
+
+        <!-- Card -->
+        <main class="card">
+            <form class="form">
+
+                <!-- Number of Patient -->
+                <div class="patient-id-section">
+                    <label class="patient-label">Hospital Number</label>
+                    <div class="patient-pill">
+                        <input
+                          type="text"
+                          class="patient-input"
+                          id="patient_id"
+                          placeholder="1234"
+                          readonly
+                        >
+                    </div>
+                </div>
+
+                <hr class="divider divider-top">
+
+                <!-- Sex -->
+                <div class="form-group gender-row">
+                    <div class="label-row">
+                 <img src="gender.svg" class="label-icon" alt="">
+                    <label class="form-label">Gender</label>
+                </div>
+  
+             <!-- ปุ่มโชว์เพศ -->
+                <button type="button" class="gender-pill" id="gender_display">Male</button>
+  
+            <!-- input ที่ส่งค่าไป backend -->
+                <input type="hidden" name="gender" id="gender_value" value="Male">
+             </div>
+                <hr class="divider">
+
+                <!-- Age -->
+                <div class="form-group">
+                    <div class="label-row">
+                        <img src="age.svg" class="label-icon" alt="">
+                        <label class="form-label">Age</label>
+                    </div>
+                    <input type="number" class="text-input" placeholder="Years">
+                </div>
+
+                <hr class="divider">
+
+                <!-- ECOG Status -->
+                <div class="form-group">
+                    <div class="label-row">
+                        <img src="ecog.svg" class="label-icon" alt="">
+                        <label class="form-label">ECOG Status</label>
+                    </div>
+                    <div class="toggle-group ecog-group">
+                        <input type="radio" id="ecog0" name="ecog" value="0" checked>
+                        <label for="ecog0" class="toggle-option small">0</label>
+
+                        <input type="radio" id="ecog1" name="ecog" value="1">
+                        <label for="ecog1" class="toggle-option small">1</label>
+
+                        <input type="radio" id="ecog2" name="ecog" value="2">
+                        <label for="ecog2" class="toggle-option small">2</label>
+
+                        <input type="radio" id="ecog3" name="ecog" value="3">
+                        <label for="ecog3" class="toggle-option small">3</label>
+
+                        <input type="radio" id="ecog4" name="ecog" value="4">
+                        <label for="ecog4" class="toggle-option small">4</label>
+                    </div>
+                </div>
+                <hr class="divider">
+
+                <!-- Heart Rate -->
+                <div class="form-group inline-group">
+                    <div>
+                        <div class="label-row">
+                            <img src="heart rate.svg" class="label-icon" alt="">
+                            <label class="form-label">Heart Rate</label>
+                        </div>
+                    </div>
+                    <div class="inline-input-wrapper">
+                        <input type="number" class="text-input" placeholder="bpm">
+                        <span class="unit">bpm</span>
+                    </div>
+                </div>
+                <hr class="divider">
+
+                <!-- Systolic BP -->
+                <div class="form-group inline-group">
+                    <div>
+                        <div class="label-row">
+                            <img src="Sys.svg" class="label-icon" alt="">
+                            <label class="form-label">Systolic Blood Pressure</label>
+                        </div>
+                    </div>
+                    <div class="inline-input-wrapper">
+                        <input type="number" class="text-input" placeholder="mmHg">
+                        <span class="unit">mmHg</span>
+                    </div>
+                </div>
+                <hr class="divider">
+
+                <!-- Diastolic BP -->
+                <div class="form-group inline-group">
+                    <div>
+                        <div class="label-row">
+                            <img src="Dia.svg" class="label-icon" alt="">
+                            <label class="form-label">Diastolic Blood Pressure</label>
+                        </div>
+                    </div>
+                    <div class="inline-input-wrapper">
+                        <input type="number" class="text-input" placeholder="mmHg">
+                        <span class="unit">mmHg</span>
+                    </div>
+                </div>
+                <hr class="divider">
+
+                <!-- SpO2 -->
+                <div class="form-group inline-group">
+                    <div>
+                        <div class="label-row">
+                            <img src="sp.svg" class="label-icon" alt="">
+                            <label class="form-label">SpO₂</label>
+                        </div>
+                    </div>
+                    <div class="inline-input-wrapper">
+                        <input type="number" class="text-input" placeholder="95–100">
+                        <span class="unit">%</span>
+                    </div>
+                </div>
+                <hr class="divider">
+
+                <!-- FiO2 -->
+                <div class="form-group inline-group">
+                    <div>
+                        <div class="label-row">
+                            <img src="fi.svg" class="label-icon" alt="">
+                            <label class="form-label">FiO₂</label>
+                        </div>
+                    </div>
+                    <div class="inline-input-wrapper">
+                        <input type="number" class="text-input" placeholder="95–100">
+                        <span class="unit">%</span>
+                    </div>
+                </div>
+                <hr class="divider">
+
+                <!-- Hemoptysis -->
+                <div class="form-group">
+                    <label class="form-label">Hemoptysis</label>
+                    <div class="toggle-group">
+                        <input type="radio" id="hem_yes" name="hemoptysis" value="yes" checked>
+                        <label for="hem_yes" class="toggle-option">Yes</label>
+
+                        <input type="radio" id="hem_no" name="hemoptysis" value="no">
+                        <label for="hem_no" class="toggle-option">No</label>
+                    </div>
+                </div>
+                <hr class="divider">
+
+                <!-- Pleuritic Chest Pain -->
+                <div class="form-group">
+                    <label class="form-label">Pleuritic Chest Pain</label>
+                    <div class="toggle-group">
+                        <input type="radio" id="pcp_yes" name="pcp" value="yes" checked>
+                        <label for="pcp_yes" class="toggle-option">Yes</label>
+
+                        <input type="radio" id="pcp_no" name="pcp" value="no">
+                        <label for="pcp_no" class="toggle-option">No</label>
+                    </div>
+                </div>
+                <hr class="divider">
+
+                <!-- Syncope -->
+                <div class="form-group">
+                    <label class="form-label">Syncope</label>
+                    <div class="toggle-group">
+                        <input type="radio" id="syn_yes" name="syncope" value="yes" checked>
+                        <label for="syn_yes" class="toggle-option">Yes</label>
+
+                        <input type="radio" id="syn_no" name="syncope" value="no">
+                        <label for="syn_no" class="toggle-option">No</label>
+                    </div>
+                </div>
+                <hr class="divider">
+
+                <!-- One Leg Edema -->
+                <div class="form-group">
+                    <label class="form-label">One Leg Edema</label>
+                    <div class="toggle-group">
+                        <input type="radio" id="edema_yes" name="edema" value="yes" checked>
+                        <label for="edema_yes" class="toggle-option">Yes</label>
+
+                        <input type="radio" id="edema_no" name="edema" value="no">
+                        <label for="edema_no" class="toggle-option">No</label>
+                    </div>
+                </div>
+                <hr class="divider">
+
+                <!-- Type of Cancer -->
+                <div class="form-group">
+                    <label class="form-label">Type of Cancer</label>
+                    <div class="toggle-group">
+                        <input type="radio" id="type_solid" name="type_cancer" value="solid" checked>
+                        <label for="type_solid" class="toggle-option">Solid</label>
+
+                        <input type="radio" id="type_hema" name="type_cancer" value="hematologic">
+                        <label for="type_hema" class="toggle-option">Hematologic</label>
+                    </div>
+                </div>
+
+                <hr class="divider">
+
+                <!-- Solid Cancer Type -->
+                <div class="form-group" id="solid_section">
+                    <label class="form-label center">Solid Cancer Type</label>
+                    <div class="dropdown-container">
+                        <select class="dropdown-select" id="solid_select">
+                            <option value="">Select Option</option>
+                            <option value="breast">Breast Cancer</option>
+                            <option value="colon">Colon Cancer</option>
+                            <option value="lung">Lung Cancer</option>
+                            <option value="gastric">Gastric Cancer</option>
+                        </select>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                </div>
+
+                <!-- Hematologic Cancer Type -->
+                <div class="form-group hidden" id="hema_section">
+                    <label class="form-label center">Hematologic Cancer Type</label>
+                    <div class="dropdown-container">
+                        <select class="dropdown-select" id="hema_select">
+                            <option value="">Select Option</option>
+                            <option value="Leukemia">Leukemia</option>
+                            <option value="Lymphoma">Lymphoma</option>
+                            <option value="Plasma Cell Neoplasm">Plasma Cell Neoplasm</option>
+                            <option value="Myelodysplastic">Myelodysplastic</option>
+                        </select>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                </div>
+
+                <!-- Lung Metastasis -->
+                <div class="form-group">
+                    <label class="form-label">Lung Metastasis</label>
+                    <div class="toggle-group">
+                        <input type="radio" id="lung_yes" name="lung_meta" value="yes" checked>
+                        <label for="lung_yes" class="toggle-option">Yes</label>
+
+                        <input type="radio" id="lung_no" name="lung_meta" value="no">
+                        <label for="lung_no" class="toggle-option">No</label>
+                    </div>
+                </div>
+                <hr class="divider">
+
+                <!-- Chest X-ray Type -->
+                <div class="form-group">
+                    <label class="form-label">Chest X-ray Type</label>
+                    <div class="dropdown-container">
+                        <select class="dropdown-select" id="cxr_select">
+                            <option value="">Select Option</option>
+                            <option value="normal">Normal</option>
+                            <option value="infiltrate">Infiltrate</option>
+                            <option value="Pleural effusion">Pleural effusion</option>
+                            <option value="Nodule/Mass like lession">Nodule/Mass like lession</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span class="dropdown-arrow">▼</span>
+                    </div>
+                </div>
+                <hr class="divider">
+
+                <!-- D-dimer -->
+                <div class="form-group inline-group">
+                    <div>
+                        <label class="form-label">D-dimer</label>
+                    </div>
+                    <div class="inline-input-wrapper">
+                        <input type="number" class="text-input" placeholder="Value">
+                        <span class="unit">mg/mL</span>
+                    </div>
+                </div>
+                <hr class="divider">
+
+                <!-- Buttons -->
+                <div class="btn-group">
+                    <button type="submit" id="predict-btn" class="btn-primary">Predict</button>
+                    <button type="reset" class="btn-reset">Reset</button>
+                </div>
+
+            </form>
+        </main>
+    </div>
+
+    <script src="js/predic.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const menuBtn = document.querySelector(".menu-btn");
+        if (menuBtn) {
+          menuBtn.addEventListener("click", () => {
+            window.location.href = "ham-log.html";  // หน้าของเมนู
+          });
+        }
+      });
+    </script>
+</body>
+</html>

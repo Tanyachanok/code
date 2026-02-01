@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regiss</title>
+    <link rel="stylesheet" href="css/regiss.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <main class="page">
+        <section class="card" aria-labelledby="title">
+          <div class="logo" aria-hidden="true"><span>Logo</span></div>
+    
+          <h1 id="title" class="title">Register</h1>
+          <p class="subtitle">Create your new account</p>
+    
+          <form class="form" action="#" method="post" novalidate>
+            <div class="grid-2">
+              <div class="field">
+                <label for="first_name">First Name</label>
+                <div class="input-wrap">
+                  <input id="first_name" name="first_name" type="text"
+                         placeholder="First Name" autocomplete="given-name" required>
+                </div>
+              </div>
+    
+              <div class="field">
+                <label for="last_name">Last Name</label>
+                <div class="input-wrap">
+                  <input id="last_name" name="last_name" type="text"
+                         placeholder="Last Name" autocomplete="family-name" required>
+                </div>
+              </div>
+            </div>
+    
+            <div class="field">
+              <label for="username">Username</label>
+              <div class="input-wrap">
+                <input id="username" name="username" type="text"
+                       placeholder="Username" autocomplete="username" required>
+              </div>
+            </div>
+    
+            <div class="field">
+              <label for="email">Email</label>
+              <div class="input-wrap">
+                <input id="email" name="email" type="email"
+                       placeholder="Email" autocomplete="email" required>
+              </div>
+            </div>
+    
+            <div class="field">
+              <label for="password">Password</label>
+              <div class="input-wrap has-right-icon">
+                <input id="password" name="password" type="password"
+                       placeholder="Password" autocomplete="new-password" required>
+                <button class="icon-btn" type="button" aria-label="Show password" data-target="password">
+                  <svg class="icon right" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 5C7 5 2.73 8.11 1 12c1.73 3.89 6 7 11 7s9.27-3.11 11-7c-1.73-3.89-6-7-11-7Zm0 12a5 5 0 1 1 5-5 5.006 5.006 0 0 1-5 5Z"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+    
+            <div class="field">
+              <label for="confirm">Confirm Password</label>
+              <div class="input-wrap has-right-icon">
+                <input id="confirm" name="confirm" type="password"
+                       placeholder="Confirm Password" autocomplete="new-password" required>
+                <button class="icon-btn" type="button" aria-label="Show password" data-target="confirm">
+                  <svg class="icon right" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 5C7 5 2.73 8.11 1 12c1.73 3.89 6 7 11 7s9.27-3.11 11-7c-1.73-3.89-6-7-11-7Zm0 12a5 5 0 1 1 5-5 5.006 5.006 0 0 1-5 5Z"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+    
+            <button type="submit" class="btn-primary">Sign Up</button>
+          </form>
+        </section>
+      </main>
+    
+      <script>
+        // toggle show/hide password
+        document.querySelectorAll('.icon-btn').forEach(btn=>{
+          btn.addEventListener('click', ()=>{
+            const id = btn.getAttribute('data-target');
+            const input = document.getElementById(id);
+            const isPwd = input.type === 'password';
+            input.type = isPwd ? 'text' : 'password';
+            btn.setAttribute('aria-label', isPwd ? 'Hide password' : 'Show password');
+          });
+        });
+      </script>
+    
+</body>
+</html>

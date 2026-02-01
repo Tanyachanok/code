@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+:root {
+    --color-white: #ffffff;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(168.86deg, #c3d6fa 28.89%, #ffffff 100%);
+}
+
+.container {
+    width: 100%;
+    max-width: 360px;
+    padding: 24px 20px 40px;
+    text-align: center;
+}
+
+.icon-mail img {
+    width: 130px;
+    margin: 25px auto 32px;
+    display: block;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.text {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.text.small {
+    margin-top: 10px;
+    margin-bottom: 28px;
+}
+
+.bold {
+    font-weight: 700;
+}
+
+.link {
+    color: #1e56f4;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px 14px;
+    background: #1e56f4;
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 8px;
+}
+
+.btn:hover {
+    background: #1646d0;
+}
+
+.back {
+    display: inline-block;
+    margin-top: 18px;
+    font-size: 14px;
+    color: #222;
+    text-decoration: none;
+}
+
+.back:hover {
+    text-decoration: underline;
+}

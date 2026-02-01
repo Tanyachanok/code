@@ -1,0 +1,138 @@
+<!-- history2.html -->
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <title>Clinical History</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/history2.css" />
+</head>
+
+<body>
+  <div class="page-wrapper">
+    <!-- Header Card -->
+    <div class="history-header">
+      <img src="Logo2.png" class="logo" alt="PE Predictor Logo" />
+      <h1 class="header-title">Clinical History</h1>
+    </div>
+
+    <!-- Pills: HN + Date -->
+    <div class="pill-row">
+      <div class="pill" id="pill-hn">-</div>
+      <div class="pill" id="pill-date">-</div>
+    </div>
+
+    <!-- ตารางข้อมูล -->
+    <div class="info-table">
+      <div class="info-row">
+        <span class="label">Gender</span>
+        <span class="value" id="val-gender">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Age</span>
+        <span class="value" id="val-age">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">ECOG Status</span>
+        <span class="value" id="val-ecog">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Heart Rate</span>
+        <span class="value" id="val-heart_rate">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Systolic Blood Pressure</span>
+        <span class="value" id="val-systolic">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Diastolic Blood Pressure</span>
+        <span class="value" id="val-diastolic">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">SpO2</span>
+        <span class="value" id="val-spo2">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">FiO2</span>
+        <span class="value" id="val-fio2">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Hemoptysis</span>
+        <span class="value" id="val-hemoptysis">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Pleuritic Chest Pain</span>
+        <span class="value" id="val-pleuritic_chest">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Syncope</span>
+        <span class="value" id="val-syncope">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">One Leg Edema</span>
+        <span class="value" id="val-isolated_leg">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Type of Cancer</span>
+        <span class="value" id="val-type_cancer">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Solid Cancer Type</span>
+        <span class="value" id="val-solid_type">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Hematologic Cancer Type</span>
+        <span class="value" id="val-hema_type">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Lung Metastasis</span>
+        <span class="value" id="val-lung_met">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">Chest X-ray Type</span>
+        <span class="value" id="val-chest_xray">-</span>
+      </div>
+
+      <div class="info-row">
+        <span class="label">D-dimer</span>
+        <span class="value" id="val-d_dimer">-</span>
+      </div>
+
+      <!-- ถ้าคุณมี API ส่งค่า PE Confirm มาด้วย ค่อย map id นี้เพิ่มใน JS -->
+      <div class="info-row">
+        <span class="label">PE Confirm</span>
+        <span class="value" id="val-pe_confirm">-</span>
+      </div>
+    </div>
+
+    <!-- ปุ่ม Back -->
+    <button class="back-btn" type="button">Back</button>
+  </div>
+
+  <!-- ✅ โหลด JS ของหน้า history2 -->
+  <script src="js/history2.js"></script>
+</body>
+</html>

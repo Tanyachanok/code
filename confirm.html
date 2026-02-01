@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confirm PE</title>
+
+  <!-- Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/confirm.css" />
+</head>
+<body>
+  <main class="page">
+    <div class="app">
+
+      <!-- Top bar -->
+      <header class="top-bar">
+        <img src="Logo2.png" class="logo">
+
+        <div class="menu">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </header>
+
+      <!-- Details card -->
+      <section class="details-card">
+        <h2 class="details-title">Details</h2>
+
+        <div class="detail-row">
+          <span class="detail-label">Hospital Number</span>
+          <div class="detail-pill">1234567</div>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Gender</span>
+          <div class="detail-pill">Female</div>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Risk</span>
+          <div class="detail-pill">58%</div>
+        </div>
+
+        <div class="detail-row">
+          <span class="detail-label">Confirm PE</span>
+          <div class="detail-pill">-</div>
+        </div>
+      </section>
+
+      <!-- Result cards -->
+      <section class="result-grid">
+        <button class="result-card result-card--nope">
+          <div class="result-icon-wrap">
+            <img src="no pe.svg" alt="No PE" />
+          </div>
+          <span class="result-text">No PE</span>
+        </button>
+
+        <button class="result-card result-card--confirm">
+          <div class="result-icon-wrap">
+            <img src="PE Confirm Image.png" alt="PE Confirm" />
+          </div>
+          <span class="result-text">PE<br/>Confirm</span>
+        </button>
+      </section>
+
+      <!-- Home + back -->
+      <a href="home4log.html" class="home-btn">Home</a>
+
+      <a href="predict.html" class="back-link">&lt; Back to Predict</a>
+    </div>
+  </main>
+  <script src="js/confirm.js"></script>
+</body>
+</html>

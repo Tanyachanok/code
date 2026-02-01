@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  
+  .logo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+  }
+  
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(to bottom, #ffffff, #dde7ff);
+  }
+  
+  /* กรอบหน้า */
+  .page-wrapper {
+    width: 100%;
+    max-width: 420px;
+    padding: 24px 20px 32px;
+  }
+  
+  
+  /* กล่องค้นหา */
+  .search-box {
+    display: flex;
+    align-items: center;
+    background: #e8f0ff;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  
+  .search-input {
+    flex: 1;
+    padding: 12px 18px;
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 14px;
+  }
+  
+  .search-btn {
+    width: 52px;
+    height: 100%;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 18px;
+    background: #3258de;
+    color: #fff;
+  }
+  
+  /* การ์ด list */
+  .list-card {
+    margin-top: 8px;
+    background: #f7f9ff;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+    padding: 8px 0;
+  }
+  
+  .list-item {
+    padding: 14px 18px;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    cursor: pointer;
+  }
+  
+  .list-item:last-child {
+    border-bottom: none;
+  }
+  
+  .list-item:hover {
+    background: rgba(50, 88, 222, 0.08);
+  }
+
+  .item {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    padding: 18px 0 8px;
+  }
+  

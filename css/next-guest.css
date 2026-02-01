@@ -1,0 +1,172 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  
+  body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    background: linear-gradient(to bottom, #ffffff, #c7dcff);
+  }
+  
+  /* ตัวแอป */
+  .app {
+    width: 100%;
+    max-width: 440px;     
+    padding: 24px 20px 32px;
+  }
+  
+  /* top bar */
+  .top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+  }
+  
+  .logo {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    
+  }
+  
+  /* hamburger */
+  .menu-btn {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 6px 4px;
+    cursor: pointer;
+  }
+  
+  .menu-btn span {
+    height: 2px;
+    border-radius: 999px;
+    background: #000;
+  }
+  
+  /* content */
+  .content {
+    margin-top: 8px;
+  }
+  
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+  
+  .risk-row {
+    display: flex;
+    justify-content: flex-start;   /* ✅ จาก space-between -> ชิดซ้าย */
+    align-items: baseline;
+    gap: 18px;                     /* ✅ เว้นระยะ Risk กับ % */
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  
+  .risk-label { }
+  
+  .risk-value { }
+  
+  .risk-group {
+    text-align: left;              /* ✅ จาก center -> left */
+    font-size: 16px;
+    font-weight: 600;              /* ✅ ให้หนาเหมือนรูป 2 */
+    margin-bottom: 24px;
+  }
+  
+  
+  /* risk bar */
+.risk-bar{
+  position: relative;
+  width: 100%;
+  height: 14px;
+  margin-bottom: 32px;
+}
+
+/* แถบสีจริง */
+.risk-track{
+  width: 100%;
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #1fb34a, #ffdd00, #ff4b3a);
+}
+
+/* จุด */
+.risk-thumb{
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+  
+  
+  /* recommendation card */
+  .recommend-card {
+    margin-top: 8px;
+    margin-bottom: 32px;
+    padding: 18px;
+    background: #DDE7FC;
+    border-radius: 18px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+  }
+  
+  .recommend-title {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .recommend-text {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  
+  /* buttons */
+  .btn-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 8px;
+  }
+  
+  .btn {
+    flex: 1;
+    padding: 12px 0;
+    border-radius: 999px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background: #3258de;
+    color: #fff;
+  }
+  
+  .btn-secondary {
+    background: #3258de;
+    color: #fff;
+  }
+  
