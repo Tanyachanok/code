@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const fullNameEl = document.getElementById("fullname");
   const usernameEl = document.getElementById("username_field");
   const emailEl = document.getElementById("email_field");
+  const avatarInitialEl = document.getElementById("avatarInitial");
+
 
   // helper ใส่ค่า + log
   function setField(el, value) {
@@ -20,6 +22,22 @@ document.addEventListener("DOMContentLoaded", async () => {
   setField(fullNameEl, "Loading...");
   setField(usernameEl, "Loading...");
   setField(emailEl, "Loading...");
+
+  function getInitials(firstName, lastName, fallback = "?") {
+    const f = (firstName || "").trim();
+    const l = (lastName || "").trim();
+  
+    const fi = f ? f[0] : "";
+    const li = l ? l[0] : "";
+  
+    const initials = (fi + li).toUpperCase();
+    if (initials) return initials;
+  
+    // fallback: ใช้ตัวแรกของ fullname/username/email
+    const fb = (fallback || "").toString().trim();
+    return fb ? fb[0].toUpperCase() : "?";
+  }
+  
 
   // -----------------------------
   // 2) token จาก localStorage
@@ -97,6 +115,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       username,
       email,
     });
+
+    const initials = getInitials(firstName, lastName, fullName || username || email);
+    if (avatarInitialEl) {
+      console.log("DETAIL: initials =", initials);
+      avatarInitialEl.textContent = initials;
+}
+
 
     // -----------------------------
     // 5) อัปเดตบนหน้า
