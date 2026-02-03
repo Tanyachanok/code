@@ -1,7 +1,7 @@
 // js/login.js
 document.addEventListener("DOMContentLoaded", () => {
     // --- เลือก element จากหน้าจอ ---
-    const form = document.querySelector("form.form");
+    const form = document.querySelector("form");
     const usernameInput = document.getElementById("username");
     const passwordInput = document.getElementById("password");
     const rememberCheckbox = form.querySelector('input[name="remember"]');
