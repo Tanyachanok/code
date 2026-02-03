@@ -16,20 +16,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // ----------------------------
   if (homeBtn) {
     homeBtn.addEventListener("click", () => {
-      window.location.href = "./home4log.html";
+      window.location.href = "/home4log.html";
     });
   }
 
   if (nextBtn) {
     nextBtn.addEventListener("click", () => {
       // หน้าถัดไป (Confirm PE)
-      window.location.href = "./confirm.html";
+      window.location.href = "/confirm.html";
     });
   }
 
   if (menuBtn) {
     menuBtn.addEventListener("click", () => {
-      window.location.href = "./ham-log.html";
+      window.location.href = "/ham-log.html";
     });
   }
 

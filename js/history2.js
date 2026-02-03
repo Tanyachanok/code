@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const menuBtn = document.querySelector(".menu-btn");
 if (menuBtn) {
   menuBtn.addEventListener("click", () => {
-    window.location.href = "./ham-log.html";
+    window.location.href = "/ham-log.html";
   });
 }
 
@@ -19,7 +19,7 @@ if (menuBtn) {
   const token = localStorage.getItem("pe_access_token");
   if (!token) {
     alert("กรุณาเข้าสู่ระบบก่อน");
-    window.location.href = "./login.html";
+    window.location.href = "/login.html";
     return;
   }
   if (!predictId) {
@@ -331,6 +331,6 @@ if (menuBtn) {
   // 4) back button
   // -----------------------------
   document.querySelector(".back-btn")?.addEventListener("click", () => {
-    window.location.href = "./history1.html";
+    window.location.href = "/history1.html";
   });
 });

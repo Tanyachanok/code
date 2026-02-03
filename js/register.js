@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", () => {
         showMessage("สมัครสมาชิกสำเร็จ กำลังกลับไปหน้า Login...", "success");
   
         // เปลี่ยนหน้าไป Login หลังสมัครสำเร็จ
-        window.location.href = "./login.html";
+        window.location.href = "/login.html";
       } catch (error) {
         console.error("Network error:", error);
         showMessage("error");

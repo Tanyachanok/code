@@ -238,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("pe_guest_form", JSON.stringify(payload));
         localStorage.setItem("pe_guest_result", JSON.stringify(resultData));
 
-        window.location.href = "./next-guest.html";
+        window.location.href = "/next-guest.html";
       } catch (err) {
         console.error("Fetch error:", err);
         alert("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้ กรุณาลองใหม่อีกครั้ง");

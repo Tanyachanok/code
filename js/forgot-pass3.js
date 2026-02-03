@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       showMessage("เปลี่ยนรหัสผ่านสำเร็จ ✅", "success");
       localStorage.removeItem("pe_reset_email");
-      window.location.href = "./forgot-pass4.html";
+      window.location.href = "/forgot-pass4.html";
     } catch (err) {
       console.error(err);
       showMessage("เชื่อมต่อเซิร์ฟเวอร์ไม่ได้", "error");

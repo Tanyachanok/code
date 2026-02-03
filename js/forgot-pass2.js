@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ✅ ถ้าไม่มีจริง ๆ ให้กลับหน้า 1 (กันเปิดหน้า 2 ตรง ๆ)
   if (!email) {
-    window.location.href = "./forget-pass1.html";
+    window.location.href = "/forget-pass1.html";
     return;
   }
 
