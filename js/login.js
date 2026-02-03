@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
       try {
         // เปลี่ยน URL ตาม backend 
-        const response = await fetch("https://xgfbbwk2-8000.asse.devtunnels.ms/auth/login", {
+        const response = await fetch("https://webapp-pe.onrender.com", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.querySelector(".input");
   const sendButton = document.querySelector(".btn");
 
-  const BASE_URL = "https://xgfbbwk2-8000.asse.devtunnels.ms";
+  const BASE_URL = "https://webapp-pe.onrender.com";
 
   // กล่องแสดงข้อความ (optional)
   const messageBox = document.createElement("p");

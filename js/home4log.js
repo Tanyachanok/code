@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ------------------------------------
   // 1) CONFIG API
   // ------------------------------------
-  const API_HOST = "https://xgfbbwk2-8000.asse.devtunnels.ms";
+  const API_HOST = "https://webapp-pe.onrender.com";
 
   // 🔧 ถ้า backend จริงใช้ /patient/user ให้เปลี่ยนตรงนี้ทีหลังได้
   const PATIENT_API = `${API_HOST}/patient`;

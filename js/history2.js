@@ -11,7 +11,7 @@ if (menuBtn) {
   // -----------------------------
   // 0) CONFIG + อ่านพารามิเตอร์
   // -----------------------------
-  const BASE_URL = "https://xgfbbwk2-8000.asse.devtunnels.ms";
+  const BASE_URL = "https://webapp-pe.onrender.com";
 
   const params = new URLSearchParams(window.location.search);
   const predictId = params.get("id");

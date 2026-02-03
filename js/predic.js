@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // root URL (devtunnel)
-  const API_ROOT = "https://xgfbbwk2-8000.asse.devtunnels.ms";
+  const API_ROOT = "https://webapp-pe.onrender.com";
 
   // สำหรับยิง predict แบบ user
   const PREDICT_API = `${API_ROOT}/clinical/predict/user`;

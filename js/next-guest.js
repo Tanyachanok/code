@@ -1,6 +1,6 @@
 // js/next-guest.js
 document.addEventListener("DOMContentLoaded", async () => {
-  const BASE_URL = "https://xgfbbwk2-8000.asse.devtunnels.ms";
+  const BASE_URL = "https://webapp-pe.onrender.com";
 
   const riskValueEl = document.querySelector(".risk-value");
   const riskGroupEl = document.querySelector(".risk-group");
@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   backBtn?.addEventListener("click", () => {
-    window.location.href = "prediction-guest.html";
+    window.location.href = "index.html";
   });
 
   // 1) อ่าน id จาก localStorage

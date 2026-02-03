@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const ACCESS_TOKEN_KEY = "pe_access_token";
   const token = localStorage.getItem(ACCESS_TOKEN_KEY);
 
-  const API_ROOT = "https://xgfbbwk2-8000.asse.devtunnels.ms";
+  const API_ROOT = "https://webapp-pe.onrender.com";
   const PREDICT_DETAIL_API = `${API_ROOT}/predict`; // ใช้ GET /predict/{id_predict}
 
   // ----------------------------

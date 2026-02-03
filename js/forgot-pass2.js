@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector(".container");
 
   // ✅ เปลี่ยนเป็น devtunnels
-  const BASE_URL = "https://xgfbbwk2-8000.asse.devtunnels.ms";
+  const BASE_URL = "https://webapp-pe.onrender.com";
 
   // สร้าง message box ไว้แสดงผล
   const messageBox = document.createElement("p");

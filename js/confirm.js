@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuBtn      = document.querySelector(".menu");
 
   // ===== CONFIG =====
-  const BASE_URL = "https://xgfbbwk2-8000.asse.devtunnels.ms";
+  const BASE_URL = "https://webapp-pe.onrender.com";
   const CONFIRM_API = `${BASE_URL}/pe/confirm`;
 
   const ACCESS_TOKEN_KEY = "pe_access_token";

@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
       showMessage("กำลังสร้างบัญชีผู้ใช้...", "info");
   
       try {
-        const response = await fetch("https://xgfbbwk2-8000.asse.devtunnels.ms/auth/register", {
+        const response = await fetch("https://webapp-pe.onrender.com", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

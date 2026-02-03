@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ==========================
   // 0) CONFIG BACKEND
   // ==========================
-  const BASE_URL = "https://xgfbbwk2-8000.asse.devtunnels.ms";
+  const BASE_URL = "https://webapp-pe.onrender.com";
   const GUEST_API = `${BASE_URL}/clinical/predict/guest`; // POST /predict/guest
 
   // ----------------------------

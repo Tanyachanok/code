@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const token = localStorage.getItem(ACCESS_TOKEN_KEY);
 
   // ✅ ใช้ devtunnels
-  const BASE_URL = "https://xgfbbwk2-8000.asse.devtunnels.ms";
+  const BASE_URL = "https://webapp-pe.onrender.com";
   const TIMELINE_API = `${BASE_URL}/record/timeline`;
 
   if (!token) {

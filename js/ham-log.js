@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const items = document.querySelectorAll(".menu-list .item");
     const closeBtn = document.querySelector(".close-btn");
   
-    const BASE_URL = "https://xgfbbwk2-8000.asse.devtunnels.ms";
+    const BASE_URL = "https://webapp-pe.onrender.com";
     const LOGOUT_API = `${BASE_URL}/auth/logout`;
   
     async function logoutUser() {
