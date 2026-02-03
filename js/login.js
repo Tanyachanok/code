@@ -68,17 +68,20 @@ document.addEventListener("DOMContentLoaded", () => {
         const BASE_URL = "https://webapp-pe.onrender.com";
         const LOGIN_API = `${BASE_URL}/auth/login`;
 
-        const body = new URLSearchParams();
-        body.append("username", username);
-        body.append("password", password);
-
+        // const body = new URLSearchParams();
+        //body.append("username", username);
+        //body.append("password", password);
+      console.log("payload",payload)
       const response = await fetch(LOGIN_API, {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          "Content-Type": "application/json",
           "Accept": "application/json",
       },
-      body: body.toString(),
+      body: JSON.stringify({
+        username: username,
+        password: password,
+      }),
       });
 
 
