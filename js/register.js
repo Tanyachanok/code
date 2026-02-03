@@ -1,6 +1,6 @@
 // js/register.js
 document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector("form.form");
+    const form = document.querySelector("form");
     const firstNameInput = document.getElementById("first_name");
     const lastNameInput = document.getElementById("last_name");
     const usernameInput = document.getElementById("username");
