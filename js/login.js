@@ -67,11 +67,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // เปลี่ยน URL ตาม backend 
         const BASE_URL = "https://webapp-pe.onrender.com";
         const LOGIN_API = `${BASE_URL}/auth/login`;
+        console.log("payload",payload)
+        console.log("payload",payload)
 
         // const body = new URLSearchParams();
         //body.append("username", username);
         //body.append("password", password);
-      console.log("payload",payload)
       const response = await fetch(LOGIN_API, {
         method: "POST",
         headers: {
