@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
   
       localStorage.removeItem("pe_access_token");
-      window.location.href = "login.html";
+      window.location.href = "./login.html";
     }
   
     items.forEach((item) => {

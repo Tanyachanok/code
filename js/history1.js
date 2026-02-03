@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   // ✅ เมนู 3 ขีด
   document.querySelector(".menu-btn")?.addEventListener("click", () => {
-    window.location.href = "ham-log.html"; // เปลี่ยนเป็นหน้าที่เธอใช้จริง
+    window.location.href = "./ham-log.html"; // เปลี่ยนเป็นหน้าที่เธอใช้จริง
   });
   const input = document.querySelector(".search-input");
   const btn = document.querySelector(".search-btn");
@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!token) {
     alert("กรุณาเข้าสู่ระบบก่อน");
-    window.location.href = "login.html";
+    window.location.href = "./login.html";
     return;
   }
 
@@ -103,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
           alert("ไม่พบรหัสรายการ (id_predict)");
           return;
         }
-        window.location.href = `history2.html?id=${encodeURIComponent(id)}`;
+        window.location.href = `./history2.html?id=${encodeURIComponent(id)}`;
       });
 
       listCard.appendChild(div);

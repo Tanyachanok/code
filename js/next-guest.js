@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   };
 
   backBtn?.addEventListener("click", () => {
-    window.location.href = "index.html";
+    window.location.href = "./index.html";
   });
 
   // 1) อ่าน id จาก localStorage

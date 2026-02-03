@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (menuBtn) {
     menuBtn.addEventListener("click", () => {
       // ✅ ตัดสินจากการ login จริง (token)
-      window.location.href = isLoggedIn() ? "ham-log.html" : "ham-guest.html";
+      window.location.href = isLoggedIn() ? "./ham-log.html" : "./ham-guest.html";
     });
   }
 

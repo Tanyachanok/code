@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
         showMessage("Login Success", "success");
   
         // เปลี่ยนหน้าไป Home for Login user
-        window.location.href = "home4log.html"; 
+        window.location.href = "./home4log.html"; 
       } catch (error) {
         console.error("Network error:", error);
         showMessage(

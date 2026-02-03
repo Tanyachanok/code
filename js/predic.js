@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!token) {
     alert("ไม่พบ token กรุณาเข้าสู่ระบบใหม่อีกครั้ง");
-    window.location.href = "login.html";
+    window.location.href = "./login.html";
     return;
   }
 
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuBtn = document.querySelector(".menu-btn");
   if (menuBtn) {
     menuBtn.addEventListener("click", () => {
-      window.location.href = "code/ham-log.html";
+      window.location.href = "./ham-log.html";
     });
   }
 
@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", () => {
           sex: formData.sex || "",
         });
 
-        window.location.href = "confirm.html?" + params.toString();
+        window.location.href = "./confirm.html?" + params.toString();
         return;
       }
 
@@ -379,7 +379,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       // 👉 ไปหน้า next to step (ชื่อไฟล์ต้องตรงกับของจริง)
-      window.location.href = "next to step.html?" + params.toString();
+      window.location.href = "./next to step.html?" + params.toString();
     });
   }
 

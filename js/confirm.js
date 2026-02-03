@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== menu =====
   if (menuBtn) {
     menuBtn.addEventListener("click", () => {
-      window.location.href = "ham-log.html";
+      window.location.href = "./ham-log.html";
     });
   }
 
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log("CONFIRM: saved =", data);
         alert("บันทึกผลยืนยันเรียบร้อยแล้ว ✅");
-        window.location.href = "home4log.html";
+        window.location.href = "./home4log.html";
       } catch (err) {
         console.error("CONFIRM: save failed:", err);
         alert(`บันทึกไม่สำเร็จ: ${String(err?.message || err)}`);

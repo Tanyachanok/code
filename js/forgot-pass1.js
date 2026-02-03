@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.setItem("pe_reset_email", email);
 
       // ✅ เด้งไปหน้า 2
-      window.location.href = "forgot-pass2.html";
+      window.location.href = "./forgot-pass2.html";
     } catch (err) {
       console.error(err);
       showMessage("เชื่อมต่อเซิร์ฟเวอร์ไม่ได้", "error");

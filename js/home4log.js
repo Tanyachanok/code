@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (!token) {
     alert("ไม่พบ token กรุณาเข้าสู่ระบบใหม่อีกครั้ง");
-    window.location.href = "login.html";
+    window.location.href = "./login.html";
     return;
   }
 
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (menuBtn) {
     menuBtn.addEventListener("click", () => {
       // ถ้าไฟล์อยู่ในโฟลเดอร์ /code ให้ใช้ "/code/ham-log.html"
-      window.location.href = "ham-log.html";
+      window.location.href = "./ham-log.html";
     });
   }
 
@@ -220,26 +220,26 @@ document.addEventListener("DOMContentLoaded", () => {
             JSON.stringify(predictionObj)
           );
 
-          window.location.href = "confirm.html";
+          window.location.href = "./confirm.html";
           return;
         }
 
         // ไม่มี prediction เดิม → ไปหน้า predic ให้กรอกใหม่
         window.location.href =
-          "predic.html?patient_id=" + encodeURIComponent(hn);
+          "./predic.html?patient_id=" + encodeURIComponent(hn);
         return;
       }
 
       // ถ้า status ไม่ใช่ 2xx (404 ฯลฯ) → ถือว่ายังไม่มี prediction
       window.location.href =
-        "predic.html?patient_id=" + encodeURIComponent(hn);
+        "./predic.html?patient_id=" + encodeURIComponent(hn);
     } catch (error) {
       console.error("HOME4LOG: เชื่อมต่อ backend ไม่ได้:", error);
       alert(
         "เกิดข้อผิดพลาดในการเชื่อมต่อเซิร์ฟเวอร์ จะพาไปหน้ากรอกข้อมูลแทน"
       );
       window.location.href =
-        "predic.html?patient_id=" + encodeURIComponent(hn);
+        "./predic.html?patient_id=" + encodeURIComponent(hn);
     }
   });
 });

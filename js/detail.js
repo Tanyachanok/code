@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   if (!token) {
     alert("กรุณาเข้าสู่ระบบก่อน");
-    window.location.href = "login.html";
+    window.location.href = "./login.html";
     return;
   }
 
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (response.status === 401 || response.status === 403) {
         alert("เซสชันหมดอายุ กรุณาเข้าสู่ระบบใหม่");
         localStorage.removeItem(ACCESS_TOKEN_KEY);
-        window.location.href = "login.html";
+        window.location.href = "./login.html";
         return;
       }
 
@@ -143,7 +143,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const btn = document.querySelector(".btn");
   if (btn) {
     btn.addEventListener("click", () => {
-      window.location.href = "ham-log.html";
+      window.location.href = "./ham-log.html";
     });
   }
 });
