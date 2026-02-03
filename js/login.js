@@ -65,13 +65,15 @@ document.addEventListener("DOMContentLoaded", () => {
   
       try {
         // เปลี่ยน URL ตาม backend 
-        const response = await fetch("https://webapp-pe.onrender.com", {
+        const BASE_URL = "https://webapp-pe.onrender.com";
+        const LOGIN_API = `${BASE_URL}/auth/login`;
+
+        const response = await fetch(LOGIN_API, {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
+
   
         if (!response.ok) {
           let errorDetail = "";
