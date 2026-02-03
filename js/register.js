@@ -84,13 +84,18 @@ document.addEventListener("DOMContentLoaded", () => {
       showMessage("กำลังสร้างบัญชีผู้ใช้...", "info");
   
       try {
-        const response = await fetch("https://webapp-pe.onrender.com", {
+        const BASE_URL = "https://webapp-pe.onrender.com";
+        const REGISTER_API = `${BASE_URL}/auth/register`;
+
+        const response = await fetch(REGISTER_API, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            "Accept": "application/json",
           },
           body: JSON.stringify(payload),
         });
+
   
         if (!response.ok) {
           let errorDetail = "Register failed";
