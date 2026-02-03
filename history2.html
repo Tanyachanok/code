@@ -17,9 +17,14 @@
 
 <body>
   <div class="page-wrapper">
-    <!-- Header Card -->
+
+    <!-- ✅ Header Card (มีอันเดียวพอ) -->
     <div class="history-header">
       <img src="Logo2.png" class="logo" alt="PE Predictor Logo" />
+
+      <!-- ✅ ปุ่ม 3 ขีด -->
+      <button class="menu-btn" type="button" aria-label="Menu">☰</button>
+
       <h1 class="header-title">Clinical History</h1>
     </div>
 
@@ -96,12 +101,12 @@
         <span class="value" id="val-type_cancer">-</span>
       </div>
 
-      <div class="info-row">
+      <div class="info-row" id="row-solid-type">
         <span class="label">Solid Cancer Type</span>
         <span class="value" id="val-solid_type">-</span>
       </div>
 
-      <div class="info-row">
+      <div class="info-row" id="row-hema-type">
         <span class="label">Hematologic Cancer Type</span>
         <span class="value" id="val-hema_type">-</span>
       </div>
@@ -121,18 +126,15 @@
         <span class="value" id="val-d_dimer">-</span>
       </div>
 
-      <!-- ถ้าคุณมี API ส่งค่า PE Confirm มาด้วย ค่อย map id นี้เพิ่มใน JS -->
       <div class="info-row">
         <span class="label">PE Confirm</span>
         <span class="value" id="val-pe_confirm">-</span>
       </div>
     </div>
 
-    <!-- ปุ่ม Back -->
     <button class="back-btn" type="button">Back</button>
   </div>
 
-  <!-- ✅ โหลด JS ของหน้า history2 -->
   <script src="js/history2.js"></script>
 </body>
 </html>

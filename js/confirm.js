@@ -3,14 +3,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // ===== elements =====
   const detailPills = document.querySelectorAll(".details-card .detail-pill");
   const patientPill = detailPills[0]; // HN
-  const sexPill = detailPills[1];     // Gender
-  const riskPill = detailPills[2];    // Risk
+  const sexPill     = detailPills[1]; // Gender
+  const riskPill    = detailPills[2]; // Risk
   const confirmPill = detailPills[3]; // Confirm PE
 
-  const noPeBtn = document.querySelector(".result-card--nope");
+  const noPeBtn      = document.querySelector(".result-card--nope");
   const peConfirmBtn = document.querySelector(".result-card--confirm");
-  const doneBtn = document.querySelector(".done-btn");
-  const menuBtn = document.querySelector(".menu");
+  const doneBtn      = document.querySelector(".done-btn");
+  const menuBtn      = document.querySelector(".menu");
 
   // ===== CONFIG =====
   const BASE_URL = "https://xgfbbwk2-8000.asse.devtunnels.ms";
@@ -33,19 +33,25 @@ document.addEventListener("DOMContentLoaded", () => {
   let basic = null;
   let result = null;
 
-  const basicRaw = localStorage.getItem("pe_login_basic");
+  const basicRaw  = localStorage.getItem("pe_login_basic");
   const resultRaw = localStorage.getItem("pe_login_result");
 
   try {
-    if (basicRaw) basic = JSON.parse(basicRaw);
+    if (basicRaw)  basic  = JSON.parse(basicRaw);
     if (resultRaw) result = JSON.parse(resultRaw);
   } catch (e) {
     console.error("CONFIRM: parse localStorage failed:", e);
   }
 
-  console.log("PAGE ORIGIN =", window.location.origin);
-  console.log("CONFIRM_API  =", CONFIRM_API);
-  console.log("TOKEN EXISTS =", !!token);
+  // ===== helper: แปลงเพศ =====
+  function normalizeGender(g) {
+    if (!g) return "-";
+    if (typeof g !== "string") return String(g);
+    const s = g.toLowerCase();
+    if (s === "m") return "Male";
+    if (s === "f") return "Female";
+    return g;
+  }
 
   // ===== show HN =====
   if (patientPill) {
@@ -55,12 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== show Gender =====
   if (sexPill) {
-    let sex = basic?.gender || localStorage.getItem("pe_gender") || "-";
-    if (typeof sex === "string") {
-      const s = sex.toLowerCase();
-      if (s === "m") sex = "Male";
-      if (s === "f") sex = "Female";
-    }
+    const sex = normalizeGender(basic?.gender || localStorage.getItem("pe_gender"));
     sexPill.textContent = sex || "-";
   }
 
@@ -80,7 +81,8 @@ document.addEventListener("DOMContentLoaded", () => {
         result?.risk ??
         0;
 
-      if (prob <= 1) prob = prob * 100;
+      // ถ้าเป็น 0-1 ให้แปลงเป็น %
+      if (typeof prob === "number" && prob <= 1) prob = prob * 100;
       probPercent = Number(prob);
     }
 
@@ -92,7 +94,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== initial Confirm PE text =====
   if (confirmPill) {
-    confirmPill.textContent = result?.confirm_pe ?? "-";
+    // ถ้ามีใน localStorage อยู่แล้วก็โชว์
+    const idPredictInit =
+      result?.id_predict ||
+      result?.id_predict_result ||
+      localStorage.getItem("pe_predict_id");
+
+    const saved = idPredictInit ? localStorage.getItem(`pe_confirm_${idPredictInit}`) : null;
+
+    confirmPill.textContent = result?.confirm_pe ?? saved ?? "-";
   }
 
   // ===== helper: update selection UI + localStorage =====
@@ -101,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (confirmPill) confirmPill.textContent = statusText;
 
-    // persist confirm_pe
+    // persist confirm_pe ใน pe_login_result (เพื่อให้หน้าเดิมจำค่าได้)
     try {
       const raw = localStorage.getItem("pe_login_result");
       let data = raw ? JSON.parse(raw) : {};
@@ -113,12 +123,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // ===== select cards =====
   function unselectAll() {
     noPeBtn?.classList.remove("is-selected");
     peConfirmBtn?.classList.remove("is-selected");
   }
 
+  // ===== select cards =====
   if (noPeBtn) {
     noPeBtn.addEventListener("click", () => {
       setConfirmStatus("No PE", false);
@@ -143,7 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
       localStorage.getItem("pe_predict_id");
 
     if (!idPredict) throw new Error("missing id_predict_result");
-
     if (!token) throw new Error("missing access token (please login again)");
 
     const payload = {
@@ -151,6 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
       pe_result: Boolean(isPe),
     };
 
+    console.log("CONFIRM_API =", CONFIRM_API);
     console.log("PAYLOAD =", payload);
 
     const res = await fetch(CONFIRM_API, {
@@ -164,9 +174,8 @@ document.addEventListener("DOMContentLoaded", () => {
       cache: "no-store",
     });
 
-    console.log("RESPONSE STATUS =", res.status);
-
     const text = await res.text();
+    console.log("RESPONSE STATUS =", res.status);
     console.log("RAW RESPONSE =", text);
 
     let data = {};
@@ -179,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
       throw new Error(typeof detail === "string" ? detail : JSON.stringify(detail));
     }
 
-    return data;
+    return { data, idPredict };
   }
 
   // ===== Done button =====
@@ -195,17 +204,18 @@ document.addEventListener("DOMContentLoaded", () => {
       doneBtn.textContent = "Saving...";
 
       try {
-        const resJson = await sendConfirmToBackend(selectedIsPe);
-        console.log("CONFIRM: saved =", resJson);
+        const { data, idPredict } = await sendConfirmToBackend(selectedIsPe);
 
+        // ✅ เก็บผล confirm ต่อ predictId (ให้ history2 ดึงได้)
+        const confirmText = selectedIsPe ? "PE Confirm" : "No PE";
+        localStorage.setItem(`pe_confirm_${idPredict}`, confirmText);
+
+        console.log("CONFIRM: saved =", data);
         alert("บันทึกผลยืนยันเรียบร้อยแล้ว ✅");
         window.location.href = "home4log.html";
       } catch (err) {
         console.error("CONFIRM: save failed:", err);
-
-        // แสดงข้อความที่อ่านง่าย
-        const msg = String(err?.message || err);
-        alert(`บันทึกไม่สำเร็จ: ${msg}`);
+        alert(`บันทึกไม่สำเร็จ: ${String(err?.message || err)}`);
 
         doneBtn.disabled = false;
         doneBtn.textContent = oldText;

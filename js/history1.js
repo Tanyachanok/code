@@ -1,4 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // ✅ เมนู 3 ขีด
+  document.querySelector(".menu-btn")?.addEventListener("click", () => {
+    window.location.href = "ham-log.html"; // เปลี่ยนเป็นหน้าที่เธอใช้จริง
+  });
   const input = document.querySelector(".search-input");
   const btn = document.querySelector(".search-btn");
   const listCard = document.querySelector(".list-card");
