@@ -6,30 +6,47 @@ document.addEventListener("DOMContentLoaded", () => {
     const passwordInput = document.getElementById("password");
     const rememberCheckbox = form.querySelector('input[name="remember"]');
     const submitButton = form.querySelector('button[type="submit"]');
-    const menuBtn = document.querySelector(".menu-btn");
-    if (menuBtn) {
-      menuBtn.addEventListener("click", () => {
-        window.location.href = "/ham-guest.html";
+    const closeBtn = document.querySelector(".close-btn");
+    if (closeBtn) {
+      closeBtn.addEventListener("click", () => {
+        window.location.href = "/index.html";
   });
 }
+
+    // ป้องกัน null (กันหน้าไหนไม่มี form แล้วพัง)
+    if (!form || !usernameInput || !passwordInput || !submitButton) return;
   
     // --- กล่องแสดงข้อความ Error / Success ---
-    const messageBox = document.createElement("p");
-    messageBox.style.marginTop = "0.75rem";
-    messageBox.style.fontSize = "0.9rem";
-    form.appendChild(messageBox);
-  
-    function showMessage(text, type = "error") {
-      messageBox.textContent = text;
-  
-      if (type === "error") {
-        messageBox.style.color = "#c53030"; // แดง
-      } else if (type === "success") {
-        messageBox.style.color = "#2f855a"; // เขียว
-      } else {
-        messageBox.style.color = "#4a5568"; // เทา
+    // const messageBox = document.createElement("p");
+    //messageBox.style.marginTop = "0.75rem";
+    //messageBox.style.fontSize = "0.9rem";
+    //form.appendChild(messageBox); 
+
+    const passwordError = document.getElementById("password-error");
+
+      function showPasswordError(text) {
+        passwordError.textContent = text;
       }
-    }
+
+      function clearPasswordError() {
+        passwordError.textContent = "";
+}
+      // เคลียร์ error ตอนพิมพ์
+      passwordInput.addEventListener("input", clearPasswordError);
+      usernameInput.addEventListener("input", clearPasswordError);
+
+  
+    //function showMessage(text, type = "error") {
+      //messageBox.textContent = text;
+  
+      //if (type === "error") {
+      //  messageBox.style.color = "#c53030"; // แดง
+     // } else if (type === "success") {
+     //   messageBox.style.color = "#2f855a"; // เขียว
+     // } else {
+     //   messageBox.style.color = "#4a5568"; // เทา
+     // }
+  //  }
   
     // --- ใช้ Remember me ---
     const savedUsername = localStorage.getItem("pe_username");
@@ -47,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
       // Validate
       if (!username || !password) {
-        showMessage("กรุณากรอก Username และ Password", "error");
+        showMessage("กรุณากรอก Username และ Password");
         return;
       }
   
@@ -67,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // ล็อกปุ่มกันกดซ้ำ
       submitButton.disabled = true;
       submitButton.textContent = "Logging in...";
-      showMessage("กำลังเข้าสู่ระบบ...", "info");
+      //showMessage("กำลังเข้าสู่ระบบ...", "info");
   
       try {
         // เปลี่ยน URL ตาม backend 
@@ -106,7 +123,10 @@ document.addEventListener("DOMContentLoaded", () => {
           submitButton.textContent = "Login";
           return;
         }
-  
+        
+        clearPasswordError();
+
+
         const data = await response.json();
         console.log("Login success:", data);
   
