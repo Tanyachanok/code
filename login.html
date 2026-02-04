@@ -13,11 +13,13 @@
     <main class="page">
       <section class="card" aria-labelledby="appTitle">
          <!-- ☰ Hamburger menu -->
-        <button class="menu-btn" aria-label="Menu">
+        <!-- <button class="menu-btn" aria-label="Menu"> 
             <span></span>
             <span></span>
-            <span></span>
-        </button>
+            <span></span> -->
+            <button class="close-btn" type="button" aria-label="Close">
+              <img src="/x.svg" alt="Close">
+            </button>            
           <img src="/Logo1.png" class ="logo">
         
   
@@ -43,6 +45,9 @@
               <input id="password" name="password" type="password" placeholder="Password" autocomplete="current-password" required />
             </div>
           </div>
+
+          <!-- ✅ error message ใต้ password -->
+          <p id="password-error" class="error-text"></p>
   
           <div class="row between">
             <label class="checkbox">
