@@ -6,6 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const passwordInput = document.getElementById("password");
     const rememberCheckbox = form.querySelector('input[name="remember"]');
     const submitButton = form.querySelector('button[type="submit"]');
+    const menuBtn = document.querySelector(".menu-btn");
+    if (menuBtn) {
+      menuBtn.addEventListener("click", () => {
+        window.location.href = "/ham-guest.html";
+  });
+}
   
     // --- กล่องแสดงข้อความ Error / Success ---
     const messageBox = document.createElement("p");
