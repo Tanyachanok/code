@@ -36,17 +36,17 @@ document.addEventListener("DOMContentLoaded", () => {
       usernameInput.addEventListener("input", clearPasswordError);
 
   
-    function showMessage(text, type = "error") {
-      messageBox.textContent = text;
+    //function showMessage(text, type = "error") {
+      //messageBox.textContent = text;
   
-      if (type === "error") {
-        messageBox.style.color = "#c53030"; // แดง
-      } else if (type === "success") {
-       messageBox.style.color = "#2f855a"; // เขียว
-      } else {
-       messageBox.style.color = "#4a5568"; // เทา
-      }
-    }
+      //if (type === "error") {
+      //  messageBox.style.color = "#c53030"; // แดง
+      //} else if (type === "success") {
+      // messageBox.style.color = "#2f855a"; // เขียว
+     // } else {
+      // messageBox.style.color = "#4a5568"; // เทา
+     // }
+    //}
   
     // --- ใช้ Remember me ---
     const savedUsername = localStorage.getItem("pe_username");
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
       // Validate
       if (!username || !password) {
-        showMessage("กรุณากรอก Username และ Password");
+        showPasswordError("กรุณากรอก Username และ Password");
         return;
       }
   
@@ -118,11 +118,13 @@ document.addEventListener("DOMContentLoaded", () => {
             errorDetail = "Login failed";
           }
   
-          showMessage(errorDetail, "error");
+          showPasswordError(errorDetail);
           submitButton.disabled = false;
           submitButton.textContent = "Login";
           return;
         }
+
+        
         
         clearPasswordError();
 
@@ -135,13 +137,13 @@ document.addEventListener("DOMContentLoaded", () => {
           localStorage.setItem("pe_access_token", data.access_token);
         }
   
-        showMessage("Login Success", "success");
+        //showMessage("Login Success", "success");
   
         // เปลี่ยนหน้าไป Home for Login user
         window.location.href = "/home4log.html"; 
       } catch (error) {
         console.error("Network error:", error);
-        showMessage(
+        showPasswordError(
           "error"
         );
       } finally {
