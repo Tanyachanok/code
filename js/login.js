@@ -36,17 +36,17 @@ document.addEventListener("DOMContentLoaded", () => {
       usernameInput.addEventListener("input", clearPasswordError);
 
   
-    //function showMessage(text, type = "error") {
-      //messageBox.textContent = text;
+    function showMessage(text, type = "error") {
+      messageBox.textContent = text;
   
-      //if (type === "error") {
-      //  messageBox.style.color = "#c53030"; // แดง
-     // } else if (type === "success") {
-     //   messageBox.style.color = "#2f855a"; // เขียว
-     // } else {
-     //   messageBox.style.color = "#4a5568"; // เทา
-     // }
-  //  }
+      if (type === "error") {
+        messageBox.style.color = "#c53030"; // แดง
+      } else if (type === "success") {
+       messageBox.style.color = "#2f855a"; // เขียว
+      } else {
+       messageBox.style.color = "#4a5568"; // เทา
+      }
+    }
   
     // --- ใช้ Remember me ---
     const savedUsername = localStorage.getItem("pe_username");
