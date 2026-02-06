@@ -445,142 +445,205 @@ document.addEventListener("DOMContentLoaded", () => {
     return data;
   }
 
+//   function clearErrors() {
+//     document
+//       .querySelectorAll(".input-error, .select-error, .radio-error")
+//       .forEach((el) =>
+//         el.classList.remove("input-error", "select-error", "radio-error")
+//       );
+
+//     document.querySelectorAll(".error-message").forEach((el) => el.remove());
+//   }
+
+//   function validateForm(data) {
+//     let hasError = false;
+
+//     const showError = (element, msg, className) => {
+//       if (!element) return;
+//       hasError = true;
+//       if (className) element.classList.add(className);
+
+//       const err = document.createElement("div");
+//       err.className = "error-message";
+//       err.style.color = "#e63946";
+//       err.style.fontSize = "11px";
+//       err.style.marginTop = "4px";
+//       err.textContent = msg;
+
+//       if (element.parentNode) {
+//         element.parentNode.appendChild(err);
+//       }
+//     };
+
+//     const patientInputEl = document.getElementById("patient_id");
+//     if (!data.patient_id) {
+//       showError(patientInputEl, "กรุณากรอก Number of Patient", "input-error");
+//     }
+
+//     // 👇 ปรับ validate ให้รองรับ gender แบบปุ่มเดียว
+//     const sexElement =
+//       document.getElementById("gender_display") ||
+//       document.querySelector('input[name="sex"]')?.closest(".toggle-group");
+//     if (!data.sex && sexElement) {
+//       showError(sexElement, "กรุณาเลือกเพศ", "radio-error");
+//     }
+
+//     const ageInput = document.querySelector('input[placeholder="Years"]');
+//     if (!data.age) {
+//       showError(ageInput, "กรุณากรอกอายุ", "input-error");
+//     }
+
+//     const ecogGroup = document
+//       .querySelector('input[name="ecog"]')
+//       ?.closest(".toggle-group");
+//     if (!data.ecog) {
+//       showError(ecogGroup, "กรุณาเลือก ECOG status", "radio-error");
+//     }
+
+//     const hrInput = document.querySelector('input[placeholder="bpm"]');
+//     if (!data.heart_rate) {
+//       showError(hrInput, "กรุณากรอก Heart Rate", "input-error");
+//     }
+
+//     const mmHgInputs = Array.from(
+//       document.querySelectorAll('input[placeholder="mmHg"]')
+//     );
+//     if (!data.systolic_bp && mmHgInputs[0]) {
+//       showError(mmHgInputs[0], "กรุณากรอก Systolic BP", "input-error");
+//     }
+//     if (!data.diastolic_bp && mmHgInputs[1]) {
+//       showError(mmHgInputs[1], "กรุณากรอก Diastolic BP", "input-error");
+//     }
+
+//     const p95100 = Array.from(
+//       document.querySelectorAll('input[placeholder="95–100"]')
+//     );
+//     if (!data.spo2 && p95100[0]) {
+//       showError(p95100[0], "กรุณากรอก SpO₂", "input-error");
+//     }
+//     if (!data.fio2 && p95100[1]) {
+//       showError(p95100[1], "กรุณากรอก FiO₂", "input-error");
+//     }
+
+//     const radioCheck = (name, msg) => {
+//       const group = document
+//         .querySelector(`input[name="${name}"]`)
+//         ?.closest(".toggle-group");
+//       if (!data[name]) {
+//         showError(group, msg, "radio-error");
+//       }
+//     };
+
+//     radioCheck("hemoptysis", "กรุณาเลือก Hemoptysis");
+//     radioCheck("pcp", "กรุณาเลือก Pleuritic chest pain");
+//     radioCheck("syncope", "กรุณาเลือก Syncope");
+//     radioCheck("edema", "กรุณาเลือก One leg edema");
+
+//     const typeGroup = document
+//       .querySelector('input[name="type_cancer"]')
+//       ?.closest(".toggle-group");
+//     if (!data.type_cancer) {
+//       showError(typeGroup, "กรุณาเลือกชนิดมะเร็ง", "radio-error");
+//     } else if (data.type_cancer === "solid") {
+//       const solidSelect = document.getElementById("solid_select");
+//       if (!data.solid_cancer_type) {
+//         showError(
+//           solidSelect,
+//           "กรุณาเลือก Solid cancer type",
+//           "select-error"
+//         );
+//       }
+//     } else if (data.type_cancer === "hematologic") {
+//       const hemaSelect = document.getElementById("hema_select");
+//       if (!data.hema_cancer_type) {
+//         showError(
+//           hemaSelect,
+//           "กรุณาเลือก Hematologic cancer type",
+//           "select-error"
+//         );
+//       }
+//     }
+
+//     const lungGroup = document
+//       .querySelector('input[name="lung_meta"]')
+//       ?.closest(".toggle-group");
+//     if (!data.lung_meta) {
+//       showError(lungGroup, "กรุณาเลือก Lung metastasis", "radio-error");
+//     }
+
+//     const cxrSelect = document.getElementById("cxr_select");
+//     if (!data.cxr_type) {
+//       showError(cxrSelect, "กรุณาเลือก Chest X-ray type", "select-error");
+//     }
+
+//     const ddimerInput = document.querySelector('input[placeholder="Value"]');
+//     if (!data.d_dimer) {
+//       showError(ddimerInput, "กรุณากรอกค่า D-dimer", "input-error");
+//     }
+
+//     return hasError;
+//   }
+// });
+
+
+// ----------------------------
+  // VALIDATION + RED *
+  // ----------------------------
   function clearErrors() {
     document
-      .querySelectorAll(".input-error, .select-error, .radio-error")
-      .forEach((el) =>
-        el.classList.remove("input-error", "select-error", "radio-error")
-      );
+      .querySelectorAll(".form-group")
+      .forEach((group) => {group.classList.remove("has-error");
+      });
+    }
+        
 
-    document.querySelectorAll(".error-message").forEach((el) => el.remove());
+  function validateForm() {
+    clearErrors();
+    let valid = true;
+
+    // Text input
+    const inputs = document.querySelectorAll("input.text-input");
+    inputs.forEach((input) => {
+      if (input.value.trim() === "") {
+        input.closest(".form-group").classList.add("has-error");
+        valid = false;
+      }
+    });
+
+    // Dropdown (ยกเว้นที่อยู่ใน .hidden)
+    const selects = document.querySelectorAll(".dropdown-select");
+    selects.forEach((sel) => {
+      const hiddenWrap = sel.closest(".hidden");
+      if (!hiddenWrap && sel.value === "") {
+        sel.closest(".form-group").classList.add("has-error");
+        valid = false;
+      }
+    });
+
+    // Radio groups
+    const radioGroups = [
+      "sex",
+      "ecog",
+      "hemoptysis",
+      "pcp",
+      "syncope",
+      "edema",
+      "type_cancer",
+      "lung_meta",
+    ];
+
+    radioGroups.forEach((name) => {
+      const radios = document.querySelectorAll(`input[name="${name}"]`);
+      const checked = document.querySelector(`input[name="${name}"]:checked`);
+
+      const isHidden = radios.length > 0 && radios[0].closest(".hidden");
+
+      if (!isHidden && !checked && radios.length > 0) {
+      radios[0].closest(".form-group").classList.add("has-error");
+      valid = false;
+      }
+    });
+
+    return valid;
   }
-
-  function validateForm(data) {
-    let hasError = false;
-
-    const showError = (element, msg, className) => {
-      if (!element) return;
-      hasError = true;
-      if (className) element.classList.add(className);
-
-      const err = document.createElement("div");
-      err.className = "error-message";
-      err.style.color = "#e63946";
-      err.style.fontSize = "11px";
-      err.style.marginTop = "4px";
-      err.textContent = msg;
-
-      if (element.parentNode) {
-        element.parentNode.appendChild(err);
-      }
-    };
-
-    const patientInputEl = document.getElementById("patient_id");
-    if (!data.patient_id) {
-      showError(patientInputEl, "กรุณากรอก Number of Patient", "input-error");
-    }
-
-    // 👇 ปรับ validate ให้รองรับ gender แบบปุ่มเดียว
-    const sexElement =
-      document.getElementById("gender_display") ||
-      document.querySelector('input[name="sex"]')?.closest(".toggle-group");
-    if (!data.sex && sexElement) {
-      showError(sexElement, "กรุณาเลือกเพศ", "radio-error");
-    }
-
-    const ageInput = document.querySelector('input[placeholder="Years"]');
-    if (!data.age) {
-      showError(ageInput, "กรุณากรอกอายุ", "input-error");
-    }
-
-    const ecogGroup = document
-      .querySelector('input[name="ecog"]')
-      ?.closest(".toggle-group");
-    if (!data.ecog) {
-      showError(ecogGroup, "กรุณาเลือก ECOG status", "radio-error");
-    }
-
-    const hrInput = document.querySelector('input[placeholder="bpm"]');
-    if (!data.heart_rate) {
-      showError(hrInput, "กรุณากรอก Heart Rate", "input-error");
-    }
-
-    const mmHgInputs = Array.from(
-      document.querySelectorAll('input[placeholder="mmHg"]')
-    );
-    if (!data.systolic_bp && mmHgInputs[0]) {
-      showError(mmHgInputs[0], "กรุณากรอก Systolic BP", "input-error");
-    }
-    if (!data.diastolic_bp && mmHgInputs[1]) {
-      showError(mmHgInputs[1], "กรุณากรอก Diastolic BP", "input-error");
-    }
-
-    const p95100 = Array.from(
-      document.querySelectorAll('input[placeholder="95–100"]')
-    );
-    if (!data.spo2 && p95100[0]) {
-      showError(p95100[0], "กรุณากรอก SpO₂", "input-error");
-    }
-    if (!data.fio2 && p95100[1]) {
-      showError(p95100[1], "กรุณากรอก FiO₂", "input-error");
-    }
-
-    const radioCheck = (name, msg) => {
-      const group = document
-        .querySelector(`input[name="${name}"]`)
-        ?.closest(".toggle-group");
-      if (!data[name]) {
-        showError(group, msg, "radio-error");
-      }
-    };
-
-    radioCheck("hemoptysis", "กรุณาเลือก Hemoptysis");
-    radioCheck("pcp", "กรุณาเลือก Pleuritic chest pain");
-    radioCheck("syncope", "กรุณาเลือก Syncope");
-    radioCheck("edema", "กรุณาเลือก One leg edema");
-
-    const typeGroup = document
-      .querySelector('input[name="type_cancer"]')
-      ?.closest(".toggle-group");
-    if (!data.type_cancer) {
-      showError(typeGroup, "กรุณาเลือกชนิดมะเร็ง", "radio-error");
-    } else if (data.type_cancer === "solid") {
-      const solidSelect = document.getElementById("solid_select");
-      if (!data.solid_cancer_type) {
-        showError(
-          solidSelect,
-          "กรุณาเลือก Solid cancer type",
-          "select-error"
-        );
-      }
-    } else if (data.type_cancer === "hematologic") {
-      const hemaSelect = document.getElementById("hema_select");
-      if (!data.hema_cancer_type) {
-        showError(
-          hemaSelect,
-          "กรุณาเลือก Hematologic cancer type",
-          "select-error"
-        );
-      }
-    }
-
-    const lungGroup = document
-      .querySelector('input[name="lung_meta"]')
-      ?.closest(".toggle-group");
-    if (!data.lung_meta) {
-      showError(lungGroup, "กรุณาเลือก Lung metastasis", "radio-error");
-    }
-
-    const cxrSelect = document.getElementById("cxr_select");
-    if (!data.cxr_type) {
-      showError(cxrSelect, "กรุณาเลือก Chest X-ray type", "select-error");
-    }
-
-    const ddimerInput = document.querySelector('input[placeholder="Value"]');
-    if (!data.d_dimer) {
-      showError(ddimerInput, "กรุณากรอกค่า D-dimer", "input-error");
-    }
-
-    return hasError;
-  }
-});
+  });

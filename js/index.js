@@ -32,13 +32,15 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ----------------------------
-  // VALIDATION + RED BORDER
+  // VALIDATION + RED *
   // ----------------------------
   function clearErrors() {
     document
-      .querySelectorAll(".input-error, .select-error, .radio-error")
-      .forEach((el) => el.classList.remove("input-error", "select-error", "radio-error"));
-  }
+      .querySelectorAll(".form-group")
+      .forEach((group) => {group.classList.remove("has-error");
+      });
+    }
+        
 
   function validateForm() {
     clearErrors();
@@ -48,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const inputs = document.querySelectorAll("input.text-input");
     inputs.forEach((input) => {
       if (input.value.trim() === "") {
-        input.classList.add("input-error");
+        input.closest(".form-group").classList.add("has-error");
         valid = false;
       }
     });
@@ -58,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     selects.forEach((sel) => {
       const hiddenWrap = sel.closest(".hidden");
       if (!hiddenWrap && sel.value === "") {
-        sel.classList.add("select-error");
+        sel.closest(".form-group").classList.add("has-error");
         valid = false;
       }
     });
@@ -79,10 +81,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const radios = document.querySelectorAll(`input[name="${name}"]`);
       const checked = document.querySelector(`input[name="${name}"]:checked`);
 
-      if (!checked && radios.length > 0) {
-        const group = radios[0].closest(".toggle-group");
-        if (group) group.classList.add("radio-error");
-        valid = false;
+      const isHidden = radios.length > 0 && radios[0].closest(".hidden");
+
+      if (!isHidden && !checked && radios.length > 0) {
+      radios[0].closest(".form-group").classList.add("has-error");
+      valid = false;
       }
     });
 
@@ -268,4 +271,36 @@ document.addEventListener("DOMContentLoaded", () => {
       hemaSection?.classList.add("hidden");
     });
   }
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    // สำหรับ Text Inputs: หายทันทีที่พิมพ์
+    document.querySelectorAll("input.text-input").forEach(input => {
+        input.addEventListener("input", function() {
+            if (this.value.trim() !== "") {
+                this.closest(".form-group").classList.remove("has-error");
+            }
+        });
+    });
+
+    // สำหรับ Dropdowns: หายทันทีที่เลือกค่า
+    document.querySelectorAll(".dropdown-select").forEach(select => {
+        select.addEventListener("change", function() {
+            if (this.value !== "") {
+                this.closest(".form-group").classList.remove("has-error");
+            }
+        });
+    });
+
+    // adio Groups: หายทันทีที่คลิกเลือกข้อใดข้อหนึ่ง
+    const radioNames = ["sex", "ecog", "hemoptysis", "pcp", "syncope", "edema", "type_cancer", "lung_meta"];
+    radioNames.forEach(name => {
+        const radios = document.querySelectorAll(`input[name="${name}"]`);
+        radios.forEach(radio => {
+            radio.addEventListener("change", function() {
+                // เมื่อเลือกปุ่มใดปุ่มหนึ่งในกลุ่ม ให้เอา error ของกลุ่มนั้นออก
+                this.closest(".form-group").classList.remove("has-error");
+            });
+        });
+    });
 });

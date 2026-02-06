@@ -30,6 +30,12 @@
     font-weight: 300;
     cursor: pointer;
   }
+
+  .close-btn img {
+    width: 26px;  /* ปรับค่านี้ให้เล็กลงตามต้องการ (เช่น 12px หรือ 14px) */
+    height: auto;
+    display: block;
+  }
   
   /* Menu content */
   .menu-list {

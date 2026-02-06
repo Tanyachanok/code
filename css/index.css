@@ -267,18 +267,16 @@ body {
     cursor: pointer;
 }
 
-.input-error {
-    border: 2px solid #e63946 !important;  /* แดง */
+/* สไตล์สำหรับดอกจันสีแดง */
+.required-asterisk {
+    color: #e63946; /* สีแดงเดิม */
+    margin-left: 4px;
+    font-weight: bold;
+    font-size: 20px;
+    display: none; /* ปกติซ่อนไว้ */
 }
 
-.select-error {
-    border: 2px solid #e63946 !important;
-}
-
-.radio-error {
-    outline: 2px solid #e63946;
-    border-radius: 6px;
-}
-.hidden { 
-    display: none; 
+/* เมื่อมีการ Error (ใส่ class .has-error ที่ตัวครอบ) ให้แสดงดอกจัน */
+.form-group.has-error .required-asterisk {
+    display: inline;
 }
