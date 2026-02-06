@@ -647,3 +647,35 @@ document.addEventListener("DOMContentLoaded", () => {
     return valid;
   }
   });
+
+  document.addEventListener("DOMContentLoaded", function() {
+    // สำหรับ Text Inputs: หายทันทีที่พิมพ์
+    document.querySelectorAll("input.text-input").forEach(input => {
+        input.addEventListener("input", function() {
+            if (this.value.trim() !== "") {
+                this.closest(".form-group").classList.remove("has-error");
+            }
+        });
+    });
+
+    // สำหรับ Dropdowns: หายทันทีที่เลือกค่า
+    document.querySelectorAll(".dropdown-select").forEach(select => {
+        select.addEventListener("change", function() {
+            if (this.value !== "") {
+                this.closest(".form-group").classList.remove("has-error");
+            }
+        });
+    });
+
+    // adio Groups: หายทันทีที่คลิกเลือกข้อใดข้อหนึ่ง
+    const radioNames = ["sex", "ecog", "hemoptysis", "pcp", "syncope", "edema", "type_cancer", "lung_meta"];
+    radioNames.forEach(name => {
+        const radios = document.querySelectorAll(`input[name="${name}"]`);
+        radios.forEach(radio => {
+            radio.addEventListener("change", function() {
+                // เมื่อเลือกปุ่มใดปุ่มหนึ่งในกลุ่ม ให้เอา error ของกลุ่มนั้นออก
+                this.closest(".form-group").classList.remove("has-error");
+            });
+        });
+    });
+});
