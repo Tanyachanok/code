@@ -30,8 +30,8 @@ body {
 } 
 
 .logo {
-  width: 120px;
-  height: 120px;
+  width: 85px;
+  /* height: 120px; */
   display: flex;
   padding: 3px;
 }
@@ -48,10 +48,11 @@ body {
 
 .menu-btn span {
   display: block;
-  width: 22px;
-  height: 2.5px;
+  width: 26px;
+  height: 1.5px;
   border-radius: 999px;
   background: #000;
+  margin-top: 1px;
 }
 
 /* ----------------------------------------------------

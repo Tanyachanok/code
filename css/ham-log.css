@@ -9,6 +9,18 @@
     background: #ffffff;
     padding: 20px;
   }
+
+  .page {
+  width: 100%;
+  max-width: 430px;    /* ขนาดความกว้างมือถือ */
+  margin: 0 auto;       /* จัดกึ่งกลางหน้าจอคอม */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column; 
+  align-items: stretch; /* ให้เนื้อหาขยายเต็มความกว้างภายใน */
+  padding: 0;           /* เคลียร์ padding เพื่อให้เส้นคั่นชิดขอบ */
+  background: #ffffff;
+}
   
   /* Top bar */
   .top-bar {
@@ -18,8 +30,8 @@
   }
   
   .logo {
-    width: 100px;
-    height: 100px;
+    width: 85px;
+    /* height: 100px; */
     display: flex;
     align-items: center;
   }
@@ -34,6 +46,7 @@
     width: 26px;  /* ปรับค่านี้ให้เล็กลงตามต้องการ (เช่น 12px หรือ 14px) */
     height: auto;
     display: block;
+    margin-top: -5px;
   }
   
   /* Menu content */
@@ -49,6 +62,10 @@
     font-size: 16px;
     padding: 18px 0 8px;
   }
+
+  /* .item:hover { */
+  /* background: #f8fafc;      เพิ่มลูกเล่นเวลาเอาเมาส์ชี้ */
+/* } */
   
   .icon {
     width: 26px;
@@ -61,4 +78,6 @@
     margin-bottom: 10px;
     opacity: 0.7;
   }
+
+  
   
