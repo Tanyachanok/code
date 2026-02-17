@@ -22,7 +22,7 @@ html, body {
     height: 100%; 
     margin: 0;
     padding: 0; 
-    overflow: hidden; /* ล็อคไม่ให้หน้าจอโยกซ้ายขวา */
+    overflow-x: hidden; /* ล็อคไม่ให้หน้าจอโยกซ้ายขวา */
     /* position: fixed;     */
 } 
 
@@ -206,9 +206,6 @@ html, body {
   height: 24px;
   pointer-events: none; /* ให้การกดทะลุไปที่ปุ่ม */
 }
-
-
-
 
 .error-text{
   margin-top: -14px;
