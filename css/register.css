@@ -174,7 +174,7 @@
     /* padding: 12px 16px; */
     padding: 12px 12px;
     border-radius: 12px;
-    background: var(--primary);
+    background: #3258DE;
     color: white;
     font-weight: 700;
     font-size: 18px;
@@ -183,7 +183,7 @@
     box-shadow: 0 8px 18px rgba(59,130,246,.35);
     transition: transform .02s ease, background .15s ease;
   }
-  .btn-primary:hover{ background: var(--primary-600); }
+  .btn-primary:hover{ background: #1646d0; }
   .btn-primary:active{ transform: translateY(1px); }
 
   /* สไตล์สำหรับดอกจันสีแดง */

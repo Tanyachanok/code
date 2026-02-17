@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     sendButton.disabled = true;
     sendButton.textContent = "Sending...";
-    showMessage("กำลังส่งอีเมล...", "info");
+    // showMessage("กำลังส่งอีเมล...", "info");
 
     try {
       const res = await fetch(`${BASE_URL}/auth/forget_password`, {

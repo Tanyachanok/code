@@ -2,22 +2,33 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Inter", sans-serif;
+    font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji';
 }
 
 body {
-    height: 100vh;
+    height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(168.86deg, #c3d6fa 28.89%, #ffffff 100%);
+    background: linear-gradient(168.86deg, #ffffff);
 }
 
 .container {
-    width: 100%;
-    max-width: 360px;
+    position: relative;
+    width: 90%;
+    max-width: 450px;
     text-align: center;
-    padding: 20px;
+    padding: 40px 25px;
+    min-height: 100dvh;
+    border-radius: 16px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    /* margin: 20px auto; */
+    background: linear-gradient(168.86deg, #c3d6fa 65%, #ffffff 100%);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.15);
+    border: 1px solid #e5e7eb; 
+    
 }
 
 .icon-lock img {
@@ -25,6 +36,7 @@ body {
     margin: 20px auto 30px;
     display: block;
     opacity: 0.9;
+    margin-top: -10px;
 }
 
 h2 {
@@ -43,19 +55,20 @@ h2 {
 .label {
     display: block;
     text-align: left;
-    font-weight: 600;
-    margin-bottom: 6px;
+    font-weight: 525;
+    margin-bottom: 10px;
     margin-top: 10px;
 }
 
 .input {
     width: 100%;
     padding: 12px 14px;
-    border: 1px solid #d8d8d8;
+    border: 1px solid #e5e7eb;
     border-radius: 20px;
     font-size: 14px;
     outline: none;
-    margin-bottom: 18px;
+    margin-bottom: 25px;
+    transition: border-color .2s, box-shadow .2s;
 }
 
 .input:focus {
@@ -64,16 +77,19 @@ h2 {
 
 .btn {
     width: 100%;
-    padding: 12px 14px;
+    padding: 12px 16px;
     background: #3258DE;
     border: none;
     border-radius: 12px;
     color: #fff;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
-    margin-top: 5px;
+    margin-top: 20px;
+    box-shadow: 0 8px 18px rgba(59,130,246,.35);
+    /* transition: transform .02s ease, background .15s ease; */
 }
+
 
 .btn:hover {
     background: #1646d0;
@@ -81,12 +97,24 @@ h2 {
 
 .back {
     display: inline-block;
-    margin-top: 15px;
+    margin: 18px;
     font-size: 14px;
-    color: #333;
+    color: #555;
     text-decoration: none;
 }
 
 .back:hover {
     text-decoration: underline;
+}
+
+
+@media (max-width: 480px) {
+.container {
+  padding: 18px 18px;
+  box-shadow: none;
+  margin-top: 2em;
+  border-radius: 0px;
+  box-shadow: none;
+  border: none;
+}
 }
