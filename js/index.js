@@ -267,7 +267,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const typeSolid = document.getElementById("type_solid");
       if (typeSolid) typeSolid.checked = true;
 
-      solidSection?.classList.remove("hidden");
+      solidSection?.classList.add("hidden");
       hemaSection?.classList.add("hidden");
     });
   }

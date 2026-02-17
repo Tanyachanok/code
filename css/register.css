@@ -144,7 +144,7 @@
     border-radius:var(--radius-lg);
     border:1px solid #e5e7eb;
     background:var(--white);
-    box-shadow:var(--shadow-sm);
+    /* box-shadow:var(--shadow-sm); */
     font-size:14px;
     outline:none;
     transition:border-color .2s, box-shadow .2s;
@@ -186,7 +186,44 @@
   }
   .btn-primary:hover{ background: var(--primary-600); }
   .btn-primary:active{ transform: translateY(1px); }
-  
+
+  /* สไตล์สำหรับดอกจันสีแดง */
+.required-asterisk {
+    color: #e63946; /* สีแดงเดิม */
+    margin-left: 4px;
+    font-weight: bold;
+    font-size: 18px;
+    display: none; /* ปกติซ่อนไว้ */
+}
+
+/* เมื่อมีการ Error (ใส่ class .has-error ที่ตัวครอบ) ให้แสดงดอกจัน */
+.field.has-error .required-asterisk {
+    display: inline;
+}
+
+/* ปรับแต่งขนาดของ SweetAlert Popup */
+.swal2-popup {
+    width: 400px !important; /* ปรับความกว้างตามต้องการ */
+    padding: 0.01rem !important;
+    border-radius: 15px !important; /* ปรับความโค้งมนให้เข้ากับ input field ของคุณ */
+}
+
+/* ปรับขนาดตัวอักษร Title */
+.swal2-title {
+    font-size: 1.25rem !important;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ปรับขนาดตัวอักษรข้อความ */
+.swal2-html-container {
+    font-size: 1rem !important;
+}
+
+/* ปรับขนาดปุ่มตกลง */
+.swal2-confirm {
+    padding: 10px 25px !important;
+    font-size: 0.9rem !important;
+}
 
    @media (min-width:480px){
     .grid-2{ grid-template-columns:1fr 1fr; } /* จอกว้าง: 2 คอลัมน์ */

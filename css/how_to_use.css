@@ -56,33 +56,34 @@
     } */
 
     .logo-circle img {
-      width: 85px;
+      width: 100px;
       /* height: 120px; */
       object-fit: contain;
       display: flex;
     }
      
     .menu-btn {
-      /* width: 32px;
-      height: 32px; */
-      padding: 15px;
-      border-radius: 6px;
-      border: none;
-      background: transparent;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 4px;
-      cursor: pointer;
-      margin-top: -10px;
-    }
+  background: none;
+  border: none;
+  /* ปรับพื้นที่กดให้เป็น 44x44px เพื่อให้กดง่ายในมือถือ */
+  width: 44px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* จัดให้อยู่กลางแนวตั้ง */
+  align-items: center;     /* จัดให้อยู่กลางแนวนอน */
+  gap: 5px;                /* ระยะห่างระหว่างเส้น (เพิ่มจาก 4px ให้ดูโปร่งขึ้น) */
+  cursor: pointer;
+  padding: 0;
+}
 
-    .menu-btn span {
-    display: block;
-    width: 22px;
-    height: 2.4px;
-    border-radius: 100px;
-    background: #000;
+.menu-btn span {
+  display: block;
+  width: 25px;             /* ขนาดความกว้างของเส้นที่เหมาะสม */
+  height: 2.5px;             /* เพิ่มความหนาจาก 1.5px เป็น 2px ให้ดูแข็งแรงขึ้น */
+  background: #000;
+  border-radius: 2px;      /* มนพอดีกับความหนาของเส้น */
+  transition: 0.3s;        /* เผื่อไว้สำหรับทำ Animation ตอนเปิด/ปิด */
 }
 
     .header-title {

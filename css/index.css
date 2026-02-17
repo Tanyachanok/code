@@ -31,13 +31,13 @@ body {
 }
 
 .logo {
-    width: 85px;
+    width: 100px;
     /* height: 120px; */
     display: flex;
     padding: 3px;
 }
 
-.menu-btn {
+/* .menu-btn {
   background: none;
   border: none;
   padding: 4px;
@@ -54,8 +54,31 @@ body {
   border-radius: 999px;
   background: #000;
   margin-top: 1px;
+} */
+
+.menu-btn {
+  background: none;
+  border: none;
+  /* ปรับพื้นที่กดให้เป็น 44x44px เพื่อให้กดง่ายในมือถือ */
+  width: 44px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* จัดให้อยู่กลางแนวตั้ง */
+  align-items: center;     /* จัดให้อยู่กลางแนวนอน */
+  gap: 5px;                /* ระยะห่างระหว่างเส้น (เพิ่มจาก 4px ให้ดูโปร่งขึ้น) */
+  cursor: pointer;
+  padding: 0;
 }
 
+.menu-btn span {
+  display: block;
+  width: 25px;             /* ขนาดความกว้างของเส้นที่เหมาะสม */
+  height: 2.5px;             /* เพิ่มความหนาจาก 1.5px เป็น 2px ให้ดูแข็งแรงขึ้น */
+  background: #000;
+  border-radius: 2px;      /* มนพอดีกับความหนาของเส้น */
+  transition: 0.3s;        /* เผื่อไว้สำหรับทำ Animation ตอนเปิด/ปิด */
+}
    
 /* Card */
 .card {
@@ -120,9 +143,10 @@ body {
     padding: 12px 14px;
     font-size: 12px;
     border-radius: 12px;
-    border: none;
+    border: 1px solid #dddddd;
     background: #ffffff;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+    /* box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.12); */
+
 }
 
 .text-input::placeholder {
@@ -178,12 +202,10 @@ body {
     border-radius: 12px;
     background: #f7f7f7;
     border: 1px solid #dddddd;
-    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+    /* box-shadow: 0 3px 10px rgba(0,0,0,0.08); */
     cursor: pointer;
     user-select: none;
 }
-
-
 
 /* ECOG ปุ่มเล็กหน่อย */
 .ecog-group .toggle-option.small {
@@ -192,11 +214,13 @@ body {
 
 /* ตอน checked */
 .toggle-group input[type="radio"]:checked + .toggle-option {
-    background: #ffffff;
-    border-color: #306dff;
-    color: #306dff;
+    background:#6794e7;
+    border-color: #6794e7;
+    color: #ffffff;
     box-shadow: 0 3px 10px rgba(0, 80, 255, 0.25);
 }
+
+
 
 /* Dropdown */
 .dropdown-container {
@@ -210,8 +234,10 @@ body {
     font-size: 14px;
     border: none;
     border-radius: 12px;
-    background: #ffffff;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    /* background: #ffffff; */
+    /* box-shadow: 0 4px 12px rgba(0,0,0,0.12); */
+    background: #f7f7f7;
+    border: 1px solid #dddddd;
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
@@ -231,7 +257,7 @@ body {
 .text-input:focus,
 .dropdown-select:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(48, 109, 255, 0.4);
+    box-shadow: 0 0 0 1px #3258de;
 }
 
 /* Buttons */
@@ -253,7 +279,7 @@ body {
     font-size: 16px;
     font-weight: 450;
     cursor: pointer;
-    box-shadow: 0 5px 18px rgba(0, 74, 255, 0.4);
+    
 }
 
 .btn-primary:hover {
@@ -281,4 +307,8 @@ body {
 /* เมื่อมีการ Error (ใส่ class .has-error ที่ตัวครอบ) ให้แสดงดอกจัน */
 .form-group.has-error .required-asterisk {
     display: inline;
+}
+
+.hidden {
+  display: none !important;
 }

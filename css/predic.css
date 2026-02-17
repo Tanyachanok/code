@@ -30,7 +30,7 @@ body {
 } 
 
 .logo {
-  width: 85px;
+  width: 100px;
   /* height: 120px; */
   display: flex;
   padding: 3px;
@@ -39,20 +39,25 @@ body {
 .menu-btn {
   background: none;
   border: none;
-  padding: 4px;
+  /* ปรับพื้นที่กดให้เป็น 44x44px เพื่อให้กดง่ายในมือถือ */
+  width: 44px;
+  height: 44px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  justify-content: center; /* จัดให้อยู่กลางแนวตั้ง */
+  align-items: center;     /* จัดให้อยู่กลางแนวนอน */
+  gap: 5px;                /* ระยะห่างระหว่างเส้น (เพิ่มจาก 4px ให้ดูโปร่งขึ้น) */
   cursor: pointer;
+  padding: 0;
 }
 
 .menu-btn span {
   display: block;
-  width: 26px;
-  height: 1.5px;
-  border-radius: 999px;
+  width: 25px;             /* ขนาดความกว้างของเส้นที่เหมาะสม */
+  height: 2.5px;             /* เพิ่มความหนาจาก 1.5px เป็น 2px ให้ดูแข็งแรงขึ้น */
   background: #000;
-  margin-top: 1px;
+  border-radius: 2px;      /* มนพอดีกับความหนาของเส้น */
+  transition: 0.3s;        /* เผื่อไว้สำหรับทำ Animation ตอนเปิด/ปิด */
 }
 
 /* ----------------------------------------------------
@@ -124,9 +129,9 @@ body {
   padding: 12px 14px;
   font-size: 12px;
   border-radius: 12px;
-  border: none;
+  border: 1px solid #dddddd;
   background: #ffffff;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12);
+  /* box-shadow: 0 3px 10px rgba(0, 0, 0, 0.12); */
 }
 
 .text-input::placeholder {
@@ -197,11 +202,10 @@ body {
   padding: 10px 12px;
   font-size: 14px;
   border-radius: 12px;
-  background: #ffffff;
+  background: #f7f7f7;
   /* border: 1px solid #e3e3e3; */
   border: 1px solid #dddddd;
   /* box-shadow: 0 4px 12px rgba(0,0,0,0.12); */
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
   cursor: pointer;
   user-select: none;
 }
@@ -212,10 +216,10 @@ body {
 
 /* CHECKED */
 .toggle-group input[type="radio"]:checked + .toggle-option {
-  background: #ffffff;
-  border-color: #306dff;
-  color: #306dff;
-  box-shadow: 0 3px 10px rgba(0, 80, 255, 0.25);
+    background:#6794e7;
+    border-color: #6794e7;
+    color: #ffffff;
+    box-shadow: 0 3px 10px rgba(0, 80, 255, 0.25);
 }
 
 /* ----------------------------------------------------
@@ -232,8 +236,10 @@ body {
   font-size: 14px;
   border: none;
   border-radius: 12px;
-  background: #ffffff;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  /* background: #ffffff; */
+  /* box-shadow: 0 4px 12px rgba(0,0,0,0.12); */
+  background: #f7f7f7;
+  border: 1px solid #dddddd;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -253,7 +259,7 @@ body {
 .text-input:focus,
 .dropdown-select:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgba(48, 109, 255, 0.4);
+  box-shadow: 0 0 0 1px #3258de;
 }
 
 /* ----------------------------------------------------
@@ -274,7 +280,7 @@ body {
 .patient-pill {
   margin-top: 8px;
   width: 100%;
-  background: #3258de;
+  background: #6794e7;
   padding: 14px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
@@ -328,7 +334,7 @@ body {
     font-size: 16px;
     font-weight: 450;
     cursor: pointer;
-    box-shadow: 0 5px 18px rgba(0, 74, 255, 0.4);
+    
 }
 
 .btn-primary:hover {
@@ -383,17 +389,22 @@ body {
 
 /* ปุ่ม Male ให้หน้าตาเป็น pill สีน้ำเงิน */
 .gender-pill {
-  padding: 14px 14px;
+  padding: 12px 60px;
   border-radius: 12px;
   border: none;
+  border: 1px solid #dddddd;
   cursor: default;
   font-size: 14px;
   font-weight: 500;
   color: #000000;
   /* background-color: #3258de; */
   background-color: #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12); */
 
   /* กันไม่ให้ปุ่มยืดเต็มบล็อก */
   white-space: nowrap;
+}
+
+.hidden {
+    display: none !important;
 }

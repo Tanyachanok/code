@@ -9,6 +9,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/register.css" />
+  
+  <!-- เรียกใช้ js -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="/js/register.js"></script>
+
 </head>
 <body>
   <main class="page">
@@ -21,14 +26,14 @@
       <form class="form" action="#" method="post" novalidate>
         <div class="grid-2">
           <div class="field">
-            <label for="first_name">First Name</label>
+            <label for="first_name">First Name<span class="required-asterisk">*</span></label>
             <div class="input-wrap">
               <input id="first_name" name="first_name" type="text" placeholder="Ex. LiLi" autocomplete="given-name" required />
             </div>
           </div>
 
           <div class="field">
-            <label for="last_name">Last Name</label>
+            <label for="last_name">Last Name<span class="required-asterisk">*</span></label>
             <div class="input-wrap">
               <input id="last_name" name="last_name" type="text" placeholder="Ex. Doe" autocomplete="family-name" required />
             </div>
@@ -36,28 +41,28 @@
         </div>
 
         <div class="field">
-          <label for="username">Username</label>
+          <label for="username">Username<span class="required-asterisk">*</span></label>
           <div class="input-wrap">
             <input id="username" name="username" type="text" placeholder="test01" autocomplete="username" required />
           </div>
         </div>
 
         <div class="field">
-          <label for="email">Email</label>
+          <label for="email">Email<span class="required-asterisk">*</span></label>
           <div class="input-wrap">
             <input id="email" name="email" type="email" placeholder="example@gmail.com" autocomplete="email" required />
           </div>
         </div>
 
         <div class="field">
-          <label for="password">Password</label>
+          <label for="password">Password<span class="required-asterisk">*</span></label>
           <div class="input-wrap">
             <input id="password" name="password" type="password" placeholder="*******" autocomplete="new-password" required />
           </div>
         </div>
 
         <div class="field">
-          <label for="confirm">Confirm Password</label>
+          <label for="confirm">Confirm Password<span class="required-asterisk">*</span></label>
           <div class="input-wrap">
             <input id="confirm" name="confirm" type="password" placeholder="*******" autocomplete="new-password" required />
           </div>

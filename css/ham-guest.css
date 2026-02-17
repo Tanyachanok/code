@@ -31,7 +31,7 @@
   }
   
   .logo {
-    width: 85px;
+    width: 100px;
     /* height: 100px; */
     display: flex;
     align-items: center;
@@ -45,7 +45,7 @@
   }
 
   .close-btn img {
-    width: 26px;  /* ปรับค่านี้ให้เล็กลงตามต้องการ (เช่น 12px หรือ 14px) */
+    width: 27px;  /* ปรับค่านี้ให้เล็กลงตามต้องการ (เช่น 12px หรือ 14px) */
     height: auto;
     display: block;
     margin-top: -5px;  

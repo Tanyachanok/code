@@ -59,12 +59,16 @@
                 <hr class="divider">
 
                 <!-- Age -->
-                <div class="form-group">
+                <div class="form-group inline-group">
                     <div class="label-row">
-                        <img src="/age.svg" class="label-icon" alt="">
+                        <img src="/age.svg" class="label-icon">
                         <label class="form-label">Age<span class="required-asterisk">*</span></label>
                     </div>
-                    <input type="number" class="text-input" placeholder="Years">
+
+                    <div class="inline-input-wrapper">
+                        <input id="age" type="number" class="text-input" placeholder="">
+                        <span class="unit">years</span>
+                    </div>
                 </div>
 
                 <hr class="divider">
@@ -148,7 +152,7 @@
                         </div>
                     </div>
                     <div class="inline-input-wrapper">
-                        <input type="number" class="text-input" placeholder="95–100">
+                        <input type="number" class="text-input" placeholder="Norm: 95–100">
                         <span class="unit">%</span>
                     </div>
                 </div>
@@ -163,8 +167,20 @@
                         </div>
                     </div>
                     <div class="inline-input-wrapper">
-                        <input type="number" class="text-input" placeholder="95–100">
+                        <input type="number" class="text-input" placeholder="Norm: 95–100">
                         <span class="unit">%</span>
+                    </div>
+                </div>
+                <hr class="divider">
+
+                <!-- D-dimer -->
+                <div class="form-group inline-group">
+                    <div>
+                        <label class="form-label">D-dimer<span class="required-asterisk">*</span></label>
+                    </div>
+                    <div class="inline-input-wrapper">
+                        <input type="number" class="text-input" placeholder="Value">
+                        <span class="unit">mg/mL</span>
                     </div>
                 </div>
                 <hr class="divider">
@@ -221,6 +237,19 @@
                 </div>
                 <hr class="divider">
 
+                <!-- Lung Metastasis -->
+                <div class="form-group">
+                    <label class="form-label">Lung Metastasis<span class="required-asterisk">*</span></label>
+                    <div class="toggle-group">
+                        <input type="radio" id="lung_yes" name="lung_meta" value="yes" >
+                        <label for="lung_yes" class="toggle-option">Yes</label>
+
+                        <input type="radio" id="lung_no" name="lung_meta" value="no">
+                        <label for="lung_no" class="toggle-option">No</label>
+                    </div>
+                </div>
+                <hr class="divider">
+
                 <!-- Type of Cancer -->
                 <div class="form-group">
                     <label class="form-label">Type of Cancer<span class="required-asterisk">*</span></label>
@@ -233,10 +262,8 @@
                     </div>
                 </div>
 
-                <hr class="divider">
-
                 <!-- Solid Cancer Type -->
-                <div class="form-group" id="solid_section">
+                <div class="form-group hidden" id="solid_section">
                     <label class="form-label center">Solid Cancer Type<span class="required-asterisk">*</span></label>
                     <div class="dropdown-container">
                         <select class="dropdown-select" id="solid_select">
@@ -265,17 +292,6 @@
                     </div>
                 </div>
 
-                <!-- Lung Metastasis -->
-                <div class="form-group">
-                    <label class="form-label">Lung Metastasis<span class="required-asterisk">*</span></label>
-                    <div class="toggle-group">
-                        <input type="radio" id="lung_yes" name="lung_meta" value="yes" >
-                        <label for="lung_yes" class="toggle-option">Yes</label>
-
-                        <input type="radio" id="lung_no" name="lung_meta" value="no">
-                        <label for="lung_no" class="toggle-option">No</label>
-                    </div>
-                </div>
                 <hr class="divider">
 
                 <!-- Chest X-ray Type -->
@@ -295,17 +311,7 @@
                 </div>
                 <hr class="divider">
 
-                <!-- D-dimer -->
-                <div class="form-group inline-group">
-                    <div>
-                        <label class="form-label">D-dimer<span class="required-asterisk">*</span></label>
-                    </div>
-                    <div class="inline-input-wrapper">
-                        <input type="number" class="text-input" placeholder="Value">
-                        <span class="unit">mg/mL</span>
-                    </div>
-                </div>
-                <hr class="divider">
+                
 
                 <!-- Buttons -->
                 <div class="btn-group">

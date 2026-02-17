@@ -180,6 +180,8 @@ document.addEventListener("DOMContentLoaded", () => {
       solidSection?.classList.remove("hidden");
       hemaSection?.classList.add("hidden");
     } else if (typeHema && typeHema.checked) {
+
+      // hemaSection?.classList.remove("hidden");
       hemaSection?.classList.remove("hidden");
       solidSection?.classList.add("hidden");
     }

@@ -13,8 +13,19 @@
     --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.08);
   }
   
+  /* * { box-sizing: border-box; }
+  html, body { height: 100%; } */
+
   * { box-sizing: border-box; }
-  html, body { height: 100%; }
+html, body { 
+    height: 100%; 
+    margin: 0;
+    padding: 0;
+    /* เพิ่ม 2 บรรทัดนี้เพื่อล็อคการเลื่อน */
+    overflow: hidden; 
+    position: fixed; 
+    width: 100%;
+}
 
   body {
   margin: 0;
@@ -157,31 +168,19 @@
     color: var(--muted);
     font-size: 12px;
   }
-  
-  @media (max-width: 480px) {
-  .card {
-    padding: 20px 20px;
-    box-shadow: none;
-    margin-top: 2em;
-  }
 
-  .form {
-    display: grid;
-    gap: 1.5rem;
-  }
-}
-
-.close-btn {
+  .close-btn {
   position: absolute;
   top: 14px;
-  right: 14px;
-  font-size: 20px;
+  left: 14px;
+  font-size: 27px;
   font-weight: 100;
   cursor: pointer;
   line-height: 1;
   background: transparent;
   border: 0;
   padding: 0;
+  margin-left: 10px;
 }
 .close-btn:hover{
   opacity: .7;
@@ -199,6 +198,21 @@
   color: #c53030;
   min-height: 16px; /* กัน layout กระโดด */
 }
+  
+@media (max-width: 480px) {
+.card {
+  padding: 20px 20px;
+  box-shadow: none;
+  margin-top: 2em;
+}
+
+.form {
+  display: grid;
+  gap: 1.5rem;
+}
+}
+
+
 
 
 
