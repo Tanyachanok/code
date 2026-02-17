@@ -13,19 +13,19 @@
     --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.08);
   }
   
-  /* * { box-sizing: border-box; }
-  html, body { height: 100%; } */
+  /* * { box-sizing: border-box; } */
+  /* html, body { height: 100%; }   */
 
-  * { box-sizing: border-box; }
+  * { box-sizing: border-box; } 
+
 html, body { 
     height: 100%; 
     margin: 0;
-    padding: 0;
-    /* เพิ่ม 2 บรรทัดนี้เพื่อล็อคการเลื่อน */
-    overflow: hidden; 
-    position: fixed; 
-    width: 100%;
-}
+    padding: 0; 
+    overflow-x: hidden; /* ล็อคไม่ให้หน้าจอโยกซ้ายขวา */
+
+     
+} 
 
   body {
   margin: 0;
@@ -38,25 +38,38 @@ html, body {
 }
   
   .page {
+  width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   /* place-items: center; */
-  align-items: flex-start;
+  align-items: center;
   padding: 20px;
 }
   
-  .card {
+  /* .card {
   position: relative;
   width: 100%;
   max-width: 400px;
   min-height: auto;
   background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); */
   /* border-radius: var(--radius-lg); */
-  padding: 15px 25px;
+  /* padding: 15px 25px; */
+  /* box-shadow: var(--shadow-md); */
+/* } */
+
+  .card {
+  position: relative; /* สำคัญที่สุด: เป็นจุดอ้างอิงให้ปุ่ม close-btn */
+  width: 90%;         /* ตัวอย่าง: ให้กว้าง 90% ของจอมือถือ */
+  max-width: 450px;   /* แต่ไม่เกิน 450px ในคอม */
+  margin: 20px auto;  /* จัดให้อยู่กลางจอ */
+  padding: 40px 20px; /* เพิ่มพื้นที่ด้านบนเผื่อให้ปุ่ม */
+  background: #fff;
+  border-radius: 16px;
   box-shadow: var(--shadow-md);
 }
+
   
   .logo {
   display: block;
@@ -78,7 +91,7 @@ html, body {
   margin-bottom: 10px;
 
 }
-.field:first-child {
+  .field:first-child {
   margin-top: -20px;
 }
   
@@ -86,6 +99,7 @@ html, body {
     position: relative;
     display: flex;
     align-items: center;
+    width: 100%;
   }
   
   .input-wrap .icon{
@@ -95,6 +109,7 @@ html, body {
     height: 20px;
     fill: #9ca3af;
     pointer-events: none;
+    z-index: 2;
   }
   
   .input-wrap input{
@@ -170,27 +185,31 @@ html, body {
   }
 
   .close-btn {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  font-size: 27px;
-  font-weight: 100;
-  cursor: pointer;
-  line-height: 1;
+  position: absolute; /* ลอยตัวภายใน .card */
+  top: 10px;          /* ระยะห่างจากขอบบนของการ์ด */
+  left: 10px;         /* ระยะห่างจากขอบซ้ายของการ์ด */
+  width: 44px;        /* ขนาดปุ่มมาตรฐานที่นิ้วกดง่าย (Apple/Google Guide) */
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
-  border: 0;
+  border: none;
+  cursor: pointer;
   padding: 0;
-  margin-left: 10px;
-}
-.close-btn:hover{
-  opacity: .7;
+  color: #333;
+  z-index: 10;        /* ให้อยู่เหนือโลโก้ */
+  -webkit-tap-highlight-color: transparent; /* ลบสีฟ้าตอนกดในมือถือ */
 }
 
-.close-btn img {
-    width: 26px;  /* ปรับค่านี้ให้เล็กลงตามต้องการ (เช่น 12px หรือ 14px) */
-    height: auto;
-    display: block;
+.close-btn svg {
+  width: 24px;
+  height: 24px;
+  pointer-events: none; /* ให้การกดทะลุไปที่ปุ่ม */
 }
+
+
+
 
 .error-text{
   margin-top: -14px;
