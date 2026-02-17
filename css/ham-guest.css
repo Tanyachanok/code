@@ -92,13 +92,6 @@
     box-shadow: none;
     border: none; 
   }
-  .card{
-    width: 100%;
-    max-width: 100%;
-    min-height: 100dvh;
-    border-radius: 0;
-    padding: 18px 18px;
-  }
 }
 
 
