@@ -46,9 +46,8 @@
   min-height: 100svh;
   display: flex;
   justify-content: center;
-  /* place-items: center; */
   align-items: flex-start;
-  padding: 15px 25px;
+  padding: 24px;
 }
   
   /* .card{
@@ -229,6 +228,21 @@
     .grid-2{ grid-template-columns:1fr 1fr; } /* จอกว้าง: 2 คอลัมน์ */
   }
 
-  @media (min-width:480px){
+  /* @media (min-width:480px){
     .grid-2{ grid-template-columns:1fr; } /* จอกว้าง: 2 คอลัมน์ */
+  /* }  */
+
+  @media (max-width:480px){
+  .page{
+    padding: 0;
+    align-items: stretch;
   }
+  .card{
+    width: 100%;
+    max-width: 100%;
+    min-height: 100dvh;
+    border-radius: 0;
+    padding: 28px 20px;
+  }
+}
+
