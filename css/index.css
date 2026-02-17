@@ -241,6 +241,7 @@ body {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
+    color: #000000;
 }
 
 .dropdown-arrow {
@@ -257,7 +258,7 @@ body {
 .text-input:focus,
 .dropdown-select:focus {
     outline: none;
-    box-shadow: 0 0 0 1px #3258de;
+    box-shadow: 0 0 0 1px #6794e7;
 }
 
 /* Buttons */
