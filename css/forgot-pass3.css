@@ -29,7 +29,8 @@ body {
     align-items: center;
     margin-top: 20px;
     /* margin: 20px auto; */
-    background: linear-gradient(168.86deg, #c3d6fa 65%, #ffffff 100%);
+    background: linear-gradient(168.86deg, #ffffff);
+    /* background: linear-gradient(168.86deg, #c3d6fa 65%, #ffffff 100%); */
     box-shadow: 0 10px 24px rgba(15, 23, 42, 0.15);
     border: 1px solid #e5e7eb; 
 }
@@ -64,7 +65,9 @@ h2 {
     font-weight: 600;
     margin-bottom: 6px;
     display: block;
-    font-size: 15px;
+    font-size: 14px;
+    text-align: left
+    ;
 }
 
 .input-wrapper {
@@ -106,13 +109,24 @@ h2 {
     border: none;
     border-radius: 12px;
     color: #fff;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 5px;
     box-shadow: 0 8px 18px rgba(59,130,246,.35);
 }
 
 .btn:hover {
     background: #1646d0;
+}
+
+@media (max-width: 480px) {
+.container {
+  padding: 18px 18px;
+  box-shadow: none;
+  margin-top: 2em;
+  border-radius: 0px;
+  box-shadow: none;
+  border: none;
+}
 }
