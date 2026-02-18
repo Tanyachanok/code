@@ -125,7 +125,7 @@ html, body {
   .input-wrap input:focus{
     border-color: var(--primary);
     background: var(--white);
-    box-shadow: 0 0 0 4px var(--ring);
+    /* box-shadow: 0 0 0 4px var(--ring); */
   } 
   
   .row{

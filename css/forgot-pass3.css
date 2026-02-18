@@ -53,7 +53,7 @@ h2 {
 .text {
     text-align: center;
     font-size: 14px;
-    color: #444;
+    color: #6b7280;
     margin-bottom: 10px;
 }
 
@@ -78,16 +78,21 @@ h2 {
 .input {
     width: 100%;
     padding: 12px 14px;
-    padding-right: 40px;
     border: 1px solid #e5e7eb;
+    background-color: #ffffff;
     border-radius: 20px;
     font-size: 14px;
-    outline: none;
+    outline: none;  
 }
 
 .input:focus {
     border-color: #4a7dfc;
 }
+
+.input::placeholder {
+    color: #9ca3af;
+}
+
 
 .icon {
     position: absolute;
