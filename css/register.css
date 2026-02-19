@@ -152,7 +152,7 @@
   .input-wrap input:hover{border-color:#cbd5e1}
   .input-wrap input:focus{
     border-color:var(--primary);
-    /* box-shadow:0 0 0 4px var(--ring); */
+    box-shadow:0 0 0 4px var(--ring);
   }
   
   /* .btn-primary{

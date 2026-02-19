@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1" /> -->
@@ -13,6 +14,7 @@
 
   <link rel="stylesheet" href="/css/home4log.css" />
 </head>
+
 <body>
   <header>
   </header>
@@ -24,29 +26,30 @@
         <span></span>
       </button>
       <img src="/Logo2.png" class="logo">
-      <h6 id="appTitle" class="title">PE Predictor</h6>
+
+
 
       <form class="form" action="#" method="post" novalidate>
-        <!-- Number of Patient -->
-        <div class="field">
-          <label for="count">Hospital Number</label>
-          <div class="input-wrap">
-            <input id="count" name="count" type="number" inputmode="numeric" min="1"
-                   placeholder="Number of Patient" required />
+        <div class="section">
+          <!-- Number of Patient -->
+          <div class="field">
+            <label for="count">Hospital Number</label>
+            <div class="input-wrap">
+              <input id="count" name="count" type="number" inputmode="numeric" min="1" placeholder="Number of Patient"
+                required />
+            </div>
           </div>
         </div>
 
-        <hr class="divider" aria-hidden="true" />
+        <!-- <hr class="divider" aria-hidden="true" /> -->
 
         <!-- Sex -->
-        <div class="field sex-row">
-          <div class="sex-label">
-            <img src="/gender.svg" class="sex-icon">
-            <span>Gender</span>
-          </div>
+        <div class="section">
+          <label class="section-title">Gender</label>
+          <hr class="divider" aria-hidden="true" />
 
           <fieldset class="segmented" aria-label="Sex">
-            <input type="radio" id="male"   name="sex" value="male"   checked>
+            <input type="radio" id="male" name="sex" value="male" checked>
             <label for="male">Male</label>
 
             <input type="radio" id="female" name="sex" value="female">
@@ -54,10 +57,14 @@
           </fieldset>
         </div>
 
+
+
+
         <button type="submit" class="btn-primary">Next</button>
       </form>
     </section>
   </main>
   <script src="/js/home4log.js"></script>
 </body>
+
 </html>
