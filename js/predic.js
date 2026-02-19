@@ -252,9 +252,16 @@ document.addEventListener("DOMContentLoaded", () => {
        * เคส 2: ยังไม่มี prediction → ต้อง predict ใหม่ แล้วไปหน้า next-step
        * ================================ */
 
+      // clearErrors();
+      // const hasError = validateForm(formData);
+      // if (hasError) {
+      //   alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+      //   return;
+      // }
+
       clearErrors();
-      const hasError = validateForm(formData);
-      if (hasError) {
+      const isValid = validateForm(); // ไม่ต้องส่ง formData เพราะฟังก์ชันคุณดึงจาก DOM โดยตรง
+      if (!isValid) { // ถ้า "ไม่" valid
         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
         return;
       }
