@@ -62,8 +62,9 @@
   }
 
   .section{
-  padding: 16px;
+  padding: 14px;
   border-radius: 16px;
+  margin: 15px;
   border: 1px solid #e5e7eb;
   background: #f9fafb;   /* สีพื้นอ่อนนิด ๆ */
   /* margin-bottom: 24px; */
@@ -116,8 +117,8 @@
   .divider{
     border:0; 
     height:1px; 
-    background:rgba(241, 237, 237, 0.5);
-    margin:6px 0 6px;
+    background:#e5e7eb;
+    margin:0.5px;
   }
   
   /* Sex row */
@@ -190,8 +191,7 @@
   /* box-shadow: 0 8px 18px rgba(50,88,222,.25); */
 }
 
-
-  .section .segmented{
+.section .segmented{
   margin: 12px auto 0;   /* กลาง */
 }
 
@@ -215,6 +215,70 @@
   }
   .btn-primary:hover{ background:var(--primary-600); }
   .btn-primary:active{ transform:translateY(1px); }
+
+
+/* Dropdown */
+.dropdown-container {
+    position: relative;
+    width: 100%;
+}
+
+/* กล่องรายการ Dropdown */
+.custom-dropdown-list {
+    position: absolute;
+    top: 100%; /* แสดงใต้ input */
+    left: 0;
+    right: 0;
+    background: #ffffff;
+    /* border: 1px solid #dddddd; */
+    border-radius: 12px;
+    margin-top: 4px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+/* ส่วนของ scrollbar */
+.custom-dropdown-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-dropdown-list::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+/* แต่ละรายการใน Dropdown */
+.dropdown-item {
+    padding: 10px 14px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.dropdown-item:last-child {
+    border-bottom: none;
+}
+
+.dropdown-arrow {
+  position: absolute;
+  cursor: pointer;    /* ทำให้เมาส์เป็นรูปมือเมื่อชี้ที่สามเหลี่ยม */
+  pointer-events: auto; /* มั่นใจว่าสามารถรับแรงกด (Click) ได้ */
+  padding: 8px;       /* เพิ่มพื้นที่ให้กดง่ายขึ้นสำหรับนิ้วมือบนมือถือ */
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #000; /* สีดำเข้มตามรูป */
+  font-size: 18px;
+  pointer-events: auto;
+  z-index: 5;
+}
+
   
   /* -----------------------------
    HAMBURGER MENU BUTTON
@@ -233,7 +297,7 @@
   gap: 5px;                /* ระยะห่างระหว่างเส้น (เพิ่มจาก 4px ให้ดูโปร่งขึ้น) */
   cursor: pointer;
   padding: 0;
-  right: 16px;
+  right: 30px;
 }
 
 .menu-btn span {
@@ -249,9 +313,14 @@
 
 @media (max-width: 480px) {
 .card {
-  padding: 18px 18px;
+  /* padding: 18px 18px; */
+  padding: 1px 1px;
   box-shadow: none;
   margin-top: 2em;
+}
+
+.menu-btn{
+  right: 8px;
 }
 }
 
