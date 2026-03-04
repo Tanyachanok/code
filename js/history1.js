@@ -191,22 +191,26 @@ document.addEventListener("DOMContentLoaded", () => {
   // 3. ตั้งค่า Flatpickr (Popup เลือกเดือน)
   const fp = flatpickr("#monthInput", {
     locale: "th",
-    static: true,
+    
+    static: true, 
+    
+    altInput: false, 
+    
+    disableMobile: "true", 
     plugins: [
       new monthSelectPlugin({
         shorthand: true,
         dateFormat: "Y-m",
-        altInput: true,
         altFormat: "F Y"
       })
     ],
     onChange: function (selectedDates, dateStr) {
+      if (!dateStr) return;
       const [year, month] = dateStr.split("-");
-      // ใช้ URL ค้นหาตามที่ Backend กำหนด (ตรวจสอบ Path อีกทีว่า /search หรือ /search-period)
       const url = `${RECORD_API}/search?year=${year}&month=${month}`;
       loadTimeline(url);
     }
-  });
+});
 
   // 4. เมื่อคลิกที่รูปภาพ ให้ Popup ปฏิทินเด้งขึ้นมา
   const calendarIcon = document.getElementById("calendarIcon");
