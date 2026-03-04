@@ -8,9 +8,6 @@ if (menuBtn) {
   });
 }
 
-  // -----------------------------
-  // 0) CONFIG + อ่านพารามิเตอร์
-  // -----------------------------
   const BASE_URL = "https://webapp-pe.onrender.com";
 
   const params = new URLSearchParams(window.location.search);
@@ -22,17 +19,15 @@ if (menuBtn) {
     window.location.href = "/login.html";
     return;
   }
-  if (!predictId) {
-    alert("ไม่พบ predict id");
-    return;
-  }
+  // if (!predictId) {
+  //   alert("ไม่พบ predict id");
+  //   return;
+  // }
 
   const API_RECORD = `${BASE_URL}/record/${encodeURIComponent(predictId)}`;
   const API_TIMELINE = `${BASE_URL}/record/timeline`; // ?no=xxxx
 
-  // -----------------------------
-  // 1) helpers
-  // -----------------------------
+
   const setText = (id, v) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -50,20 +45,23 @@ if (menuBtn) {
     return undefined;
   };
 
-  // แปลง iso date → พ.ศ. + เวลา
+  // แปลง iso date → เวลา
   function formatThaiDateTime(iso) {
     if (!iso) return "-";
     const d = new Date(iso);
     if (Number.isNaN(d.getTime())) return "-";
 
-    const day = String(d.getDate()).padStart(2, "0");
-    const month = String(d.getMonth() + 1).padStart(2, "0");
-    const year = String(d.getFullYear() + 543);
+    const thaiTime = new Date(d.getTime() + (7 * 60 * 60 * 1000));
 
-    const hh = String(d.getHours()).padStart(2, "0");
-    const mm = String(d.getMinutes()).padStart(2, "0");
-    return `${day}/${month}/${year} ${hh}:${mm}`;
-  }
+    const day = String(thaiTime.getUTCDate()).padStart(2, "0");
+    const month = String(thaiTime.getUTCMonth() + 1).padStart(2, "0");
+    const year = thaiTime.getUTCFullYear();
+
+    const hh = String(thaiTime.getUTCHours()).padStart(2, "0");
+    const mm = String(thaiTime.getUTCMinutes()).padStart(2, "0");
+    
+    return `${day}-${month}-${year} ${hh}:${mm}`;
+}
 
   // normalize type cancer ให้เหลือ solid / hematologic / unknown
   function normalizeCancerType(v) {
@@ -334,3 +332,4 @@ if (menuBtn) {
     window.location.href = "/history1.html";
   });
 });
+

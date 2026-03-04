@@ -1,6 +1,7 @@
 <!-- history2.html -->
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8" />
   <title>Clinical History</title>
@@ -8,10 +9,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/history2.css" />
 </head>
 
@@ -21,17 +19,34 @@
     <div class="history-header">
       <img src="/Logo2.png" class="logo" alt="PE Predictor Logo" />
 
-      <!-- ✅ ปุ่ม 3 ขีด -->
-      <button class="menu-btn" type="button" aria-label="Menu">☰</button>
-
+      <button class="menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      </header>
       <h1 class="header-title">Clinical History</h1>
     </div>
 
     <!-- Pills: HN + Date -->
-    <div class="pill-row">
-      <div class="pill" id="pill-hn">-</div>
-      <div class="pill" id="pill-date">-</div>
+    <div class="info-container">
+      <div class="pill-row">
+
+        <div class="pill">
+          <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="User">
+          <span id="pill-hn"></span>
+        </div>
+
+        <div class="pill">
+          <img src="/calendar.png" alt="Date">
+          <span id="pill-date"></span>
+        </div>
+
+      </div>
     </div>
+
+
+
 
     <!-- ตารางข้อมูล -->
     <div class="info-table">
@@ -136,4 +151,5 @@
 
   <script src="/js/history2.js"></script>
 </body>
+
 </html>

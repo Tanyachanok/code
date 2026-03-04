@@ -1,25 +1,64 @@
-* {
+:root{
+    --bg-gradient-start:#DDE7FC;
+    --bg-gradient-end:#9ABDF6;
+    --text:#000000;
+    --muted:#6b7280;
+    --primary:#3258DE;
+    --primary-600:#0051ff;
+    --ring:#93c5fd;
+    --surface:#ffffffaa;
+    --white:#ffffff;
+    --radius-xl:10px;
+    --radius-lg:20px;
+    --shadow-md:0 10px 24px rgba(15,23,42,.15);
+    --shadow-sm:0 2px 8px rgba(15,23,42,.08);
+  }
+
+*{
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
+/* * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+} */
+
 body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  background: linear-gradient(to bottom, #ffffff, #dde7ff);
+  background: linear-gradient(to bottom, #ffffff);
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 /* กรอบหน้า */
-.page-wrapper {
+.page {
   width: 100%;
   max-width: 420px;
   padding: 24px 20px 32px;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.12);
 }
 
-/* ✅ top bar */
+.card {
+  position: relative; /* สำคัญที่สุด: เป็นจุดอ้างอิงให้ปุ่ม close-btn */
+  width: 90%;         /* ตัวอย่าง: ให้กว้าง 90% ของจอมือถือ */
+  max-width: 450px;   /* แต่ไม่เกิน 450px ในคอม */
+  margin: 20px auto;  /* จัดให้อยู่กลางจอ */
+  padding: 40px 25px; /* เพิ่มพื้นที่ด้านบนเผื่อให้ปุ่ม */
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+}
+
 .top-bar {
   position: relative;
   height: 64px;
@@ -29,83 +68,265 @@ body {
   margin-bottom: 14px;
 }
 
-/* โลโก้เล็กแบบวงกลม */
 .logo {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  object-fit: cover;
+    width: 100px;
+    /* height: 120px; */
+    display: flex;
+    padding: 3px;
 }
 
-/* ✅ 3 ขีดมุมขวา */
 .menu-btn {
   position: absolute;
-  right: 0;
-  top: 6px;
+  background: none;
   border: none;
-  background: transparent;
-  font-size: 28px;
+  /* ปรับพื้นที่กดให้เป็น 44x44px เพื่อให้กดง่ายในมือถือ */
+  width: 44px;
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* จัดให้อยู่กลางแนวตั้ง */
+  align-items: center;     /* จัดให้อยู่กลางแนวนอน */
+  gap: 5px;                /* ระยะห่างระหว่างเส้น (เพิ่มจาก 4px ให้ดูโปร่งขึ้น) */
   cursor: pointer;
-  color: #0f2b6d;
+  padding: 0;
+  right: 0.05px;
+}
+
+.menu-btn span {
+  display: block;
+  width: 25px;             /* ขนาดความกว้างของเส้นที่เหมาะสม */
+  height: 2.5px;             /* เพิ่มความหนาจาก 1.5px เป็น 2px ให้ดูแข็งแรงขึ้น */
+  background: #000;
+  border-radius: 2px;      /* มนพอดีกับความหนาของเส้น */
+  transition: 0.3s;        /* เผื่อไว้สำหรับทำ Animation ตอนเปิด/ปิด */
+}
+
+
+/* ตัวคลุมเพื่อให้เรียงกันแนวนอน */
+.search-container {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* ระยะห่างระหว่างกล่องค้นหากับปฏิทิน */
+  width: 100%;
 }
 
 /* กล่องค้นหา */
+.search-box, 
+.calendar-trigger {
+    height: 48px;        
+    display: flex;
+    align-items: center;
+    box-sizing: border-box; 
+}
+
 .search-box {
-  display: flex;
-  align-items: center;
-  background: #e8f0ff;
-  border-radius: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  margin-bottom: 24px;
+    flex: 1;           
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;    /* ป้องกัน input ทะลุขอบมน */
 }
 
 .search-input {
   flex: 1;
   padding: 12px 18px;
-  border: none;
+  border: #6b6965;
   outline: none;
   background: transparent;
   font-size: 14px;
 }
 
 .search-btn {
-  width: 52px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
+  padding: 0;
   border: none;
   outline: none;
   cursor: pointer;
-  background: #3258de;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #3f60d8;
 }
 
 .search-btn .icon {
-  width: 20px;
-  height: 20px;
+  width: 27px; 
+  height: 27px;  
 }
 
-/* การ์ด list */
-.list-card {
-  margin-top: 8px;
-  background: #f7f9ff;
-  border-radius: 10px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-  padding: 8px 0;
-}
-
-.list-item {
-  padding: 14px 18px;
-  font-size: 14px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+.calendar-trigger {
+  width: 30px;
+  height: 30px;
+  padding: 1px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  /* box-shadow: 0 2px 4px rgba(0,0,0,0.05); */
+  /* background: #ffffff;  */
+  /* border: 1px solid #e5e7eb; */
+  /* border-radius: 12px; */
 }
 
-.list-item:last-child {
-  border-bottom: none;
+/* .calendar-trigger:hover { */
+  /* background: #f3f4f6; */
+  /* transform: translateY(-1px); */
+
+
+/* ทำให้รูปไอคอนดูน่ากด */
+.calendar-trigger:hover {
+    opacity: 1;
+    transform: scale(1.05);
+    transition: 0.2s;
+    transform: translateY(-1px);
 }
 
-.list-item:hover {
-  background: rgba(50, 88, 222, 0.08);
+/* ตกแต่งตัว Popup */
+.flatpickr-calendar {
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    border: none;
+    border-radius: 15px;
+    background-color: #ffffff !important;
+    /* justify-content: center; */
+    z-index: 9999;
+    right: 100%;
 }
+
+/* สีของเดือนที่ถูกเลือก */
+.flatpickr-monthSelect-month.selected {
+    background: #1a73e8 !important; /* สีน้ำเงินโลโก้ของคุณ */
+    color: #fff;
+}
+
+.flatpickr-monthSelect-month.today {
+    border: none !important; /* ลบเส้นขอบออก */
+    box-shadow: none !important; /* ลบเงาที่อาจทำให้ดูเหมือนมีกรอบออก */
+}
+
+.flatpickr-monthSelect-month.today {
+    font-weight: bold;
+    color: #000000; /* เปลี่ยนเป็นสีน้ำเงินเพื่อให้รู้ว่าเป็นเดือนปัจจุบันแทนการใช้กรอบ */
+    background-color: #ffffff;
+}
+
+.table-card table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Poppins', sans-serif; 
+    /* overflow: hidden;
+    border-radius: 14px; */
+}
+
+/* ตั้งค่าหัวตาราง (Th) */
+.table-card th {
+    font-weight: 500;       /* ตัวหนาเหมือนในรูป */
+    color: #000000;
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+    border-bottom: 2px solid #f0f0f0;
+    background-color: #94b8f9;
+    text-align: center;
+}
+
+.table-card td {
+    font-weight: 400;       /* ตัวธรรมดา */
+    color: #000000;
+    padding: 12px 15px;
+    font-size: 14px;
+    vertical-align: middle;
+    border-bottom: 1.5px solid #eae2e2 !important;
+}
+
+/* ปรับสีพื้นหลังแถวเมื่อเอาเมาส์ไปชี้ (Hover) */
+.table-card tbody tr:hover {
+    background-color: #e7eaf1; 
+    transition: 0.2s;
+}
+
+/* สลับสีแถว เว้นแถว */
+/* .table-card tbody tr:nth-child(even) {
+    background-color: #ffffff;
+} */
+
+.table-card {
+    background: #ffffff;
+    border-radius: 15px;     /* ความโค้งมนของกรอบตาราง */
+    border: 1px solid #d0d1d5;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    margin-top: 10px;
+
+}
+
+.table-info-note {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;           /* ขนาดเล็กพอเหมาะ */
+    color: #888;               /* สีเทาอ่อน */
+    margin: 18px 0px 0px 5px;    /* ระยะห่างจากช่องค้นหาและตาราง */
+    font-style: italic;        /* ทำเป็นตัวเอียงให้ดูเป็นหมายเหตุ */
+    text-align: left;          /* ชิดซ้ายให้ตรงกับขอบตาราง */
+}
+
+/* สไตล์ใหม่สำหรับปุ่มในตาราง */
+.btn-predict-action {
+    background-color: #f8f9fa; /* สีพื้นหลังอ่อนๆ */
+    border: 1.5px dashed #6c757d; /* เส้นประเพื่อให้ดูเหมือนรอการยืนยัน */
+    color: #495057;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-block;
+    line-height: 1.4;
+}
+
+/* เมื่อเอาเมาส์ไปชี้ปุ่ม */
+.btn-predict-action:hover {
+    background-color: #e9ecef;
+    border-color: #007bff; /* เปลี่ยนสีเส้นประเป็นน้ำเงิน */
+    color: #007bff;
+    transform: translateY(-1px); /* ขยับขึ้นเล็กน้อย */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.badge {
+    padding: 8px 16px;
+    border: 1.5px dashed #6c757d;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 150;
+    color: white;
+}
+.status-confirmed-pe { background-color: #ed5555; } /* สีแดง */
+.status-confirmed-none { background-color: #2ecc71; } /* สีเขียว */
+
+.modal-overlay {
+    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 9999;
+    justify-content: center; align-items: center;
+}
+.modal-box {
+    background: white; width: 90%; max-width: 380px; border-radius: 16px;
+    padding: 24px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+.confirm-options { display: flex; gap: 12px; margin: 20px 0; }
+.opt-pe { flex: 1; padding: 12px; border-radius: 8px; border: 2px solid #ff4d4d; color: #ff4d4d; background: #fff5f5; cursor: pointer; font-weight: bold; }
+.opt-pe:hover { background: #ff4d4d; color: white; }
+.opt-no { flex: 1; padding: 12px; border-radius: 8px; border: 2px solid #52c41a; color: #52c41a; background: #f6ffed; cursor: pointer; font-weight: bold; }
+.opt-no:hover { background: #52c41a; color: white; }
+.btn-close-modal { background: none; border: none; color: #999; text-decoration: underline; cursor: pointer; }
+
+
+@media (max-width: 480px) {
+      body {
+        padding: 0;
+      }
+      .app {
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }

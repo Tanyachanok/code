@@ -1,47 +1,90 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8" />
   <title>History - Search</title>
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0" /> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/history1.css" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/th.js"></script>
 </head>
 
 <body>
-  <div class="page-wrapper">
-
-    <!-- ✅ TOP BAR -->
+  <div class="page">
     <header class="top-bar">
       <img src="/Logo2.png" class="logo" alt="PE Predictor Logo" />
-
-      <!-- ✅ ปุ่ม 3 ขีด -->
-      <button class="menu-btn" type="button" aria-label="Menu">☰</button>
+      <button class="menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </header>
 
-    <!-- SEARCH BOX -->
-    <div class="search-box">
-      <input
-        type="text"
-        class="search-input"
-        placeholder="กรอก Hospital Number"
-      />
-      <button class="search-btn" type="button">
-        <img src="/Search.svg" class="icon" alt="glass" />
-      </button>
-    </div>
+    <div class="main-content">
 
-    <!-- RESULT LIST -->
-    <div class="list-card"></div>
-  </div>
+      <div class="search-container">
+        <div class="search-box">
+          <input type="text" class="search-input" placeholder="Search Hospital Number" />
+          <button class="search-btn" type="button">
+            <img src="search.png" class="icon" alt="glass" />
+          </button>
+        </div>
 
-  <script src="/js/history1.js"></script>
+
+        <div class="calendar-trigger">
+          <img src="calendar.png" id="calendarIcon" class="calendar-trigger" alt="calender" style="cursor: pointer;" />
+          <input type="month" id="monthInput" style="display: none;">
+        </div>
+      </div>
+
+      <div id="timeline-title" class="table-info-note">
+        *เรียงลำดับจากรายการที่ทำล่าสุด
+      </div>
+
+      <div class="table-card">
+        <table>
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Hospital Number</th>
+              <th>Result</th>
+
+            </tr>
+
+
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+      <div id="confirmModal" class="modal-overlay" style="display:none;">
+        <div class="modal-box">
+          <div class="modal-header">
+            <h4>ยืนยันผลการวินิจฉัยจริง</h4>
+          </div>
+          <div class="modal-body">
+            <p>กรุณาเลือกผลตรวจที่ได้รับการยืนยัน</p>
+            <div class="confirm-options">
+              <button class="opt-pe" onclick="submitConfirmation('PE')">พบ PE (Positive)</button>
+              <button class="opt-no" onclick="submitConfirmation('No PE')">ไม่พบ PE (Negative)</button>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn-close-modal" onclick="closeConfirmModal()">ยกเลิก</button>
+          </div>
+        </div>
+      </div>
+
+      <script src="/js/history1.js"></script>
 </body>
+
 </html>

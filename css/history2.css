@@ -14,15 +14,19 @@ body{
 
 .page-wrapper{
   width: 100%;
-  max-width: 440px;
-  padding: 24px 18px 32px;
+  max-width: 420px;
+  /* padding: 24px 20px 32px; */
+  box-shadow: 0 4px 22px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(135deg, rgba(196, 208, 249, 0.9) 20%, rgba(64, 140, 239, 0.8) 100%), 
+            url('pattern.png');
 }
 
-/* ✅ Header card */
+/* Header card */
 .history-header{
-  background: #7594f8;
-  padding: 24px 18px 22px;
-  border-radius: 22px;
+  /* background: #f7f7f7; */
+  background: linear-gradient(180deg, #214bd3 20%, #6c87e8 100%);
+  padding: 30px 1px 35px; /* เพิ่ม padding ล่างเพื่อให้มีพื้นที่ลอย */
+  border-radius: 0 0 30px 30px;
   text-align: center;
   color: white;
   width: 100%;
@@ -32,53 +36,100 @@ body{
 
 /* โลโก้ซ้ายบน */
 .history-header .logo{
+  width: 100px;
   position: absolute;
-  top: 14px;
+  top: 2px;
   left: 14px;
-  width: 44px;
-  height: 44px;
   border-radius: 50%;
   object-fit: cover;
+  padding: 3px;
 }
 
 /* หัวข้อ */
 .header-title{
   font-size: 22px;
-  font-weight: 700;
-  margin-top: 36px; /* กันชนกับโลโก้ */
+  font-weight: 550;
+  margin-top: 35px; /* กันชนกับโลโก้ */
+  color: #ffffff;
 }
 
-/* ✅ ปุ่ม 3 ขีดมุมขวา */
+/* ปุ่ม 3 ขีดมุมขวา */
 .menu-btn{
   position: absolute;
-  top: 12px;
-  right: 14px;
+  background: none;
   border: none;
-  background: transparent;
-  font-size: 28px;
-  cursor: pointer;
-  color: #0f2b6d;
-}
-
-/* pill HN + date */
-.pill-row{
+  /* ปรับพื้นที่กดให้เป็น 44x44px เพื่อให้กดง่ายในมือถือ */
+  width: 44px;
+  height: 44px;
   display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 6px;
+  flex-direction: column;
+  justify-content: center; /* จัดให้อยู่กลางแนวตั้ง */
+  align-items: center;     /* จัดให้อยู่กลางแนวนอน */
+  gap: 5px;                /* ระยะห่างระหว่างเส้น (เพิ่มจาก 4px ให้ดูโปร่งขึ้น) */
+  cursor: pointer;
+  padding: 0;
+  right: 1px;
+  margin-top: -5px;
 }
 
-.pill{
-  min-width: 120px;
-  padding: 8px 16px;
-  border-radius: 999px;
-  background: #edf1ff;
+.menu-btn span {
+  display: block;
+  width: 25px;             /* ขนาดความกว้างของเส้นที่เหมาะสม */
+  height: 2.5px;             /* เพิ่มความหนาจาก 1.5px เป็น 2px ให้ดูแข็งแรงขึ้น */
+  background: #ffffff;
+  border-radius: 2px;      /* มนพอดีกับความหนาของเส้น */
+  transition: 0.3s;        /* เผื่อไว้สำหรับทำ Animation ตอนเปิด/ปิด */
+}
+
+.info-container {
+  display: flex;
+  width: 100%;
+  justify-content: center; /* จัดกลุ่มทั้งหมดให้อยู่กลางหน้าจอ */
+  margin-top: -25px;
+}
+
+.pill-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px; /* ระยะห่างระหว่างกล่อง Pill สองกล่อง */
+  align-items: center;
+}
+
+.pill {
+  flex: -1;
+  display: flex;          /* เพิ่มตรงนี้: เพื่อจัดไอคอนกับข้อความ */
+  align-items: center;    /* จัดให้อยู่กลางแนวตั้ง */
+  justify-content: flex-start; /* ให้ไอคอนเริ่มที่ฝั่งซ้าย */
+  
+  min-width: 140px;       /* ปรับกว้างขึ้นนิดหน่อยเพื่อให้มีที่ว่าง */
+  padding: 10px 16px;     /* ปรับ padding ให้สมดุล */
+  border-radius: 10px;
+  background: #ffffff;
   color: #1f2933;
   font-size: 13px;
-  font-weight: 600;
-  text-align: center;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.18);
+  font-weight: 500;
+  z-index: 10;
+  margin-top: -15px;
 }
+
+.pill img {
+  width: 20px;            /* ขนาดไอคอน */
+  height: 20px;
+  margin-right: 10px;     /* ระยะห่างระหว่างไอคอนกับตัวอักษร */
+  object-fit: contain;
+  opacity: 0.8;
+  /* filter: brightness(0) invert(1); */
+}
+
+.pill span {
+  flex-grow: 1;           /* ให้ข้อความกินพื้นที่ที่เหลือ */
+  text-align: center;      /* สั่งให้ตัวหนังสืออยู่ตรงกลางพื้นที่ที่เหลือ */
+  margin-right: 20px;     /* ชดเชยระยะไอคอนทางซ้าย เพื่อให้ตัวหนังสืออยู่กลางกล่องจริงๆ */
+}
+
+
 
 /* ตารางข้อมูล */
 .info-table{
@@ -110,20 +161,34 @@ body{
 
 /* ปุ่ม Back */
 .back-btn{
-  width: 100%;
+  display: block;
+  width: 50%;
+  margin: 20px auto 0;
   margin-top: 20px;
-  padding: 12px 0;
+  padding: 12px 16px;
   border-radius: 999px;
   border: none;
   font-size: 16px;
-  font-weight: 600;
-  background: #9fb5ff;
-  color: #111827;
+  font-weight: 450;
+  background: #3258de;
+  color: #ffffff;
   cursor: pointer;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.18);
+  
+  /* box-shadow: 0 8px 16px rgba(0,0,0,0.18); */
 }
 
 .back-btn:active{
   transform: translateY(1px);
   box-shadow: 0 5px 10px rgba(0,0,0,0.14);
 }
+
+
+@media (max-width: 480px) {
+      body {
+        padding: 0;
+      }
+      .app {
+        border-radius: 0;
+        box-shadow: none;
+      }
+    }
