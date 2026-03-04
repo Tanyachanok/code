@@ -61,7 +61,7 @@ async function submitConfirmation(status) {
 document.addEventListener("DOMContentLoaded", () => {
   const input = document.querySelector(".search-input");
   const btn = document.querySelector(".search-btn");
-  const listCard = document.querySelector(".list-card"); // ตรวจสอบว่าใน HTML มีคลาสนี้ไหม
+  const listCard = document.querySelector(".list-card"); 
   const monthInput = document.querySelector("#monthInput");
   const tableBody = document.getElementById("tableBody");
 
@@ -89,12 +89,18 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderList(data) {
+    const tableBody = document.getElementById("tableBody");
     tableBody.innerHTML = "";
 
+    // if (!data || data.length === 0) {
+    //   tableBody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>ไม่พบข้อมูล</td></tr>";
+    //   return;
+    // }
     if (!data || data.length === 0) {
-      tableBody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>ไม่พบข้อมูล</td></tr>";
-      return;
-    }
+    // const noDataRow = document.createElement("tr");
+    tableBody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding: 30px; color: #888;">ไม่พบข้อมูล</td></tr>`;
+    return;
+  }
 
     data.forEach(item => {
       const row = document.createElement("tr");
@@ -136,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
     try {
         // 1. จัดการสถานะการโหลดและหัวข้อ (Title)
         tableBody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>กำลังโหลด...</td></tr>";
-        if (listCard) listCard.innerHTML = "กำลังโหลด...";
+        // if (listCard) listCard.innerHTML = "กำลังโหลด...";
 
         // เช็คจาก API URL ว่าเป็นเส้นทางหลัก (Timeline) หรือไม่
         const isTimelineApi = url.includes("/timeline");
@@ -161,15 +167,23 @@ document.addEventListener("DOMContentLoaded", () => {
       try { raw = text ? JSON.parse(text) : {}; } catch (_) { }
 
       if (!res.ok) {
-        const detail = raw.detail || "ไม่พบข้อมูล";
-        tableBody.innerHTML = `<tr><td colspan='3' style='text-align:center; color:red;'>${escapeHtml(typeof detail === 'string' ? detail : JSON.stringify(detail))}</td></tr>`;
+        // ดึงข้อความจาก API มาก่อน
+        let detail = raw.detail || "ไม่พบข้อมูล";
+
+        // ตรวจสอบว่าถ้ามีคำว่า "No data found" ให้เปลี่ยนเป็นภาษาไทย
+        if (typeof detail === 'string' && detail.includes("No data found")) {
+            detail = "ไม่พบข้อมูลในระบบ";
+        }
+
+        tableBody.innerHTML = `<tr><td colspan='3' style='text-align:center; color:black;'>${escapeHtml(typeof detail === 'string' ? detail : JSON.stringify(detail))}</td></tr>`;
         return;
       }
 
       const list = raw.result ?? raw.data ?? raw;
       console.log("Data received from Timeline API:", list);
+
       renderList(Array.isArray(list) ? list : []);
-      if (listCard) listCard.innerHTML = ""; // ล้างสถานะเมื่อโหลดเสร็จ
+      // if (listCard) listCard.innerHTML = ""; // ล้างสถานะเมื่อโหลดเสร็จ
     } catch (err) {
       console.error("ERROR timeline:", err);
       tableBody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>เชื่อมต่อเซิร์ฟเวอร์ผิดพลาด</td></tr>";
@@ -211,6 +225,8 @@ document.addEventListener("DOMContentLoaded", () => {
       loadTimeline(url);
     }
 });
+
+
 
   // 4. เมื่อคลิกที่รูปภาพ ให้ Popup ปฏิทินเด้งขึ้นมา
   const calendarIcon = document.getElementById("calendarIcon");
