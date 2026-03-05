@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">    <title>PE Predictor</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/login.css">
+  <meta charset="UTF-8">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>PE Predictor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/login.css">
 </head>
 <!-- <body>
     <main class="page">
@@ -21,32 +23,35 @@
           <img src="/Logo1.png" class ="logo"> -->
 
 <body>
-  <main class="page">
-    <section class="card" aria-labelledby="appTitle">
-      <button class="close-btn" type="button" aria-label="Go Back" onclick="history.back()">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </button>
+  <!-- <main class="page"> -->
+  <section class="card" aria-labelledby="appTitle">
+    <button class="close-btn" type="button" aria-label="Go Back" onclick="history.back()">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+          stroke-linejoin="round" />
+      </svg>
+    </button>
 
-      <img src="/Logo1.png" class="logo">
-      
-        
-  
-        
-  <!--username-->
-        <form class="form" action="#" method="post" novalidate>
-          <div class="field">
-            <label for="username">Username</label>
-            <div class="input-wrap">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path d="M12 12c2.761 0 5-2.239 5-5S14.761 2 12 2 7 4.239 7 7s2.239 5 5 5Zm0 2c-3.866 0-7 3.134-7 7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1c0-3.866-3.134-7-7-7Z"></path>
-              </svg>
-              <input id="username" name="username" type="text" placeholder="Username" autocomplete="username" required />
-            </div>
-          </div>
-<!--password-->  
-          <div class="field">
+    <img src="/Logo1.png" class="logo">
+
+
+
+
+    <!--username-->
+    <form class="form" action="#" method="post" novalidate>
+      <div class="field">
+        <label for="username">Username</label>
+        <div class="input-wrap">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              d="M12 12c2.761 0 5-2.239 5-5S14.761 2 12 2 7 4.239 7 7s2.239 5 5 5Zm0 2c-3.866 0-7 3.134-7 7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1c0-3.866-3.134-7-7-7Z">
+            </path>
+          </svg>
+          <input id="username" name="username" type="text" placeholder="Username" autocomplete="username" required />
+        </div>
+      </div>
+      <!--password-->
+      <!-- <div class="field">
             <label for="password">Password</label>
             <div class="input-wrap">
               <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -54,27 +59,42 @@
               </svg>
               <input id="password" name="password" type="password" placeholder="Password" autocomplete="current-password" required />
             </div>
-          </div>
+          </div> -->
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="input-wrap" style="position: relative; display: flex; align-items: center;">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path
+              d="M17 9h-1V7a4 4 0 1 0-8 0v2H7a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-9a2 2 0 0 0-2-2Zm-6 8.732V19a1 1 0 1 0 2 0v-1.268a2 2 0 1 0-2 0ZM10 7a2 2 0 1 1 4 0v2h-4V7Z">
+            </path>
+          </svg>
+          <input id="password" name="password" type="password" placeholder="Password" autocomplete="current-password"
+            required />
 
-          <!-- ✅ error message ใต้ password -->
-          <p id="password-error" class="error-text"></p>
-  
-          <div class="row between">
-            <label class="checkbox">
-              <input type="checkbox" name="remember" />
-              <span>Remember me</span>
-            </label>
-            <a href="/forgot-pass1.html" class="link subtle">Forgot Password?</a>
-          </div>
-  
-          <button type="submit" class="btn-primary">Login</button>
-  
-          <p class="register">Don’t have an account?
-            <a href="/register.html" class="link">Register</a>
-          </p>
-        </form>
-      </section>
-    </main>
-    <script src="/js/login.js"></script>
-  </body>
-  </html>
+          <img src="/view.png" id="togglePassword" class="eye-icon" alt="Toggle Password">
+        </div>
+      </div>
+
+      <!-- ✅ error message ใต้ password -->
+      <p id="password-error" class="error-text"></p>
+
+      <div class="row between">
+        <label class="checkbox">
+          <input type="checkbox" name="remember" />
+          <span>Remember me</span>
+        </label>
+        <a href="/forgot-pass1.html" class="link subtle">Forgot Password?</a>
+      </div>
+
+      <button type="submit" class="btn-primary">Login</button>
+
+      <p class="register">Don’t have an account?
+        <a href="/register.html" class="link">Register</a>
+      </p>
+    </form>
+  </section>
+  </main>
+  <script src="/js/login.js"></script>
+</body>
+
+</html>

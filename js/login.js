@@ -7,10 +7,25 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeBtn = document.querySelector(".close-btn");
   const passwordError = document.getElementById("password-error");
 
+  // --- ส่วนที่เพิ่มใหม่: ตัวแปรสำหรับปุ่มเปิดตา ---
+  const togglePassword = document.getElementById("togglePassword");
+
   if (!form || !usernameInput || !passwordInput || !submitButton || !passwordError) return;
 
   const showPasswordError = (text) => { passwordError.textContent = text || ""; };
   const clearPasswordError = () => { passwordError.textContent = ""; };
+
+  // --- ส่วนที่เพิ่มใหม่: Logic เปิดตา/ปิดตา ---
+  if (togglePassword) {
+    togglePassword.addEventListener("click", function() {
+      // สลับ type ระหว่าง password และ text
+      const isPassword = passwordInput.getAttribute("type") === "password";
+      passwordInput.setAttribute("type", isPassword ? "text" : "password");
+
+      // สลับรูปไอคอน (เปลี่ยน path ตามชื่อไฟล์จริงของคุณ)
+      this.src = isPassword ? "/hide.png" : "/view.png";
+    });
+  }
 
   closeBtn?.addEventListener("click", () => (window.location.href = "/index.html"));
   usernameInput.addEventListener("input", clearPasswordError);
@@ -52,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const data = await res.json().catch(() => ({}));
 
       if (!res.ok) {
-        // ✅ กัน detail ไม่ใช่ string
         let msg = "Incorrect username or password";
         if (typeof data.detail === "string") msg = data.detail;
         else if (Array.isArray(data.detail) && data.detail[0]?.msg) msg = data.detail[0].msg;

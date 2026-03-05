@@ -82,8 +82,8 @@ html, body {
   .field label {
   display: block;
   margin-top: 0px;
-  font-weight: 525;
-  font-size: 14px;
+  /* font-weight: 525; */
+  font-size: 12px;
   margin-bottom: 10px;
 
 }
@@ -127,6 +127,18 @@ html, body {
     background: var(--white);
     /* box-shadow: 0 0 0 4px var(--ring); */
   } 
+
+  .eye-icon {
+  cursor: pointer; 
+  width: 20px; 
+  position: absolute; 
+  right: 15px;
+  opacity: 0.6;
+  }
+
+  .eye-icon:hover {
+  opacity: 0.3; /* ให้สีชัดขึ้นเมื่อเอาเมาส์ไปชี้ */
+}
   
   .row{
     display:flex;
@@ -134,7 +146,10 @@ html, body {
     gap: 12px;
   }
   
-  .row.between{ justify-content: space-between; }
+  .row.between{ 
+    justify-content: space-between; 
+    margin-top: 1px;
+  }
   
   .checkbox{
     display:flex;
@@ -145,8 +160,10 @@ html, body {
     color: #6b7280;
   }
   .checkbox input{
-    width:18px; height:18px;
+    width:18px; 
+    height:18px;
     accent-color: var(--primary-600);
+    /* transform: translateY(0.5px) */
   }
   
   .link{ color: var(--primary-600); text-decoration: underline; }
@@ -167,7 +184,7 @@ html, body {
     font-size: 18px;
     line-height: 1.2;
     cursor: pointer;
-    box-shadow: 0 8px 18px rgba(59,130,246,.35);
+    /* box-shadow: 0 8px 18px rgba(59,130,246,.35); */
     transition: transform .02s ease, background .15s ease;
   }
   .btn-primary:hover{ background: #1646d0; }
@@ -192,16 +209,17 @@ html, body {
   background: transparent;
   border: none;
   cursor: pointer;
-  padding: 0;
   color: #333;
   z-index: 10;        /* ให้อยู่เหนือโลโก้ */
   -webkit-tap-highlight-color: transparent; /* ลบสีฟ้าตอนกดในมือถือ */
 }
 
 .close-btn svg {
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 25px;
   pointer-events: none; /* ให้การกดทะลุไปที่ปุ่ม */
+  margin-left: -20px;
+  /* padding: 6px 16px; */
 }
 
 .error-text{
@@ -213,14 +231,17 @@ html, body {
   
 @media (max-width: 480px) {
 .card {
-  padding: 18px 18px;
+  padding: 0px ;
   box-shadow: none;
-  margin-top: 2em;
+  margin-top: 0.5em;
 }
-
 .form {
   display: grid;
   gap: 1.5rem;
+}
+.close-btn svg{
+  margin-left: -50px;
+  padding: 1px 1px;
 }
 }
 

@@ -84,14 +84,14 @@ if (menuBtn) {
   function normalizePeConfirm(v) {
     if (v === undefined || v === null) return "-";
 
-    if (typeof v === "boolean") return v ? "PE Confirm" : "No PE";
-    if (typeof v === "number") return v === 1 ? "PE Confirm" : v === 0 ? "No PE" : String(v);
+    if (typeof v === "boolean") return v ? "Positive" : "Negative";
+    if (typeof v === "number") return v === 1 ? "Positive" : v === 0 ? "Negative" : String(v);
 
     const s = String(v).trim().toLowerCase();
     if (!s) return "-";
 
-    if (["true", "yes", "y", "pe", "pe confirm", "confirm", "positive", "1"].includes(s)) return "PE Confirm";
-    if (["false", "no", "n", "no pe", "negative", "0"].includes(s)) return "No PE";
+    if (["true", "yes", "y", "pe", "pe confirm", "confirm", "positive", "1"].includes(s)) return "Positive";
+    if (["false", "no", "n", "no pe", "negative", "0"].includes(s)) return "Negative";
 
     // ถ้า backend ส่งเป็นข้อความอยู่แล้วก็คืนกลับ
     return String(v);

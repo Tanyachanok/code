@@ -18,7 +18,8 @@ body {
   width: 100%;
   max-width: 400px;
   min-height: 100vh;
-  background-color: #c3d6fa;
+  /* background-color: #c3d6fa; */
+  background: linear-gradient(135deg, rgba(196, 208, 249, 0.9) 20%, rgba(34, 116, 223, 0.8) 100%);
   padding-bottom: 20px;
 }
 

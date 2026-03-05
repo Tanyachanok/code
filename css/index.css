@@ -220,7 +220,7 @@ body {
     background:#6794e7;
     border-color: #6794e7;
     color: #ffffff;
-    box-shadow: 0 3px 10px rgba(0, 80, 255, 0.25);
+    /* box-shadow: 0 3px 10px rgba(0, 80, 255, 0.25); */
 }
 
 /* Dropdown */

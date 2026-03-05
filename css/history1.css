@@ -139,8 +139,8 @@ body {
 }
 
 .search-btn {
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   padding: 0;
   border: none;
   outline: none;
@@ -148,7 +148,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #3f60d8;
+  background-color: #3f60d8;
 }
 
 .search-btn .icon {
@@ -170,8 +170,6 @@ body {
   /* border: 1px solid #e5e7eb; */
   /* border-radius: 12px; */
 }
-
-
 
 
 /* ทำให้รูปไอคอนดูน่ากด */

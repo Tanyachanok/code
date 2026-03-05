@@ -118,7 +118,7 @@ h2 {
     font-weight: 700;
     cursor: pointer;
     margin-top: 5px;
-    box-shadow: 0 8px 18px rgba(59,130,246,.35);
+    /* box-shadow: 0 8px 18px rgba(59,130,246,.35); */
 }
 
 .btn:hover {
