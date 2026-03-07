@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="th">
+
 <head>
   <meta charset="UTF-8">
-  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <title>Prediction Result</title>
   <link rel="stylesheet" href="/css/next to step.css">
@@ -10,12 +10,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <div class="app">
-    <!-- top bar -->
     <header class="top-bar">
       <img src="/Logo2.png" class="logo">
-
       <button class="menu-btn" aria-label="Menu">
         <span></span>
         <span></span>
@@ -23,38 +22,45 @@
       </button>
     </header>
 
-    <!-- content -->
     <main class="content">
       <h1 class="title">Prediction Result</h1>
 
-      <div class="risk-row">
-        <span class="risk-label">Risk</span>
-        <span class="risk-value"> </span>
-      </div>
+      <div class="model-card">
+        <h2 class="text">Model Confidence Interval</h2>
 
-      <p class="risk-group"> </p>
+        <div class="risk-container">
+          <svg width="220" height="220" viewBox="0 0 200 200">
+            <circle class="bg-circle" cx="100" cy="100" r="90" fill="none" stroke-width="14"></circle>
+            <circle id="risk-circle" class="progress-bar" cx="100" cy="100" r="90" fill="none" stroke-width="12"
+              stroke-dasharray="565" stroke-dashoffset="565"></circle>
 
-      <!-- risk bar -->
-      <div class="risk-bar-wrapper">
-        <div class="risk-bar">
-          <div class="risk-thumb"></div>
+            <circle cx="100" cy="100" r="75" fill="#dfe4e9"></circle>
+          </svg>
+          <div class="inner-text">
+            <span id="risk-percent">0</span><span class="percent-symbol">%</span>
+          </div>
         </div>
       </div>
 
-      <!-- recommendation -->
-      <section class="recommend-card">
-        <h2 class="recommend-title">คำแนะนำต่อไป</h2>
-        <p class="recommend-text"> </p>
+      <section class="card-warning">
+        <div class="header-warning">
+          <span class="warning-icon">⚠️</span>
+          <span class="recommend-text">การประเมินโดยระบบปัญญาประดิษฐ์ (AI-Assisted Decision Support) เพื่อใช้เป็นข้อมูลประกอบการตัดสินใจทางคลินิก</span>
+        </div>
+        
       </section>
 
-      <!-- buttons -->
       <div class="btn-row">
         <button class="btn btn-secondary">Home</button>
-        <button class="btn btn-secondary">Next</button>
+        <!-- <button class="btn btn-secondary">Next</button> -->
       </div>
-      <a href="/predic.html" class="back-link">&lt; Back to Predict</a>
+
+      <div class="back-wrapper">
+        <a href="/predic.html" class="back">&lt; Back to Predict</a>
+      </div>
     </main>
   </div>
   <script src="/js/next to step.js"></script>
 </body>
+
 </html>

@@ -1,79 +1,46 @@
-// js/next-login.js
 document.addEventListener("DOMContentLoaded", () => {
   const riskValueEl = document.querySelector(".risk-value");
-  const riskGroupEl = document.querySelector(".risk-group");
-  const riskThumbEl = document.querySelector(".risk-thumb");
   const recommendTextEl = document.querySelector(".recommend-text");
 
-  // ปุ่มต่าง ๆ
+  // ปุ่มนำทาง
   const buttons = document.querySelectorAll(".btn-secondary");
-  const homeBtn = buttons[0] || null; // ปุ่ม Home (ตัวแรก)
-  const nextBtn = buttons[1] || null; // ปุ่ม Next (ตัวที่สอง)
+  const homeBtn = buttons[0] || null;
+  const nextBtn = buttons[1] || null;
   const menuBtn = document.querySelector(".menu-btn");
 
   // ----------------------------
   // 0) ปุ่มนำทาง
   // ----------------------------
-  if (homeBtn) {
-    homeBtn.addEventListener("click", () => {
-      window.location.href = "/home4log.html";
-    });
-  }
-
-  if (nextBtn) {
-    nextBtn.addEventListener("click", () => {
-      // หน้าถัดไป (Confirm PE)
-      window.location.href = "/confirm.html";
-    });
-  }
-
-  if (menuBtn) {
-    menuBtn.addEventListener("click", () => {
-      window.location.href = "/ham-log.html";
-    });
-  }
+  if (homeBtn) homeBtn.addEventListener("click", () => { window.location.href = "/home4log.html"; });
+  if (nextBtn) nextBtn.addEventListener("click", () => { window.location.href = "/confirm.html"; });
+  if (menuBtn) menuBtn.addEventListener("click", () => { window.location.href = "/ham-log.html"; });
 
   // ----------------------------
   // 1) CONFIG API + token
   // ----------------------------
   const ACCESS_TOKEN_KEY = "pe_access_token";
   const token = localStorage.getItem(ACCESS_TOKEN_KEY);
-
   const API_ROOT = "https://webapp-pe.onrender.com";
-  const PREDICT_DETAIL_API = `${API_ROOT}/predict`; // ใช้ GET /predict/{id_predict}
+  const PREDICT_DETAIL_API = `${API_ROOT}/predict`;
 
   // ----------------------------
-  // 2) หา id_predict จาก URL หรือ localStorage
+  // 2) หา id_predict
   // ----------------------------
   const params = new URLSearchParams(window.location.search);
-
-  console.log("NEXT-LOGIN: location.search =", window.location.search);
-  console.log(
-    "NEXT-LOGIN: pe_predict_id in localStorage =",
-    localStorage.getItem("pe_predict_id")
-  );
-
-  let idPredict =
-    params.get("id_predict") || localStorage.getItem("pe_predict_id") || null;
-
-  console.log("NEXT-LOGIN: idPredict =", idPredict);
+  let idPredict = params.get("id_predict") || localStorage.getItem("pe_predict_id") || null;
 
   if (idPredict) {
-    // ถ้ามี id_predict → ดึงจาก backend ก่อน
     fetchPredictDetail(idPredict);
   } else {
-    console.warn("NEXT-LOGIN: ไม่มี id_predict ใช้ fallback localStorage");
     loadFromLocalFallback();
   }
 
   // ----------------------------
-  // 3) ดึงผลจาก backend /predict/{id_predict}
+  // 3) ดึงผลจาก backend
   // ----------------------------
   async function fetchPredictDetail(id) {
     try {
       const url = `${PREDICT_DETAIL_API}/${encodeURIComponent(id)}`;
-      console.log("NEXT-LOGIN: call GET", url);
-
       const res = await fetch(url, {
         method: "GET",
         headers: {
@@ -83,162 +50,71 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (!res.ok) {
-        console.warn(
-          "NEXT-LOGIN: โหลดผลทำนายจาก backend ไม่สำเร็จ status =",
-          res.status
-        );
-        // ถ้า backend ล้มเหลว → ลอง fallback localStorage
         loadFromLocalFallback();
         return;
       }
 
       const data = await res.json();
-      console.log("NEXT-LOGIN: detail from backend =", data);
-
       const resultData = data.result || data;
       renderRiskFromData(resultData);
     } catch (err) {
-      console.error("NEXT-LOGIN: เรียก /predict/{id_predict} ล้มเหลว:", err);
+      console.error("NEXT-LOGIN Error:", err);
       loadFromLocalFallback();
     }
   }
 
   // ----------------------------
-  // 4) fallback: ใช้ผลเดิมจาก localStorage
-  //    รองรับทั้ง pe_login_result และ pe_predict_basic
+  // 4) Fallback (กรณีไม่พบข้อมูล) - ใช้คำสุภาพ
   // ----------------------------
   function loadFromLocalFallback() {
-    let raw =
-      localStorage.getItem("pe_login_result") ||
-      localStorage.getItem("pe_predict_basic");
+    let raw = localStorage.getItem("pe_login_result") || localStorage.getItem("pe_predict_basic");
 
     if (!raw) {
-      console.warn("NEXT-LOGIN: ไม่พบผลทำนายใน localStorage");
-      if (riskValueEl) riskValueEl.textContent = "-";
-      if (riskGroupEl)
-        riskGroupEl.textContent = "ไม่พบข้อมูลผลการทำนาย";
-      if (recommendTextEl)
-        recommendTextEl.textContent =
-          "กรุณากลับไปกรอกข้อมูลใหม่อีกครั้ง";
+      if (recommendTextEl) {
+        recommendTextEl.innerHTML = `
+          <div style="color: #64748b; padding: 20px;">
+            ขออภัยครับ ไม่พบข้อมูลการวิเคราะห์ผลในระบบ<br>
+            <span style="font-size: 0.9em;">กรุณากลับไปที่หน้าบันทึกข้อมูลเพื่อดำเนินการประเมินใหม่อีกครั้ง</span>
+          </div>`;
+      }
       return;
     }
 
-    let data;
     try {
-      data = JSON.parse(raw);
+      const data = JSON.parse(raw);
+      renderRiskFromData(data);
     } catch (e) {
-      console.error("NEXT-LOGIN: อ่านผลจาก localStorage ไม่ได้:", e);
-      if (riskValueEl) riskValueEl.textContent = "-";
-      if (riskGroupEl)
-        riskGroupEl.textContent = "ไม่สามารถแสดงผลการทำนายได้";
-      if (recommendTextEl)
-        recommendTextEl.textContent =
-          "กรุณากลับไปกรอกข้อมูลใหม่อีกครั้ง";
-      return;
+      if (recommendTextEl) recommendTextEl.textContent = "ขออภัย ระบบไม่สามารถดึงข้อมูลผลการประเมินได้ในขณะนี้";
     }
-
-    renderRiskFromData(data);
   }
 
   // ----------------------------
-  // 5) ฟังก์ชัน render ค่าความเสี่ยง + group + recommendation
+  // 5) Render (เฉพาะวงกลมเปอร์เซ็นต์)
   // ----------------------------
   function renderRiskFromData(data) {
-    if (!data || typeof data !== "object") {
-      console.warn("NEXT-LOGIN: data ไม่ถูกต้อง:", data);
-      if (riskValueEl) riskValueEl.textContent = "-";
-      if (riskGroupEl)
-        riskGroupEl.textContent = "ไม่สามารถแสดงผลการทำนายได้";
-      return;
-    }
+    if (!data || typeof data !== "object") return;
 
-    // --- 5.1 คำนวณเปอร์เซ็นต์ความเสี่ยง (ใช้ข้อมูลจาก backend/local โดยตรง) ---
-    let prob =
-      data.risk_percent ??
-      data.risk_probability ??
-      data.probability ??
-      data.prob ??
-      data.prob_risk ??
-      data.risk ??
-      0;
+    let prob = data.prob_risk ?? data.risk_percent ?? data.risk_probability ?? 0;
+    let probPercent = Math.max(0, Math.min(Number(prob) || 0, 100));
 
-    // ถ้า backend ให้เป็น 0–1 → คูณ 100
-    if (prob <= 1) {
-      prob = prob * 100;
-    }
+    // แสดงผลเฉพาะวงกลมและตัวเลข
+    updateCircularProgress(probPercent);
 
-    let probPercent = Number(prob);
-    if (Number.isNaN(probPercent)) probPercent = 0;
+    // เซฟไว้เผื่อหน้าอื่นต้องใช้ข้อมูลเต็ม
+    localStorage.setItem("pe_login_result", JSON.stringify(data));
+  }
 
-    // จำกัดในช่วง 0–100
-    probPercent = Math.max(0, Math.min(probPercent, 100));
+  function updateCircularProgress(percent) {
+    const circle = document.getElementById('risk-circle');
+    const text = document.getElementById('risk-percent');
 
-    if (riskValueEl) {
-      riskValueEl.textContent = `${probPercent.toFixed(0)}%`;
-    }
+    if (!circle || !text) return;
 
-    // --- 5.2 ข้อความกลุ่มความเสี่ยง ---
-    let groupText =
-      data.risk_category ||
-      data.risk_group ||
-      data.risk_name ||
-      "";
+    const circumference = 565; 
+    const offset = circumference - (percent / 100) * circumference;
 
-    if (!groupText) {
-      if (probPercent < 15) {
-        groupText = "กลุ่มความเสี่ยงต่ำ";
-      } else if (probPercent < 50) {
-        groupText = "กลุ่มความเสี่ยงปานกลาง";
-      } else {
-        groupText = "กลุ่มความเสี่ยงสูง";
-      }
-    }
+    circle.style.strokeDashoffset = offset;
 
-    if (riskGroupEl) {
-      riskGroupEl.textContent = groupText;
-    }
-
-    // --- 5.3 ข้อความคำแนะนำ ---
-    let recommendText =
-      data.recommendation ||
-      data.recommend ||
-      data.suggestion ||
-      "";
-
-    if (!recommendText) {
-      if (probPercent < 15) {
-        recommendText =
-          "พิจารณาติดตามอาการและประเมินซ้ำเมื่อมีอาการเปลี่ยนแปลง";
-      } else if (probPercent < 50) {
-        recommendText =
-          "ควรพิจารณาส่งตรวจ CT Pulmonary Angiogram ตามดุลยพินิจของแพทย์";
-      } else {
-        recommendText =
-          "ควรส่งตรวจ CT Pulmonary Angiogram และประเมินแนวทางการรักษาอย่างเร่งด่วน";
-      }
-    }
-
-    if (recommendTextEl) {
-      recommendTextEl.textContent = recommendText;
-    }
-
-    // --- 5.4 ขยับตัวชี้บน bar ---
-    if (riskThumbEl) {
-      const thumbPos = 5 + (probPercent / 100) * 90;
-      riskThumbEl.style.left = `${thumbPos}%`;
-    }
-
-    // --- 5.5 เก็บค่าที่ใช้แสดงไว้ใน localStorage เผื่อหน้า confirm ใช้ต่อ ---
-    try {
-      const saveObj = {
-        id_predict: idPredict,
-        risk_percent: probPercent,
-        risk_category: groupText,
-        recommendation: recommendText,
-      };
-      localStorage.setItem("pe_login_result", JSON.stringify(saveObj));
-    } catch (e) {
-      console.error("NEXT-LOGIN: เซฟ pe_login_result ไม่ได้:", e);
-    }
+    text.textContent = percent;
   }
 });

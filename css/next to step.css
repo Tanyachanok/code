@@ -2,14 +2,15 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Poppins, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  background: linear-gradient(to bottom, #ffffff, #c7dcff);
+  /* background: linear-gradient(to bottom, #ffffff, #c7dcff); */
+  background-color: #ffffff;
 }
 
 /* ตัวแอป */
@@ -17,6 +18,12 @@ body {
   width: 100%;
   max-width: 440px;     
   padding: 24px 20px 32px;
+  border-radius: 10px;
+  min-height: 100vh;
+  background-color: #ffffff;
+  border-radius: 32px;
+  border-radius: 32px;
+  box-shadow: 0 14px 32px rgba(168, 172, 179, 0.45);
 }
 
 /* top bar */
@@ -25,32 +32,38 @@ body {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 28px;
+  margin-top: -15px;
 }
 
 .logo {
-  width: 100px;
-  height: 100px;
-  display: flex;
-  
+    width: 100px;
+    /* height: 120px; */
+    display: flex;
+    padding: 3px;
 }
 
-/* hamburger */
 .menu-btn {
-  width: 32px;
-  height: 32px;
+  background: none;
   border: none;
-  background: transparent;
+  /* ปรับพื้นที่กดให้เป็น 44x44px เพื่อให้กดง่ายในมือถือ */
+  width: 44px;
+  height: 44px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 6px 4px;
+  justify-content: center; /* จัดให้อยู่กลางแนวตั้ง */
+  align-items: center;     /* จัดให้อยู่กลางแนวนอน */
+  gap: 5px;                /* ระยะห่างระหว่างเส้น (เพิ่มจาก 4px ให้ดูโปร่งขึ้น) */
   cursor: pointer;
+  padding: 0;
 }
 
 .menu-btn span {
-  height: 2px;
-  border-radius: 999px;
+  display: block;
+  width: 25px;             /* ขนาดความกว้างของเส้นที่เหมาะสม */
+  height: 2.5px;             /* เพิ่มความหนาจาก 1.5px เป็น 2px ให้ดูแข็งแรงขึ้น */
   background: #000;
+  border-radius: 2px;      /* มนพอดีกับความหนาของเส้น */
+  transition: 0.3s;        /* เผื่อไว้สำหรับทำ Animation ตอนเปิด/ปิด */
 }
 
 /* content */
@@ -62,6 +75,27 @@ body {
   font-size: 20px;
   font-weight: 700;
   margin-bottom: 24px;
+  text-align: center;
+  margin-top: -20px;
+}
+
+.text{
+  font-size: 16px;
+  font-weight: 500;
+  /* margin-top: -20px; */
+}
+
+.model-card {
+  margin-top: 8px;
+  margin-bottom: 32px;
+  padding: 14px 20px 14px 20px;
+  background: #f2f4f9;
+  border-radius: 18px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 10px;
 }
 
 .risk-row {
@@ -116,12 +150,58 @@ body {
   background: rgba(0, 0, 0, 0.25);
 }
 
+/* คอนเทนเนอร์จัดกึ่งกลาง */
+.risk-container {
+  display: flex;
+  flex-direction: column; /* จัดองค์ประกอบภายในเป็นแนวตั้ง */
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto; /* auto ฝั่งซ้ายขวาจะช่วยผลักให้กึ่งกลาง */
+  position: relative;
+  width: 220px; /* กำหนดความกว้างให้ชัดเจนเท่ากับขนาด SVG */
+}
+
+svg {
+  transform: rotate(-90deg);
+}
+
+/* วงกลมพื้นหลัง (สีเทาจาง) */
+.bg-circle {
+  stroke: #dfe4e9;
+}
+
+.progress-bar {
+  stroke: #3b82f6; 
+  stroke-linecap: round;
+  /*transition: stroke-dashoffset 1s ease-out; /* อนิเมชั่นการวิ่งของเส้น */
+}
+
+/* ตัวเลขเปอร์เซ็นต์กึ่งกลางวงกลม */
+.inner-text {
+  position: absolute;
+  /* text-align: center; */
+  font-family: 'Poppins', sans-serif;
+}
+
+#risk-percent {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.percent-symbol {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+
 /* recommendation card */
-.recommend-card {
+.card {
   margin-top: 8px;
   margin-bottom: 32px;
   padding: 18px;
-  background: #DDE7FC;
+  background: #f2f4f9;
   border-radius: 18px;
   min-height: 200px;
   display: flex;
@@ -130,51 +210,86 @@ body {
   gap: 10px;
 }
 
-.recommend-title {
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 10px;
+.card-warning {
+    margin-top: 8px;
+    border-radius: 12px;
+    background: #fff1bf;
+    padding: 8px 10px;
+    display: flex;
+    gap: 8px;
+    font-size: 0.75rem;
+    color: #5b3b00;
+    align-items: flex-start;
+    border: 1px solid #f1d37a;
+}
+
+.warning-icon{
+  margin-top: -8px;
+  margin-left: 5px;
+  font-size: 20px;   /* ปรับขนาดไอคอน (กรณีเป็น Icon Font เช่น FontAwesome) */
 }
 
 .recommend-text {
-  font-size: 15px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
 /* buttons */
 .btn-row {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
   gap: 16px;
-  margin-top: 8px;
+  margin: 8px auto;
+  width: 100%;
+  /* align-items: center; */
 }
 
 .btn {
-  flex: 1;
-  padding: 12px 0;
-  border-radius: 999px;
-  border: none;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.btn-primary {
-  background: #3258de;
-  color: #fff;
-}
-
-.btn-secondary {
-  background: #3258de;
-  color: #fff;
-}
-
-/* back link */
-.back-link {
+  border: 0;
   display: block;
-  text-align: center;
-  font-size: 14px;
-  color: #333333;
-  text-decoration: none;
-  margin-top: 4px;
+  width: 50%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: #3258DE;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.2;
+  cursor: pointer;
+  /* box-shadow: 0 8px 18px rgba(59,130,246,.35); */
+  transition: transform .02s ease, background .15s ease;
+  margin: 30px  auto;
+}
+
+
+ .btn :hover{ 
+    background: #1646d0; 
+  }
+  .btn :active{ 
+    transform: translateY(1px); 
+  }
+
+.back {
+    display: block;
+    margin-top: 18px;
+    font-size: 14px;
+    color: #6b7280;
+    text-decoration: none;
+    text-align: center;
+}
+
+.back:hover {
+    text-decoration: underline;
+}
+
+
+@media (max-width: 480px) {
+.container {
+  padding: 18px 18px;
+  box-shadow: none;
+  /* margin-top: 2em; */
+  border-radius: 0px;
+  box-shadow: none;
+  border: none;
+}
 }
