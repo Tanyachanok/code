@@ -27,43 +27,37 @@
     <main class="content">
       <h1 class="title">Prediction Result</h1>
 
-      <div class="risk-row">
-        <span class="risk-label">Risk</span>
-        <span class="risk-value"> </span>
+      <div class="model-card">
+        <h2 class="text">Model Confidence Interval</h2>
+
+        <div class="risk-container">
+          <svg width="220" height="220" viewBox="0 0 200 200">
+            <circle class="bg-circle" cx="100" cy="100" r="90" fill="none" stroke-width="14"></circle>
+            <circle id="risk-circle" class="progress-bar" cx="100" cy="100" r="90" fill="none" stroke-width="12"
+              stroke-dasharray="565" stroke-dashoffset="565"></circle>
+
+            <circle cx="100" cy="100" r="75" fill="#dfe4e9"></circle>
+          </svg>
+          <div class="inner-text">
+            <span id="risk-percent">0</span><span class="percent-symbol">%</span>
+          </div>
+        </div>
       </div>
 
-      <p class="risk-group"> </p>
-
-      <!-- risk bar -->
-      <div class="risk-bar">
-        <div class="risk-track"></div>
-        <div class="risk-thumb"></div>
-      </div>
-
-      <!-- recommendation -->
-      <section class="recommend-card">
-        <h2 class="recommend-title">คำแนะนำต่อไป</h2>
-        <p class="recommend-text">
-          ควรทำการส่งตรวจ CT Pulmonary Angiogram
-        </p>
+      <section class="card-warning">
+        <div class="header-warning">
+          <span class="warning-icon">⚠️</span>
+          <span class="recommend-text">การประเมินโดยระบบปัญญาประดิษฐ์ (AI-Assisted Decision Support) เพื่อใช้เป็นข้อมูลประกอบการตัดสินใจทางคลินิก</span>
+        </div>
+        
       </section>
 
       <!-- buttons -->
       <div class="btn-row">
-        <button class="btn btn-secondary">Back</button>
+        <button class="btn btn-secondary">Home</button>
       </div>
     </main>
   </div>
   <script src="/js/next-guest.js"></script>
 </body>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const menuBtn = document.querySelector(".menu-btn");
-    if (menuBtn) {
-      menuBtn.addEventListener("click", () => {
-        window.location.href = "/ham-guest.html";  // หน้าของเมนู
-      });
-    }
-  });
-</script>
 </html>

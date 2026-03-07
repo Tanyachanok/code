@@ -1,4 +1,13 @@
 // js/next-guest.js
+document.addEventListener("DOMContentLoaded", () => {
+    const menuBtn = document.querySelector(".menu-btn");
+    if (menuBtn) {
+      menuBtn.addEventListener("click", () => {
+        window.location.href = "/ham-guest.html";  // หน้าของเมนู
+      });
+    }
+  });
+  
 document.addEventListener("DOMContentLoaded", async () => {
   const BASE_URL = "https://webapp-pe.onrender.com";
 
