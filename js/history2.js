@@ -52,6 +52,8 @@ if (menuBtn) {
     let isoString = String(iso).trim();
 
     isoString = isoString.split(".")[0];
+
+    isoString += "Z";
       
     const d = new Date(isoString);
     if (Number.isNaN(d.getTime())) return "-";
@@ -67,15 +69,20 @@ if (menuBtn) {
     
     //return `${day}-${month}-${year} ${hh}:${mm}`;
 
-    const day = String(d.getDate()).padStart(2, "0");
-    const month = String(d.getMonth() + 1).padStart(2, "0");
-    const year = d.getFullYear();
-
-    const hh = String(d.getHours()).padStart(2, "0");
-    const mm = String(d.getMinutes()).padStart(2, "0");
-
-  return `${day}-${month}-${year} ${hh}:${mm}`;
-}
+    const parts = new Intl.DateTimeFormat("en-GB", {
+      timeZone: "Asia/Bangkok",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    }).formatToParts(d);
+  
+    const get = (type) => parts.find(p => p.type === type)?.value;
+  
+    return `${get("day")}-${get("month")}-${get("year")} ${get("hour")}:${get("minute")}`;
+  }
 
   // normalize type cancer ให้เหลือ solid / hematologic / unknown
   function normalizeCancerType(v) {
