@@ -13,6 +13,11 @@ if (menuBtn) {
   const params = new URLSearchParams(window.location.search);
   const predictId = params.get("id");
 
+  // ลบ id ออกจาก URL ที่โชว์
+  if (window.location.search) {
+  window.history.replaceState({}, document.title, window.location.pathname);
+  }
+
   const token = localStorage.getItem("pe_access_token");
   if (!token) {
     alert("กรุณาเข้าสู่ระบบก่อน");
