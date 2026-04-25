@@ -43,16 +43,16 @@ async function submitConfirmation(status) {
             body: JSON.stringify(payload)
           });
 
-        // if (res.ok) {
+         if (res.ok) {
         //     alert("ยืนยันผลสำเร็จ และบันทึกลงคอลัมน์ pe_result แล้ว");
-        //     closeConfirmModal();
-        //     location.reload(); 
-        // } else {
+            closeConfirmModal();
+             location.reload(); 
+         } else {
         //     // ถ้ายังไม่ได้ ให้ดูรายละเอียด Error ตรงนี้ใน Console
-        //     const errorDetail = await res.json();
+             const errorDetail = await res.json();
         //     console.log("รายละเอียด Error 422:", errorDetail);
         //     alert("บันทึกไม่สำเร็จ: ข้อมูลไม่ตรงตามที่ระบบต้องการ");
-        // }
+         }
     } catch (err) {
         console.error("Error:", err);
     }
