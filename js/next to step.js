@@ -27,7 +27,15 @@ document.addEventListener("DOMContentLoaded", () => {
   // 2) หา id_predict
   // ----------------------------
   const params = new URLSearchParams(window.location.search);
-  let idPredict = params.get("id_predict") || localStorage.getItem("pe_predict_id") || null;
+  let idPredict = 
+  params.get("id_predict") || 
+  localStorage.getItem("pe_predict_id") || 
+  null;
+
+  // ลบ patient_id / id_predict / risk / sex ออกจาก URL ที่โชว์
+  if (window.location.search) {
+  window.history.replaceState({}, document.title, window.location.pathname);
+  }
 
   if (idPredict) {
     fetchPredictDetail(idPredict);
