@@ -229,9 +229,9 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
       }
-      window.location.href = "/predic.html?patient_id=" + encodeURIComponent(hn);
+      window.location.href = "/predict.html?patient_id=" + encodeURIComponent(hn);
     } catch (error) {
-      window.location.href = "/predic.html?patient_id=" + encodeURIComponent(hn);
+      window.location.href = "/predict.html?patient_id=" + encodeURIComponent(hn);
     }
   });
 });
