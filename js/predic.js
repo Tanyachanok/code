@@ -97,13 +97,13 @@ document.addEventListener("DOMContentLoaded", () => {
       // ถ้ามีใน localStorage (จาก home4log)
       if (loginBasic?.no) {
         patientInput.value = loginBasic.no;
-        checkPredictionStatus(loginBasic.no);
+        //checkPredictionStatus(loginBasic.no);
         return;
       }
 
       if (pidFromUrl) {
         patientInput.value = pidFromUrl;
-        checkPredictionStatus(pidFromUrl);
+        //checkPredictionStatus(pidFromUrl);
         return;
       }
 
