@@ -48,6 +48,11 @@ if (menuBtn) {
   // แปลง iso date → เวลา
   function formatThaiDateTime(iso) {
     if (!iso) return "-";
+
+    let isoString = String(iso).trim();
+    // ถ้า backend ส่งมาไม่มี timezone ให้ถือว่าเป็น UTC
+    if (!isoString.endsWith("Z") && !/[+-]\d{2}:\d{2}$/.test(isoString)) {
+      isoString += "Z";}
     const d = new Date(iso);
     if (Number.isNaN(d.getTime())) return "-";
 
@@ -62,7 +67,7 @@ if (menuBtn) {
     
     //return `${day}-${month}-${year} ${hh}:${mm}`;
 
-    return d.toLocaleString("th-TH", {
+    const parts = new Intl.DateTimeFormat("en-GB", {
       timeZone: "Asia/Bangkok",
       day: "2-digit",
       month: "2-digit",
@@ -70,7 +75,11 @@ if (menuBtn) {
       hour: "2-digit",
       minute: "2-digit",
       hour12: false
-    });
+    }).formatToParts(d);
+  
+    const get = (type) => parts.find(p => p.type === type)?.value;
+  
+    return `${get("day")}-${get("month")}-${get("year")} ${get("hour")}:${get("minute")}`;
 }
 
   // normalize type cancer ให้เหลือ solid / hematologic / unknown
