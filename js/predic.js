@@ -95,6 +95,11 @@ document.addEventListener("DOMContentLoaded", () => {
       const pidFromUrl = params.get("patient_id");
 
       if (pidFromUrl) {
+         // ลบ query ออกจาก URL
+        window.history.replaceState({}, document.title, window.location.pathname);
+
+        console.log("patientId =", pidFromUrl);
+        
         patientInput.value = pidFromUrl;
         checkPredictionStatus(pidFromUrl);
         return;
