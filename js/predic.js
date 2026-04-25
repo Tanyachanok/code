@@ -83,29 +83,31 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!patientInput) return;
 
     try {
-      // 1) ถ้ามีใน localStorage (จาก home4log)
-      if (loginBasic?.no) {
-        patientInput.value = loginBasic.no;
-        checkPredictionStatus(loginBasic.no);
-        return;
-      }
-
-      // 2) ถ้าแนบมาใน URL (?patient_id=...)
+      //  ถ้าแนบมาใน URL (?patient_id=...)
       const params = new URLSearchParams(window.location.search);
       const pidFromUrl = params.get("patient_id");
 
       if (pidFromUrl) {
          // ลบ query ออกจาก URL
         window.history.replaceState({}, document.title, window.location.pathname);
+      }
 
-        console.log("patientId =", pidFromUrl);
-        
+      console.log("patientId =", pidFromUrl);
+
+      // ถ้ามีใน localStorage (จาก home4log)
+      if (loginBasic?.no) {
+        patientInput.value = loginBasic.no;
+        checkPredictionStatus(loginBasic.no);
+        return;
+      }
+
+      if (pidFromUrl) {
         patientInput.value = pidFromUrl;
         checkPredictionStatus(pidFromUrl);
         return;
       }
 
-      // 3) ดึงจาก backend ถ้ามี endpoint นี้
+      //  ดึงจาก backend ถ้ามี endpoint นี้
       const res = await fetch(CURRENT_PATIENT_API, {
         method: "GET",
         headers: {
@@ -120,6 +122,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       const data = await res.json();
+      
       console.log("current-patient-id:", data);
 
       if (data && data.patient_id) {
