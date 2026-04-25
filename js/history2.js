@@ -51,16 +51,26 @@ if (menuBtn) {
     const d = new Date(iso);
     if (Number.isNaN(d.getTime())) return "-";
 
-    const thaiTime = new Date(d.getTime() + (7 * 60 * 60 * 1000));
+    //const thaiTime = new Date(d.getTime() + (7 * 60 * 60 * 1000));
 
-    const day = String(thaiTime.getUTCDate()).padStart(2, "0");
-    const month = String(thaiTime.getUTCMonth() + 1).padStart(2, "0");
-    const year = thaiTime.getUTCFullYear();
+    //const day = String(thaiTime.getUTCDate()).padStart(2, "0");
+    //const month = String(thaiTime.getUTCMonth() + 1).padStart(2, "0");
+    //const year = thaiTime.getUTCFullYear();
 
-    const hh = String(thaiTime.getUTCHours()).padStart(2, "0");
-    const mm = String(thaiTime.getUTCMinutes()).padStart(2, "0");
+    //const hh = String(thaiTime.getUTCHours()).padStart(2, "0");
+    //const mm = String(thaiTime.getUTCMinutes()).padStart(2, "0");
     
-    return `${day}-${month}-${year} ${hh}:${mm}`;
+    //return `${day}-${month}-${year} ${hh}:${mm}`;
+
+    return d.toLocaleString("th-TH", {
+      timeZone: "Asia/Bangkok",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: false
+    });
 }
 
   // normalize type cancer ให้เหลือ solid / hematologic / unknown
