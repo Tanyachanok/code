@@ -49,10 +49,10 @@ if (menuBtn) {
   function formatThaiDateTime(iso) {
     if (!iso) return "-";
 
-    let isoString = String(iso).trim();
-    // ถ้า backend ส่งมาไม่มี timezone ให้ถือว่าเป็น UTC
-    if (!isoString.endsWith("Z") && !/[+-]\d{2}:\d{2}$/.test(isoString)) {
-      isoString += "Z";}
+    const isoString = String(iso).trim();
+    // ตัด microseconds ให้ JS อ่านง่าย
+    const iso = isoString.replace(/(\.\d{3})\d+/, "$1");
+      
     const d = new Date(iso);
     if (Number.isNaN(d.getTime())) return "-";
 
@@ -67,19 +67,14 @@ if (menuBtn) {
     
     //return `${day}-${month}-${year} ${hh}:${mm}`;
 
-    const parts = new Intl.DateTimeFormat("en-GB", {
-      timeZone: "Asia/Bangkok",
-      day: "2-digit",
-      month: "2-digit",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: false
-    }).formatToParts(d);
-  
-    const get = (type) => parts.find(p => p.type === type)?.value;
-  
-    return `${get("day")}-${get("month")}-${get("year")} ${get("hour")}:${get("minute")}`;
+    const day = String(d.getDate()).padStart(2, "0");
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const year = d.getFullYear();
+
+  const hh = String(d.getHours()).padStart(2, "0");
+  const mm = String(d.getMinutes()).padStart(2, "0");
+
+  return `${day}-${month}-${year} ${hh}:${mm}`;
 }
 
   // normalize type cancer ให้เหลือ solid / hematologic / unknown
