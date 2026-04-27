@@ -1,60 +1,58 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const riskValueEl = document.querySelector(".risk-value");
   const recommendTextEl = document.querySelector(".recommend-text");
 
-  // ปุ่มนำทาง
   const buttons = document.querySelectorAll(".btn-secondary");
   const homeBtn = buttons[0] || null;
   const nextBtn = buttons[1] || null;
   const menuBtn = document.querySelector(".menu-btn");
 
-  // ----------------------------
-  // 0) ปุ่มนำทาง
-  // ----------------------------
-  if (homeBtn) homeBtn.addEventListener("click", () => { window.location.href = "/home4log.html"; });
-  if (nextBtn) nextBtn.addEventListener("click", () => { window.location.href = "/confirm.html"; });
-  if (menuBtn) menuBtn.addEventListener("click", () => { window.location.href = "/ham-log.html"; });
+  if (homeBtn) {
+    homeBtn.addEventListener("click", () => {
+      window.location.href = "/home4log.html";
+    });
+  }
 
-  // ----------------------------
-  // 1) CONFIG API + token
-  // ----------------------------
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      window.location.href = "/confirm.html";
+    });
+  }
+
+  if (menuBtn) {
+    menuBtn.addEventListener("click", () => {
+      window.location.href = "/ham-log.html";
+    });
+  }
+
   const ACCESS_TOKEN_KEY = "pe_access_token";
   const token = localStorage.getItem(ACCESS_TOKEN_KEY);
+
   const API_ROOT = "https://webapp-pe.onrender.com";
   const PREDICT_DETAIL_API = `${API_ROOT}/predict`;
 
-  // ----------------------------
-  // 2) หา id_predict
-  // ----------------------------
   const params = new URLSearchParams(window.location.search);
-  let idPredict = 
-  params.get("id_predict") || 
-  localStorage.getItem("pe_predict_id") || 
-  null;
-
-  // ลบ patient_id / id_predict / risk / sex ออกจาก URL ที่โชว์
-  if (window.location.search) {
-  window.history.replaceState({}, document.title, window.location.pathname);
-  }
 
   const riskFromUrl = params.get("risk");
+  const idPredict = params.get("id_predict") || null;
 
   if (riskFromUrl !== null) {
-  renderRiskFromData({
-    risk_percent: Number(riskFromUrl),
-  });
+    renderRiskFromData({
+      risk_percent: Number(riskFromUrl),
+    });
   } else if (idPredict) {
     fetchPredictDetail(idPredict);
   } else {
-    loadFromLocalFallback();
+    showNoResultMessage();
   }
 
-  // ----------------------------
-  // 3) ดึงผลจาก backend
-  // ----------------------------
+  if (window.location.search) {
+    window.history.replaceState({}, document.title, window.location.pathname);
+  }
+
   async function fetchPredictDetail(id) {
     try {
       const url = `${PREDICT_DETAIL_API}/${encodeURIComponent(id)}`;
+
       const res = await fetch(url, {
         method: "GET",
         headers: {
@@ -64,92 +62,74 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       if (!res.ok) {
-        loadFromLocalFallback();
+        showNoResultMessage();
         return;
       }
 
       const data = await res.json();
-      const resultData = data.result || data;
-      renderRiskFromData(resultData);
+      renderRiskFromData(data.result || data);
     } catch (err) {
-      console.error("NEXT-LOGIN Error:", err);
-      loadFromLocalFallback();
+      console.error("NEXT-STEP Error:", err);
+      showNoResultMessage();
     }
   }
 
-  // ----------------------------
-  // 4) Fallback (กรณีไม่พบข้อมูล) - ใช้คำสุภาพ
-  // ----------------------------
-  function loadFromLocalFallback() {
-    let raw = localStorage.getItem("pe_login_result") || localStorage.getItem("pe_predict_basic");
-
-    if (!raw) {
-      if (recommendTextEl) {
-        recommendTextEl.innerHTML = `
-          <div style="color: #64748b; padding: 20px;">
-            ขออภัยครับ ไม่พบข้อมูลการวิเคราะห์ผลในระบบ<br>
-            <span style="font-size: 0.9em;">กรุณากลับไปที่หน้าบันทึกข้อมูลเพื่อดำเนินการประเมินใหม่อีกครั้ง</span>
-          </div>`;
-      }
+  function renderRiskFromData(data) {
+    if (!data || typeof data !== "object") {
+      showNoResultMessage();
       return;
     }
 
-    try {
-      const data = JSON.parse(raw);
-      renderRiskFromData(data);
-    } catch (e) {
-      if (recommendTextEl) recommendTextEl.textContent = "ขออภัย ระบบไม่สามารถดึงข้อมูลผลการประเมินได้ในขณะนี้";
+    const result = data.result || data;
+
+    const prob =
+      result.prob_risk ??
+      result.risk_percent ??
+      result.risk_probability ??
+      null;
+
+    if (prob === null || Number.isNaN(Number(prob))) {
+      showNoResultMessage();
+      return;
+    }
+
+    const probPercent = Math.max(0, Math.min(Number(prob), 100));
+
+    updateCircularProgress(probPercent);
+
+    if (recommendTextEl) {
+      recommendTextEl.innerHTML = `
+        การประเมินโดยระบบปัญญาประดิษฐ์ (AI-Assisted Decision Support)
+        เพื่อใช้เป็นข้อมูลประกอบการตัดสินใจทางคลินิก
+      `;
     }
   }
 
-  // ----------------------------
-  // 5) Render (เฉพาะวงกลมเปอร์เซ็นต์)
-  // ----------------------------
-  function renderRiskFromData(data) {
-    if (!data || typeof data !== "object") return;
-  
-    const result = data.result || data;
-  
-    const prob = result.prob_risk ?? result.risk_percent ?? result.risk_probability ?? 0;
-    const probPercent = Math.max(0, Math.min(Number(prob) || 0, 100));
-  
-    updateCircularProgress(probPercent);
-  
-    const riskName = result.risk_name || getRiskName(probPercent);
-    const recommendation = result.recommendation || getRecommendation(probPercent);
-
-    if (recommendTextEl) {
-    recommendTextEl.innerHTML = `
-      <strong>${riskName}</strong><br>
-      ${recommendation}
-      `;
-  } 
-  
-  function getRiskName(percent) {
-    if (percent >= 70) return "กลุ่มความเสี่ยงสูง";
-    if (percent >= 40) return "กลุ่มความเสี่ยงปานกลาง";
-    return "กลุ่มความเสี่ยงต่ำ";
-  }
-  
-  function getRecommendation(percent) {
-    if (percent >= 70) return "ควรทำการส่งตรวจ CT Pulmonary Angiogram";
-    if (percent >= 40) return "ควรพิจารณาประเมินเพิ่มเติมตามดุลยพินิจของแพทย์";
-    return "ควรติดตามอาการและพิจารณาร่วมกับข้อมูลทางคลินิก";
-  }
-    
-    localStorage.setItem("pe_login_result", JSON.stringify(result));
-  }
-  
   function updateCircularProgress(percent) {
     const circle = document.getElementById("risk-circle");
     const text = document.getElementById("risk-percent");
-  
+
     if (!circle || !text) return;
-  
+
     const circumference = 565;
     const offset = circumference - (percent / 100) * circumference;
-  
+
     circle.style.strokeDashoffset = offset;
-    text.textContent = `${Math.round(percent)}`;
+    text.textContent = Math.round(percent);
+  }
+
+  function showNoResultMessage() {
+    updateCircularProgress(0);
+
+    if (recommendTextEl) {
+      recommendTextEl.innerHTML = `
+        <div style="color: #64748b; padding: 20px;">
+          ขออภัย ไม่พบข้อมูลการวิเคราะห์ผลในระบบ<br>
+          <span style="font-size: 0.9em;">
+            กรุณากลับไปที่หน้าบันทึกข้อมูลเพื่อดำเนินการประเมินใหม่อีกครั้ง
+          </span>
+        </div>
+      `;
+    }
   }
 });
