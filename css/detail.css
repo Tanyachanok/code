@@ -44,6 +44,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px 16px;
   }
   
   .logo {
@@ -62,6 +63,7 @@
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
+    margin-left: auto;
   }
   
   .menu div {
