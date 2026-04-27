@@ -17,6 +17,27 @@
     background: linear-gradient(168.86deg, var(--blue-bg) 28.89%, var(--color-white));
     padding: 16px 20px;
   }
+
+  .page {
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background: linear-gradient(168.86deg, var(--blue-bg) 28.89%, var(--color-white));
+    border-radius: 28px;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.15);
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+  }
+  
+  @media (max-width: 480px) {
+    .page {
+      max-width: none;
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+    }
+  }
   
   /* Top bar */
   .top-bar {
@@ -77,8 +98,8 @@
     border-radius: 32px 32px 0 0;
     padding: 110px 20px 32px;
     box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
-    position: relative;
-    z-index: 1;
+    /*position: relative;
+    z-index: 1;*/
   }
   
   .card h2 {
