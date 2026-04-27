@@ -147,3 +147,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   }
 });
+
+ // ✅ ปุ่ม menu
+ const menu = document.querySelector(".menu");
+ if (menu) {
+   menu.addEventListener("click", () => {
+     window.location.href = "/ham-log.html";
+   });
+ }
+
