@@ -65,7 +65,7 @@
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
-    margin-left: 4px;
+    margin-left: auto;
     position:static;
     /*top:20px;
     right: 20px;*/
