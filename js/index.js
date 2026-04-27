@@ -68,13 +68,9 @@ document.addEventListener("DOMContentLoaded", () => {
     // Radio groups
     const radioGroups = [
       "sex",
-      "ecog",
       "hemoptysis",
-      "pcp",
-      "syncope",
+      "acute_dyspnea",
       "edema",
-      "type_cancer",
-      "lung_meta",
     ];
 
     radioGroups.forEach((name) => {
@@ -119,13 +115,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // ----------------------------
   function buildPayload() {
     // 1) numbers
-    const age = toInt("age");
+   // const age = toInt("age");
     const heart_rate = toInt("heart_rate");
     const systolic = toInt("systolic");
     const diastolic = toInt("diastolic");
     const spo2 = toInt("spo2");
-    const fio2 = toInt("fio2");
+    //const fio2 = toInt("fio2");
     const d_dimer = toFloat("d_dimer");
+    const hemoglobin = toInt("hemoglobin");
 
     // 2) radios
     const sexRadio = document.querySelector('input[name="sex"]:checked');
@@ -133,35 +130,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const gender = sexRadio.value === "male" ? "Male" : "Female";
 
-    const ecogRaw = getRadioValue("ecog");
-    const ecog = ecogRaw !== null ? Number(ecogRaw) : null;
+    //const ecogRaw = getRadioValue("ecog");
+    //const ecog = ecogRaw !== null ? Number(ecogRaw) : null;
 
     const hemoptysis = getRadioValue("hemoptysis") === "yes";
-    const pleuritic_chest = getRadioValue("pcp") === "yes";
-    const syncope = getRadioValue("syncope") === "yes";
+    //const pleuritic_chest = getRadioValue("pcp") === "yes";
+    //const syncope = getRadioValue("syncope") === "yes";
     const isolated_leg = getRadioValue("edema") === "yes";
-    const type_cancer = getRadioValue("type_cancer"); // "solid" / "hematologic"
-    const lung_met = getRadioValue("lung_meta") === "yes";
+    //const type_cancer = getRadioValue("type_cancer"); // "solid" / "hematologic"
+    //const lung_met = getRadioValue("lung_meta") === "yes";
 
     // 3) type cancer dropdown
-    let solid_type = "";
-    let hema_type = "";
+    //let solid_type = "";
+    //let hema_type = "";
 
-    if (type_cancer === "solid") {
-      solid_type = solidSelect?.value ?? "";
-      hema_type = "";
-    } else {
-      hema_type = hemaSelect?.value ?? "";
-      solid_type = "";
-    }
+    //if (type_cancer === "solid") {
+    //  solid_type = solidSelect?.value ?? "";
+    //  hema_type = "";
+    //} else {
+    //  hema_type = hemaSelect?.value ?? "";
+    //  solid_type = "";
+    //}
 
     // 4) chest x-ray
-    const chest_xray = document.getElementById("chest_xray")?.value ?? "";
+    //const chest_xray = document.getElementById("chest_xray")?.value ?? "";
 
     // 5) final guard (กัน null/NaN หลุด)
     const mustHave = {
-      gender, age, ecog, heart_rate, systolic, diastolic, spo2, fio2, d_dimer,
-      type_cancer, chest_xray,
+      gender,
+      heart_rate,
+      systolic,
+      diastolic,
+      hemoglobin,
+      spo2,
+      d_dimer,
     };
 
     const missing = Object.entries(mustHave)
@@ -173,24 +175,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     return {
-      gender,
-      age,
-      ecog,
-      heart_rate,
-      systolic,
-      diastolic,
-      spo2,
-      fio2,
-      hemoptysis,
-      pleuritic_chest,
-      syncope,
-      isolated_leg,
-      type_cancer,
-      solid_type,
-      hema_type,
-      lung_met,
-      chest_xray,
-      d_dimer,
+      gender: gender,
+      pulse_rate: heart_rate,
+      systolic_bp: systolic,
+      diastolic_bp: diastolic,
+      hemoglobin: hemoglobin,
+      o2sat: spo2,
+      hemoptysis: hemoptysis,
+      acute_dyspnea: getRadioValue("acute_dyspnea") === "yes",
+      one_leg_edema: isolated_leg,
+      d_dimer: d_dimer,
     };
   }
 
@@ -293,7 +287,7 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
     // adio Groups: หายทันทีที่คลิกเลือกข้อใดข้อหนึ่ง
-    const radioNames = ["sex", "ecog", "hemoptysis", "pcp", "syncope", "edema", "type_cancer", "lung_meta"];
+    const radioNames = ["sex", "hemoptysis", "acute_dyspnea", "edema"];
     radioNames.forEach(name => {
         const radios = document.querySelectorAll(`input[name="${name}"]`);
         radios.forEach(radio => {
