@@ -283,19 +283,17 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const payload = {
           gender: formData.sex || "Male",
-        
           pulse_rate: Number(formData.heart_rate) || 0,
           systolic_bp: Number(formData.systolic_bp) || 0,
           diastolic_bp: Number(formData.diastolic_bp) || 0,
-        
           hemoglobin: Number(formData.hemoglobin) || 0,
           o2sat: Number(formData.spo2) || 0,
-        
           hemoptysis: toBool(formData.hemoptysis),
           acute_dyspnea: toBool(formData.acute_dyspnea),
           one_leg_edema: toBool(formData.edema),
-        
           d_dimer: Number(formData.d_dimer) || 0,
+        
+          id_patients: String(patientInternalId),
         };
 
         console.log("predict payload:", payload);
@@ -393,61 +391,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function collectFormData() {
     const data = {};
-
-    data.patient_id =
-      (document.getElementById("patient_id")?.value || "").trim();
-
+  
+    data.patient_id = document.getElementById("patient_id")?.value.trim() || "";
+  
+    const inputs = document.querySelectorAll("input.text-input");
+  
+    data.heart_rate   = inputs[0]?.value.trim() || "";
+    data.systolic_bp  = inputs[1]?.value.trim() || "";
+    data.diastolic_bp = inputs[2]?.value.trim() || "";
+    data.hemoglobin   = inputs[3]?.value.trim() || "";
+    data.spo2         = inputs[4]?.value.trim() || "";
+    data.d_dimer      = inputs[5]?.value.trim() || "";
+  
     const getRadio = (name) => {
       const el = document.querySelector(`input[name="${name}"]:checked`);
       return el ? el.value : "";
     };
-
-    const getByPlaceholder = (ph) => {
-      const el = document.querySelector(`input[placeholder="${ph}"]`);
-      return el ? el.value.trim() : "";
-    };
-
-    // 👇 ปรับให้อ่านจาก hidden input ของ gender ถ้ามี
+  
     const genderHidden = document.getElementById("gender_value");
-    if (genderHidden) {
-      data.sex = genderHidden.value.trim();
-    } else {
-      data.sex = getRadio("sex");
-    }
-
-    data.age = getByPlaceholder("Years");
-    data.ecog = getRadio("ecog");
-
-    data.heart_rate = getByPlaceholder("bpm");
-
-    const mmHgInputs = Array.from(
-      document.querySelectorAll('input[placeholder="mmHg"]')
-    );
-    data.systolic_bp = mmHgInputs[0] ? mmHgInputs[0].value.trim() : "";
-    data.diastolic_bp = mmHgInputs[1] ? mmHgInputs[1].value.trim() : "";
-
-    const p95100 = Array.from(
-      document.querySelectorAll('input[placeholder="95–100"]')
-    );
-    data.spo2 = p95100[0] ? p95100[0].value.trim() : "";
-    data.fio2 = p95100[1] ? p95100[1].value.trim() : "";
-
+    data.sex = genderHidden ? genderHidden.value.trim() : "";
+  
     data.hemoptysis = getRadio("hemoptysis");
-    data.pcp = getRadio("pcp");
-    data.syncope = getRadio("syncope");
+  
+    // ใน HTML Acute Dyspnea ใช้ name="pcp"
+    data.acute_dyspnea = getRadio("pcp");
+  
     data.edema = getRadio("edema");
-
-    data.type_cancer = getRadio("type_cancer");
-    data.solid_cancer_type =
-      document.getElementById("solid_select")?.value || "";
-    data.hema_cancer_type =
-      document.getElementById("hema_select")?.value || "";
-
-    data.lung_meta = getRadio("lung_meta");
-    data.cxr_type = document.getElementById("cxr_select")?.value || "";
-
-    data.d_dimer = getByPlaceholder("Value");
-
+  
     return data;
   }
 
