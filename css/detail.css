@@ -67,6 +67,7 @@
     cursor: pointer;
     margin-left: auto;
     position:static;
+    transform: translateY(-18px);
     /*top:20px;
     right: 20px;*/
   }
