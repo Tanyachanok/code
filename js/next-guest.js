@@ -39,11 +39,11 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   try {
     const saved = JSON.parse(raw);
-    const id = saved.id;
+    
     if (!id) { return setFallback(); }
 
     // 2) ดึงผลจาก Backend
-    const res = await fetch(`${BASE_URL}/predict/${id}`);
+    
     const json = await res.json();
 
     if (!res.ok) { return setFallback(); }
