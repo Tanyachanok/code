@@ -336,13 +336,13 @@ document.addEventListener("DOMContentLoaded", () => {
           result.id ||
           null;
 
-console.log("PREDICT: idPredict from backend =", idPredict);
-        // risk (เปอร์เซ็นต์ความเสี่ยง)
+        console.log("PREDICT: idPredict from backend =", idPredict);
+          // risk (เปอร์เซ็นต์ความเสี่ยง)
         risk =
-        resultObj.prob_risk ??
-        resultObj.risk_percent ??
-        resultObj.risk_probability ??
-        null;
+          resultObj.prob_risk ??
+          resultObj.risk_percent ??
+          resultObj.risk_probability ??
+          null;
 
 // 🔥 ถ้า POST ไม่ส่ง risk → ไป GET ต่อด้วย idPredict
 //if ((risk === null || Number.isNaN(Number(risk))) && idPredict) {
