@@ -283,10 +283,10 @@ if (menuBtn) {
     setText("val-systolic", pick(data, ["systolic_bp"]));
     setText("val-diastolic", pick(data, ["diastolic_bp"]));
     setText("val-hemoglobin", pick(data, ["hemoglobin"]));
-    setText("val-spo2", pick(data, ["o2sat"]));
+    setText("val-spo2", pick(data, ["o2sat", "spo2", "oxygen_saturation"]));
     setText("val-d_dimer", pick(data, ["d_dimer"]));
     setText("val-hemoptysis", yesNo(pick(data, ["hemoptysis"])));
-    setText("val-acute_dyspnea", yesNo(pick(data, ["acute_dyspnea"])));
+    setText("val-acute_dyspnea", yesNo(pick(data, ["acute_dyspnea", "acuteDyspnea"])));
     setText("val-isolated_leg", yesNo(pick(data, ["one_leg_edema"])));
 
 
