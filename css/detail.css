@@ -45,7 +45,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 16px;
+    padding: 10px 24px;
   }
   
   .logo {
@@ -65,9 +65,9 @@
     gap: 6px;
     cursor: pointer;
     margin-left: auto;
-    position:absolute;
-    top:20px;
-    right: 20px;
+    position:static;
+    /*top:20px;
+    right: 20px;*/
   }
   
   .menu div {
