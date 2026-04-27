@@ -115,12 +115,16 @@ document.addEventListener("DOMContentLoaded", () => {
   
     updateCircularProgress(probPercent);
   
+    const riskName = result.risk_name || getRiskName(probPercent);
+    const recommendation = result.recommendation || getRecommendation(probPercent);
+
     if (recommendTextEl) {
-      recommendTextEl.innerHTML = `
-        <strong>${result.risk_name || ""}</strong><br>
-        ${result.recommendation || ""}
+    recommendTextEl.innerHTML = `
+      <strong>${riskName}</strong><br>
+      ${recommendation}
       `;
-    }
+  }  
+    
   
     localStorage.setItem("pe_login_result", JSON.stringify(result));
   }
@@ -135,6 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const offset = circumference - (percent / 100) * circumference;
   
     circle.style.strokeDashoffset = offset;
-    text.textContent = `${Math.round(percent)}%`;
+    text.textContent = `${Math.round(percent)}`;
   }
 });
