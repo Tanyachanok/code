@@ -279,19 +279,17 @@ if (menuBtn) {
     // 3.3 table fields
     // -----------------------------
     setText("val-gender", pick(data, ["gender", "sex"]));
-    setText("val-age", pick(data, ["age"]));
-    setText("val-ecog", pick(data, ["ecog", "ecog_status"]));
-
-    setText("val-heart_rate", pick(data, ["heart_rate"]));
-    setText("val-systolic", pick(data, ["systolic", "systolic_bp"]));
-    setText("val-diastolic", pick(data, ["diastolic", "diastolic_bp"]));
-    setText("val-spo2", pick(data, ["spo2"]));
-    setText("val-fio2", pick(data, ["fio2"]));
-
+    setText("val-heart_rate", pick(data, ["pulse_rate"]));
+    setText("val-systolic", pick(data, ["systolic_bp"]));
+    setText("val-diastolic", pick(data, ["diastolic_bp"]));
+    setText("val-hemoglobin", pick(data, ["hemoglobin"]));
+    setText("val-spo2", pick(data, ["o2sat"]));
+    setText("val-d_dimer", pick(data, ["d_dimer"]));
     setText("val-hemoptysis", yesNo(pick(data, ["hemoptysis"])));
-    setText("val-pleuritic_chest", yesNo(pick(data, ["pleuritic_chest", "pleuritic_chest_pain"])));
-    setText("val-syncope", yesNo(pick(data, ["syncope"])));
-    setText("val-isolated_leg", yesNo(pick(data, ["isolated_leg", "isolated_leg_edema"])));
+    setText("val-acute_dyspnea", yesNo(pick(data, ["acute_dyspnea"])));
+    setText("val-isolated_leg", yesNo(pick(data, ["one_leg_edema"])));
+
+
 
     // Cancer
     const typeCancerRaw = pick(data, ["type_cancer", "cancer_type", "cancer_group"]);
