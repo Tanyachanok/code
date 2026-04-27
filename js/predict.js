@@ -283,30 +283,19 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const payload = {
           gender: formData.sex || "Male",
-          age: Number(formData.age) || 0,
-          ecog: Number(formData.ecog) || 0,
-          heart_rate: Number(formData.heart_rate) || 0,
-          systolic: Number(formData.systolic_bp) || 0,
-          diastolic: Number(formData.diastolic_bp) || 0,
-          spo2: Number(formData.spo2) || 0,
-          fio2: Number(formData.fio2) || 0,
-
+        
+          pulse_rate: Number(formData.heart_rate) || 0,
+          systolic_bp: Number(formData.systolic_bp) || 0,
+          diastolic_bp: Number(formData.diastolic_bp) || 0,
+        
+          hemoglobin: Number(formData.hemoglobin) || 0,
+          o2sat: Number(formData.spo2) || 0,
+        
           hemoptysis: toBool(formData.hemoptysis),
-          pleuritic_chest: toBool(formData.pcp),
-          syncope: toBool(formData.syncope),
-          isolated_leg: toBool(formData.edema),
-
-          type_cancer: formData.type_cancer || "",
-          solid_type: formData.solid_cancer_type || "",
-          hema_type: formData.hema_cancer_type || "",
-
-          lung_met: toBool(formData.lung_meta),
-          chest_xray: formData.cxr_type || "",
-
+          acute_dyspnea: toBool(formData.acute_dyspnea),
+          one_leg_edema: toBool(formData.edema),
+        
           d_dimer: Number(formData.d_dimer) || 0,
-
-          // ส่ง PNTxxx เป็น id_patients
-          id_patients: String(patientInternalId),
         };
 
         console.log("predict payload:", payload);
