@@ -349,9 +349,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // risk (เปอร์เซ็นต์ความเสี่ยง)
         risk =
+          result.result?.prob_risk ??
           result.result?.risk_percent ??
+          result.prob_risk ??
           result.risk_percent ??
-          50; // default 50% ถ้าไม่เจออะไรเลย
+          null;
+
+        if (risk === null || Number.isNaN(Number(risk))) {
+          alert("Backend ไม่ได้ส่งค่าความเสี่ยงกลับมา");
+          return;
+}
       } catch (err) {
         console.error("Fetch error:", err);
         alert("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้");
