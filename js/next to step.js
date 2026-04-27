@@ -37,7 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
   window.history.replaceState({}, document.title, window.location.pathname);
   }
 
-  if (idPredict) {
+  const riskFromUrl = params.get("risk");
+
+  if (riskFromUrl !== null) {
+  renderRiskFromData({
+    risk_percent: Number(riskFromUrl),
+  });
+  } else if (idPredict) {
     fetchPredictDetail(idPredict);
   } else {
     loadFromLocalFallback();
@@ -101,28 +107,34 @@ document.addEventListener("DOMContentLoaded", () => {
   // ----------------------------
   function renderRiskFromData(data) {
     if (!data || typeof data !== "object") return;
-
-    let prob = data.prob_risk ?? data.risk_percent ?? data.risk_probability ?? 0;
-    let probPercent = Math.max(0, Math.min(Number(prob) || 0, 100));
-
-    // แสดงผลเฉพาะวงกลมและตัวเลข
+  
+    const result = data.result || data;
+  
+    const prob = result.prob_risk ?? result.risk_percent ?? result.risk_probability ?? 0;
+    const probPercent = Math.max(0, Math.min(Number(prob) || 0, 100));
+  
     updateCircularProgress(probPercent);
-
-    // เซฟไว้เผื่อหน้าอื่นต้องใช้ข้อมูลเต็ม
-    localStorage.setItem("pe_login_result", JSON.stringify(data));
+  
+    if (recommendTextEl) {
+      recommendTextEl.innerHTML = `
+        <strong>${result.risk_name || ""}</strong><br>
+        ${result.recommendation || ""}
+      `;
+    }
+  
+    localStorage.setItem("pe_login_result", JSON.stringify(result));
   }
-
+  
   function updateCircularProgress(percent) {
-    const circle = document.getElementById('risk-circle');
-    const text = document.getElementById('risk-percent');
-
+    const circle = document.getElementById("risk-circle");
+    const text = document.getElementById("risk-percent");
+  
     if (!circle || !text) return;
-
-    const circumference = 565; 
+  
+    const circumference = 565;
     const offset = circumference - (percent / 100) * circumference;
-
+  
     circle.style.strokeDashoffset = offset;
-
-    text.textContent = percent;
+    text.textContent = `${Math.round(percent)}%`;
   }
 });
