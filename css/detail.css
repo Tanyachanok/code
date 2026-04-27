@@ -50,7 +50,8 @@
   
   .logo {
     width: 100px;
-    height: 100px;
+    height: auto;
+    transform: translateY(-18px);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -64,7 +65,7 @@
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
-    margin-left: auto;
+    margin-left: 4px;
     position:static;
     /*top:20px;
     right: 20px;*/
