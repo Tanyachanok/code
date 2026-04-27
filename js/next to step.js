@@ -123,9 +123,20 @@ document.addEventListener("DOMContentLoaded", () => {
       <strong>${riskName}</strong><br>
       ${recommendation}
       `;
-  }  
-    
+  } 
   
+  function getRiskName(percent) {
+    if (percent >= 70) return "กลุ่มความเสี่ยงสูง";
+    if (percent >= 40) return "กลุ่มความเสี่ยงปานกลาง";
+    return "กลุ่มความเสี่ยงต่ำ";
+  }
+  
+  function getRecommendation(percent) {
+    if (percent >= 70) return "ควรทำการส่งตรวจ CT Pulmonary Angiogram";
+    if (percent >= 40) return "ควรพิจารณาประเมินเพิ่มเติมตามดุลยพินิจของแพทย์";
+    return "ควรติดตามอาการและพิจารณาร่วมกับข้อมูลทางคลินิก";
+  }
+    
     localStorage.setItem("pe_login_result", JSON.stringify(result));
   }
   
