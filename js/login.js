@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       passwordInput.setAttribute("type", isPassword ? "text" : "password");
 
       // สลับรูปไอคอน (เปลี่ยน path ตามชื่อไฟล์จริงของคุณ)
-      this.src = isPassword ? "/hide.png" : "/view.png";
+      this.src = isPassword ? "/view.png" : "/hide.png";
     });
   }
 
