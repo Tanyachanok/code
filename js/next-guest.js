@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const riskValueEl = document.getElementById("risk-percent");
     const riskCircle = document.getElementById("risk-circle");
     const backBtn = document.querySelector(".btn-secondary");
+    const menuBtn = document.querySelector(".menu-btn");
   
     const circumference = 565;
   
@@ -23,6 +24,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (backBtn) {
       backBtn.addEventListener("click", () => {
         window.location.href = "/index.html";
+      });
+    }
+    
+    if (menuBtn) {
+      menuBtn.addEventListener("click", () => {
+        window.location.href = "/ham-guest.html";
       });
     }
   
