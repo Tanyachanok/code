@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ------------------------------------
   const ACCESS_TOKEN_KEY = "pe_access_token";
   const token = localStorage.getItem(ACCESS_TOKEN_KEY);
-  const API_HOST = "https://webapp-pe.onrender.com";
+  const API_HOST = "https://www.pe-predictor.com";
   const PATIENT_API = `${API_HOST}/patient`;
   const PREDICTION_API = `${API_HOST}/api/predictions`;
 

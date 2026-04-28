@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const updateButton = document.querySelector(".btn");
   const [passwordInput, confirmInput] = passwordInputs;
 
-  const BASE_URL = "https://webapp-pe.onrender.com";
+  const BASE_URL = "https://www.pe-predictor.com";
   const RESET_ENDPOINT = "/auth/reset"; 
   // 👆 สำคัญ: เปลี่ยนให้ “ตรงกับ Swagger ของ backend” ของเธอ
   // ถ้าใน Swagger เป็น /auth/reset ก็ใส่ "/auth/reset"

@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.textContent = "Signing up...";
 
     try {
-      const BASE_URL = "https://webapp-pe.onrender.com";
+      const BASE_URL = "https://www.pe-predictor.com";
       const REGISTER_API = `${BASE_URL}/auth/register`;
 
       const response = await fetch(REGISTER_API, {

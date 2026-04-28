@@ -8,7 +8,7 @@ if (menuBtn) {
   });
 }
 
-  const BASE_URL = "https://webapp-pe.onrender.com";
+  const BASE_URL = "https://www.pe-predictor.com";
 
   const params = new URLSearchParams(window.location.search);
   const predictId = params.get("id");

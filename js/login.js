@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.textContent = "Logging in...";
 
     try {
-      const LOGIN_API = "https://webapp-pe.onrender.com/auth/login";
+      const LOGIN_API = "https://www.pe-predictor.com/auth/login";
 
       const res = await fetch(LOGIN_API, {
         method: "POST",

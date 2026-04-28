@@ -22,7 +22,7 @@ function closeConfirmModal() {
 // 3. ฟังก์ชันบันทึกลงฐานข้อมูลและโชว์ผลทันที
 async function submitConfirmation(status) {
     const token = localStorage.getItem("pe_access_token");
-    const CONFIRM_URL = "https://webapp-pe.onrender.com/pe/confirm";
+    const CONFIRM_URL = "https://www.pe-predictor.com/pe/confirm";
 
     const isPeBoolean = (status === "PE");
 
@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const ACCESS_TOKEN_KEY = "pe_access_token";
   const token = localStorage.getItem(ACCESS_TOKEN_KEY);
 
-  const BASE_URL = "https://webapp-pe.onrender.com";
+  const BASE_URL = "https://www.pe-predictor.com";
   const RECORD_API = `${BASE_URL}/record`;
   const timelineUrl = `${RECORD_API}/timeline`;
   const searchHnUrl = `${RECORD_API}/search-no`;
