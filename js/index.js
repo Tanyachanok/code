@@ -195,6 +195,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (formEl) {
     formEl.addEventListener("submit", async (e) => {
       e.preventDefault();
+      localStorage.removeItem("pe_guest_result");
+      localStorage.removeItem("pe_guest_form");
 
       if (!validateForm()) {
         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
