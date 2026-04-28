@@ -32,14 +32,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const params = new URLSearchParams(window.location.search);
 
-  const riskFromUrl = params.get("risk");
+  //const riskFromUrl = params.get("risk");
   const idPredict = params.get("id_predict") || null;
 
-  if (riskFromUrl !== null) {
-    renderRiskFromData({
-      risk_percent: Number(riskFromUrl),
-    });
-  } else if (idPredict) {
+  //if (riskFromUrl !== null) {
+  //  renderRiskFromData({
+  //    risk_percent: Number(riskFromUrl),
+  //  });
+  //} else if (idPredict) {
+  //  fetchPredictDetail(idPredict);
+  //} else {
+  //  showNoResultMessage();
+  //}
+  if (idPredict) {
     fetchPredictDetail(idPredict);
   } else {
     showNoResultMessage();
