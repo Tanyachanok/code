@@ -59,5 +59,15 @@
     </main>
   </div>
   <script src="/js/next-guest.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const menuBtn = document.querySelector(".menu-btn");
+        if (menuBtn) {
+            menuBtn.addEventListener("click", () => {
+                window.location.href = "/ham-guest.html";  // หน้าของเมนู
+            });
+        }
+    });
+</script>
 </body>
 </html>
