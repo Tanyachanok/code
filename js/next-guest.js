@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", async () => {
-  const BASE_URL = "https://www.pe-predictor.com";
+  const BASE_URL = "https://webapp-pe.onrender.com";
 
     const riskValueEl = document.getElementById("risk-percent");
     const riskCircle = document.getElementById("risk-circle");

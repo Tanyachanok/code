@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // -----------------------------
   // 3) CONFIG BACKEND
   // -----------------------------
-  const API_ROOT = "https://www.pe-predictor.com";
+  const API_ROOT = "https://webapp-pe.onrender.com";
   const ME_API = `${API_ROOT}/user/me`;   // ✅ ใช้ path นี้ตามที่บอก
 
   try {
