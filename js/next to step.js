@@ -1,15 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const recommendTextEl = document.querySelector(".recommend-text");
-  const aiText = document.getElementById("ai-text");
+  const recommendText = document.getElementById("recommend-text");
 
-const updateRecommendation = (percent) => {
-  if (!recommendText) return;
+  const updateRecommendation = (percent) => {
+    if (!recommendText) return;
 
-  recommendText.textContent =
-    percent > 1.3
-      ? "ควรพิจารณาส่งตรวจ CTPA เพื่อยืนยันผล"
-      : "แนะนำให้เฝ้าระวังและติดตามอาการอย่างต่อเนื่อง";
-};
+    recommendText.textContent =
+      percent > 1.3
+        ? "ควรพิจารณาส่งตรวจ CTPA เพื่อยืนยันผล"
+        : "แนะนำให้เฝ้าระวังและติดตามอาการอย่างต่อเนื่อง";
+  };
 
   const buttons = document.querySelectorAll(".btn-secondary");
   const homeBtn = buttons[0] || null;
@@ -41,19 +40,8 @@ const updateRecommendation = (percent) => {
   const PREDICT_DETAIL_API = `${API_ROOT}/predict`;
 
   const params = new URLSearchParams(window.location.search);
-
-  //const riskFromUrl = params.get("risk");
   const idPredict = params.get("id_predict") || null;
 
-  //if (riskFromUrl !== null) {
-  //  renderRiskFromData({
-  //    risk_percent: Number(riskFromUrl),
-  //  });
-  //} else if (idPredict) {
-  //  fetchPredictDetail(idPredict);
-  //} else {
-  //  showNoResultMessage();
-  //}
   if (idPredict) {
     fetchPredictDetail(idPredict);
   } else {
@@ -111,8 +99,8 @@ const updateRecommendation = (percent) => {
     const probPercent = Math.max(0, Math.min(Number(prob), 100));
 
     updateCircularProgress(probPercent);
-    updateRecommendation(probPercent); 
-
+    updateRecommendation(probPercent);
+  }
 
   function updateCircularProgress(percent) {
     const circle = document.getElementById("risk-circle");
@@ -124,14 +112,14 @@ const updateRecommendation = (percent) => {
     const offset = circumference - (percent / 100) * circumference;
 
     circle.style.strokeDashoffset = offset;
-    text.textContent = Math.round(percent);
+    text.textContent = percent === 0 ? "0" : percent.toFixed(1);
   }
 
   function showNoResultMessage() {
     updateCircularProgress(0);
 
-    if (recommendTextEl) {
-      recommendTextEl.innerHTML = `
+    if (recommendText) {
+      recommendText.innerHTML = `
         <div style="color: #64748b; padding: 20px;">
           ขออภัย ไม่พบข้อมูลการวิเคราะห์ผลในระบบ<br>
           <span style="font-size: 0.9em;">
