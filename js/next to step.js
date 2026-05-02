@@ -1,5 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
   const recommendTextEl = document.querySelector(".recommend-text");
+  const aiText = document.getElementById("ai-text");
+
+const updateRecommendation = (percent) => {
+  if (!recommendText) return;
+
+  recommendText.textContent =
+    percent > 1.3
+      ? "ควรพิจารณาส่งตรวจ CTPA เพื่อยืนยันผล"
+      : "แนะนำให้เฝ้าระวังและติดตามอาการอย่างต่อเนื่อง";
+};
 
   const buttons = document.querySelectorAll(".btn-secondary");
   const homeBtn = buttons[0] || null;
@@ -101,9 +111,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const probPercent = Math.max(0, Math.min(Number(prob), 100));
 
     updateCircularProgress(probPercent);
+    updateRecommendation(probPercent); 
 
-    if (recommendTextEl) {
-      recommendTextEl.innerHTML = `
+    if (aiText) {
+      aiText.innerHTML = `
         การประเมินโดยระบบปัญญาประดิษฐ์ (AI-Assisted Decision Support)
         เพื่อใช้เป็นข้อมูลประกอบการตัดสินใจทางคลินิก
       `;
