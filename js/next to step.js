@@ -113,13 +113,6 @@ const updateRecommendation = (percent) => {
     updateCircularProgress(probPercent);
     updateRecommendation(probPercent); 
 
-    if (aiText) {
-      aiText.innerHTML = `
-        การประเมินโดยระบบปัญญาประดิษฐ์ (AI-Assisted Decision Support)
-        เพื่อใช้เป็นข้อมูลประกอบการตัดสินใจทางคลินิก
-      `;
-    }
-  }
 
   function updateCircularProgress(percent) {
     const circle = document.getElementById("risk-circle");
