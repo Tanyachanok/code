@@ -280,7 +280,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const toBool = (val) =>
         val === "yes" || val === "true" || val === "1";
 
-      try {
+      try{
+        const stageRaw = document.querySelector('input[name="stage"]:checked')?.value || "";
+        const type_cancer = document.querySelector('input[name="type_cancer"]:checked')?.value || "";
+        const solid_type = document.getElementById("solid_select")?.value || "";
+        const hema_type = document.getElementById("hema_select")?.value || "";
+    
         const payload = {
           gender: formData.sex || "Male",
           pulse_rate: Number(formData.heart_rate) || 0,
