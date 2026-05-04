@@ -280,12 +280,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const toBool = (val) =>
         val === "yes" || val === "true" || val === "1";
 
-      const stageRaw = document.querySelector('input[name="stage"]:checked')?.value || "";
-      const type_cancer = document.querySelector('input[name="type_cancer"]:checked')?.value || "";
-      const solid_type = document.getElementById("solid_select")?.value || "";
-      const hema_type = document.getElementById("hema_select")?.value || "";
+        const stageRaw = document.querySelector('input[name="stage"]:checked')?.value || "";
+        const type_cancer = document.querySelector('input[name="type_cancer"]:checked')?.value || "";
+        const solid_type = document.getElementById("solid_select")?.value || "";
+        const hema_type = document.getElementById("hema_select")?.value || "";
+      
 
-      try{
+      try {
         const payload = {
           gender: formData.sex || "Male",
           pulse_rate: Number(formData.heart_rate) || 0,
@@ -405,15 +406,6 @@ return;
         })
       );
 
-      //เก็ยข้อมูลไว้ถ้ากดปุ่ม Back to Predict
-      localStorage.setItem("pe_form_data", JSON.stringify({
-        ...formData,
-        stage: stageRaw,
-        type_cancer,
-        solid_type,
-        hema_type
-      }));
-
       const params = new URLSearchParams({
         patient_id: no,      // ส่ง Number of Patient ไปโชว์ใน next-step
         sex: formData.sex,
@@ -465,46 +457,6 @@ return;
   
     return data;
   }
-
-  const saved = localStorage.getItem("pe_form_data");
-
-if (saved) {
-  const data = JSON.parse(saved);
-
-  const inputs = document.querySelectorAll("input.text-input");
-
-  inputs[0].value = data.heart_rate || "";
-  inputs[1].value = data.systolic_bp || "";
-  inputs[2].value = data.diastolic_bp || "";
-  inputs[3].value = data.hemoglobin || "";
-  inputs[4].value = data.spo2 || "";
-  inputs[5].value = data.d_dimer || "";
-
-  // radio
-  const setRadio = (name, value) => {
-    if (!value) return;
-    document.querySelector(`input[name="${name}"][value="${value}"]`)?.checked = true;
-  };
-
-  setRadio("hemoptysis", data.hemoptysis);
-  setRadio("pcp", data.acute_dyspnea);
-  setRadio("edema", data.edema);
-  setRadio("stage", data.stage);
-  setRadio("type_cancer", data.type_cancer);
-
-  // dropdown
-  const solidSelect = document.getElementById("solid_select");
-  const hemaSelect = document.getElementById("hema_select");
-  
-  if (solidSelect) solidSelect.value = data.solid_type || "";
-  if (hemaSelect) hemaSelect.value = data.hema_type || "";
-  
-  if (data.type_cancer === "solid") {
-    document.getElementById("type_solid")?.dispatchEvent(new Event("change"));
-  } else if (data.type_cancer === "hematologic") {
-    document.getElementById("type_hema")?.dispatchEvent(new Event("change"));
-  }
-}
 
 //   function clearErrors() {
 //     document
