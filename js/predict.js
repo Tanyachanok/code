@@ -437,8 +437,9 @@ return;
     data.hemoglobin   = inputs[3]?.value.trim() || "";
     data.spo2         = inputs[4]?.value.trim() || "";
     data.d_dimer      = inputs[5]?.value.trim() || "";
-    data.cate_cancer  = inputs[6]?.value.trim() || "";
-    data.subtype_cancer = inputs[7]?.value.trim() || "";
+    data.cancer_stage = inputs[6]?.value.trim() || "";
+    data.cate_cancer  = inputs[7]?.value.trim() || "";
+    data.subtype_cancer = inputs[8]?.value.trim() || "";
   
     const getRadio = (name) => {
       const el = document.querySelector(`input[name="${name}"]:checked`);
