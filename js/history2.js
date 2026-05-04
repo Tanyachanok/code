@@ -288,15 +288,17 @@ if (menuBtn) {
     setText("val-hemoptysis", yesNo(pick(data, ["hemoptysis"])));
     setText("val-acute_dyspnea", yesNo(pick(data, ["acute_dyspnea", "acuteDyspnea"])));
     setText("val-isolated_leg", yesNo(pick(data, ["one_leg_edema"])));
+    setText("val-stage_cancer", pick(data, ["cancer_stage", "stage_cancer", "stage"]))
 
 
 
     // Cancer
-    const typeCancerRaw = pick(data, ["type_cancer", "cancer_type", "cancer_group"]);
+    const typeCancerRaw = pick(data, ["cate_cancer","type_cancer", "cancer_type", "cancer_group"]);
     setText("val-type_cancer", typeCancerRaw ?? "-");
 
-    setText("val-solid_type", pick(data, ["solid_type", "solid_cancer_type"]));
-    setText("val-hema_type", pick(data, ["hema_type", "hematologic_cancer_type"]));
+    const subtypeCancer = pick(data, ["subtype_cancer", "solid_type", "solid_cancer_type", "hema_type", "hematologic_cancer_type"]);
+    setText("val-solid_type", subtypeCancer);
+    setText("val-hema_type", subtypeCancer);
 
     // เงื่อนไขแสดงแถว solid/hema
     applyCancerRowCondition(typeCancerRaw);

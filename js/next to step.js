@@ -5,9 +5,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!recommendText) return;
 
     recommendText.textContent =
-      percent > 1.3
-        ? "ควรพิจารณาส่งตรวจ CTPA เพื่อยืนยันผล"
-        : "แนะนำให้เฝ้าระวังและติดตามอาการอย่างต่อเนื่อง";
+      percent > 5
+        ? ">5% : ควรพิจารณาส่งตรวจ CTPA เพื่อยืนยันผล"
+        : "<5% : แนะนำให้เฝ้าระวังและติดตามอาการอย่างต่อเนื่อง";
   };
 
   const buttons = document.querySelectorAll(".btn-secondary");

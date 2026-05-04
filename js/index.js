@@ -130,27 +130,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const gender = sexRadio.value === "male" ? "Male" : "Female";
 
-    //const ecogRaw = getRadioValue("ecog");
-    //const ecog = ecogRaw !== null ? Number(ecogRaw) : null;
+    const stageRaw = getRadioValue("stage");
+    const stage = stageRaw !== null ? Number(stageRaw) : null;
 
     const hemoptysis = getRadioValue("hemoptysis") === "yes";
     //const pleuritic_chest = getRadioValue("pcp") === "yes";
     //const syncope = getRadioValue("syncope") === "yes";
     const isolated_leg = getRadioValue("edema") === "yes";
-    //const type_cancer = getRadioValue("type_cancer"); // "solid" / "hematologic"
+    const type_cancer = getRadioValue("type_cancer"); // "solid" / "hematologic"
     //const lung_met = getRadioValue("lung_meta") === "yes";
 
     // 3) type cancer dropdown
-    //let solid_type = "";
-    //let hema_type = "";
+    let solid_type = "";
+    let hema_type = "";
 
-    //if (type_cancer === "solid") {
-    //  solid_type = solidSelect?.value ?? "";
-    //  hema_type = "";
-    //} else {
-    //  hema_type = hemaSelect?.value ?? "";
-    //  solid_type = "";
-    //}
+    if (type_cancer === "solid") {
+      solid_type = solidSelect?.value ?? "";
+      hema_type = "";
+    } else {
+      hema_type = hemaSelect?.value ?? "";
+      solid_type = "";
+    }
 
     // 4) chest x-ray
     //const chest_xray = document.getElementById("chest_xray")?.value ?? "";
@@ -164,6 +164,8 @@ document.addEventListener("DOMContentLoaded", () => {
       hemoglobin,
       spo2,
       d_dimer,
+      type_cancer,
+      subtype_cancer: type_cancer === "solid" ? solid_type : hema_type
     };
 
     const missing = Object.entries(mustHave)
@@ -185,6 +187,9 @@ document.addEventListener("DOMContentLoaded", () => {
       acute_dyspnea: getRadioValue("acute_dyspnea") === "yes",
       one_leg_edema: isolated_leg,
       d_dimer: d_dimer,
+      cancer_stage: stage,
+      cate_cancer: type_cancer,
+      subtype_cancer: type_cancer === "solid" ? solid_type : hema_type
     };
   }
 

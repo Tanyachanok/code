@@ -239,9 +239,29 @@
                     </div>
                 </div>
                 <hr class="divider">-->
+                <!-- Cancer Stage -->
+                <div class="form-group">
+                    <div class="label-row">
+                        <label class="form-label">Stage of Cancer<span class="required-asterisk">*</span></label>
+                    </div>
+                    <div class="toggle-group ecog-group">
+                        <input type="radio" id="stage1" name="stage" value="1">
+                        <label for="stage1" class="toggle-option small">1</label>
+
+                        <input type="radio" id="stage2" name="stage" value="2">
+                        <label for="stage2" class="toggle-option small">2</label>
+
+                        <input type="radio" id="stage3" name="stage" value="3">
+                        <label for="stage3" class="toggle-option small">3</label>
+
+                        <input type="radio" id="stage4" name="stage" value="4">
+                        <label for="stage4" class="toggle-option small">4</label>
+                    </div>
+                </div>
+                <hr class="divider">
 
 
-                <!-- Type of Cancer 
+                <!-- Type of Cancer-->
                 <div class="form-group">
                     <label class="form-label">Type of Cancer<span class="required-asterisk">*</span></label>
                     <div class="toggle-group">
@@ -251,24 +271,30 @@
                         <input type="radio" id="type_hema" name="type_cancer" value="hematologic">
                         <label for="type_hema" class="toggle-option">Hematologic</label>
                     </div>
-                </div>-->
+                </div>
+                <hr class="divider">
 
-                <!-- Solid Cancer Type 
+                <!-- Solid Cancer Type -->
                 <div class="form-group hidden" id="solid_section">
                     <label class="form-label center">Solid Cancer Type<span class="required-asterisk">*</span></label>
                     <div class="dropdown-container">
                         <select class="dropdown-select" id="solid_select">
                             <option value="">Select Option</option>
                             <option value="breast">Breast Cancer</option>
-                            <option value="colon">Colon Cancer</option>
+                            <option value="colorectal">Colorectal Cancer</option>
+                            <option value="gi">GI Digestive</option>
+                            <option value="gyne">Gynecologic Cancer</option>
+                            <option value="head_neck">Head and Neck Cancer</option>
+                            <option value="liver">Liver Cancer</option>
                             <option value="lung">Lung Cancer</option>
-                            <option value="gastric">Gastric Cancer</option>
+                            <option value="urologic">Urologic Cancer</option>
+                            <option value="other_solid">Other Solid Cancer</option>
                         </select>
                         <span class="dropdown-arrow">▼</span>
                     </div>
-                </div>-->
+                </div>
 
-                <!-- Hematologic Cancer Type 
+                <!-- Hematologic Cancer Type -->
                 <div class="form-group hidden" id="hema_section">
                     <label class="form-label center">Hematologic Cancer Type<span
                             class="required-asterisk">*</span></label>
@@ -277,12 +303,11 @@
                             <option value="">Select Option</option>
                             <option value="Leukemia">Leukemia</option>
                             <option value="Lymphoma">Lymphoma</option>
-                            <option value="Plasma Cell Neoplasm">Plasma Cell Neoplasm</option>
-                            <option value="Myelodysplastic">Myelodysplastic</option>
+                            <option value="other_hema">Other Hematologic Cancer</option>
                         </select>
                         <span class="dropdown-arrow">▼</span>
                     </div>
-                </div>-->
+                </div>
 
                 <!-- Lung Metastasis -->
                 <!-- <div class="form-group">

@@ -292,6 +292,10 @@ document.addEventListener("DOMContentLoaded", () => {
           acute_dyspnea: toBool(formData.acute_dyspnea),
           one_leg_edema: toBool(formData.edema),
           d_dimer: Number(formData.d_dimer) || 0,
+
+          cancer_stage: Number(stageRaw),
+          cate_cancer: type_cancer,
+          subtype_cancer: type_cancer === "solid" ? solid_type : hema_type,
         
           id_patients: String(patientInternalId),
         };
@@ -427,6 +431,8 @@ return;
     data.hemoglobin   = inputs[3]?.value.trim() || "";
     data.spo2         = inputs[4]?.value.trim() || "";
     data.d_dimer      = inputs[5]?.value.trim() || "";
+    data.cate_cancer  = inputs[6]?.value.trim() || "";
+    data.subtype_cancer = inputs[7]?.value.trim() || "";
   
     const getRadio = (name) => {
       const el = document.querySelector(`input[name="${name}"]:checked`);
@@ -624,13 +630,11 @@ return;
     // Radio groups
     const radioGroups = [
       "sex",
-      "ecog",
       "hemoptysis",
       "pcp",
-      "syncope",
       "edema",
+      "stage",
       "type_cancer",
-      "lung_meta",
     ];
 
     radioGroups.forEach((name) => {
