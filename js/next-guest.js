@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       const display =
         percent === 0
           ? "0%"
-          : `${percent.toFixed(1)}%`;
+          : `${percent.toFixed(0)}%`;
   
       riskValueEl.textContent = display;
     }
