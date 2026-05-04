@@ -493,8 +493,11 @@ if (saved) {
   setRadio("type_cancer", data.type_cancer);
 
   // dropdown
-  document.getElementById("solid_select").value = data.solid_type || "";
-  document.getElementById("hema_select").value = data.hema_type || "";
+  const solidSelect = document.getElementById("solid_select");
+  const hemaSelect = document.getElementById("hema_select");
+  
+  if (solidSelect) solidSelect.value = data.solid_type || "";
+  if (hemaSelect) hemaSelect.value = data.hema_type || "";
   
   if (data.type_cancer === "solid") {
     document.getElementById("type_solid")?.dispatchEvent(new Event("change"));
