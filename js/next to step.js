@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const offset = circumference - (percent / 100) * circumference;
 
     circle.style.strokeDashoffset = offset;
-    text.textContent = percent === 0 ? "0" : percent.toFixed(0);
+    text.textContent = percent === 0 ? "0" : percent.toFixed(2);
   }
 
   function showNoResultMessage() {
