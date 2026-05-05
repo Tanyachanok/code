@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     recommendText.textContent =
       percent > 5
-        ? ">5% : ควรพิจารณาส่งตรวจ CTPA เพื่อยืนยันผล"
+        ? ">5% : ควรพิจารณาส่งตรวจ CTPA เพื่อยืนยันการวินิจฉัย"
         : "<5% : แนะนำให้เฝ้าระวังและติดตามอาการอย่างต่อเนื่อง";
   };
 
