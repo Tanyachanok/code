@@ -110,6 +110,16 @@ document.addEventListener("DOMContentLoaded", () => {
     return el ? el.value : null;
   };
 
+  function checkRange(value, min, max, fieldName) {
+    if (value === null) return true;
+  
+    if (value < min || value > max) {
+      alert(`${fieldName} ข้อมูลไม่ถูกต้อง กรุณาทำการกรอกข้อมูลใหม่อีกครั้ง`);
+      
+      return false;
+    }
+    return true;
+  }
   // ----------------------------
   // BUILD PAYLOAD ส่งเข้า backend
   // ----------------------------
@@ -123,6 +133,17 @@ document.addEventListener("DOMContentLoaded", () => {
     //const fio2 = toInt("fio2");
     const d_dimer = toFloat("d_dimer");
     const hemoglobin = toInt("hemoglobin");
+
+    if(
+      !checkRange(heart_rate,44,212,"Pulse Rate") ||
+      !checkRange(systolic,40,210,"Systolic BP") ||
+      !checkRange(diastolic,30,146,"Diastolic BP") ||
+      !checkRange(spo2, 50, 100, "Oxygen Saturation") ||
+      !checkRange(d_dimer, 169, 67421, "D-dimer") ||
+      !checkRange(hemoglobin, 4, 21, "Hemoglobin")
+  ) {
+    throw new Error("out of range");
+  }
 
     // 2) radios
     const sexRadio = document.querySelector('input[name="sex"]:checked');
@@ -213,7 +234,12 @@ document.addEventListener("DOMContentLoaded", () => {
         payload = buildPayload();
       } catch (err) {
         console.error(err);
-        alert("มีข้อมูลบางช่องไม่ถูกต้อง (เช่น d-dimer ต้องเป็นตัวเลข)");
+
+        if (err.message === "out of range") {
+          return; // ❌ ไม่ต้อง alert ซ้ำ
+        }
+
+        //alert("มีข้อมูลบางช่องไม่ถูกต้อง (เช่น d-dimer ต้องเป็นตัวเลข)");
         return;
       }
 
