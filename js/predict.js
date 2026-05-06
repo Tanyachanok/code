@@ -206,11 +206,45 @@ document.addEventListener("DOMContentLoaded", () => {
    * ----------------------------------------- */
   const form = document.querySelector(".form");
 
+  function checkRange(value, min, max, fieldName, inputId) {
+    if (value === "" || value === null) return true;
+  
+    const num = Number(value);
+  
+    if (num < min || num > max) {
+      alert(`${fieldName} ข้อมูลไม่ถูกต้อง กรุณาทำการกรอกข้อมูลใหม่อีกครั้ง`);
+  
+      document.getElementById(inputId)
+        ?.closest(".form-group")
+        .classList.add("has-error");
+  
+      return false;
+    }
+    return true;
+  }
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
       const formData = collectFormData();
+
+      clearErrors();
+      const isValid = validateForm(); // ไม่ต้องส่ง formData เพราะฟังก์ชันคุณดึงจาก DOM โดยตรง
+      if (!isValid) { // ถ้า "ไม่" valid
+        alert("กรุณากรอกข้อมูลให้ครบถ้วน");
+        return;
+      }
+
+      if (
+        !checkRange(formData.heart_rate,44,212,"Pulse Rate", "heart_rate") ||
+        !checkRange(formData.systolic_bp,40,210,"Systolic BP", "systolic") ||
+        !checkRange(formData.diastolic_bp,30,146,"Diastolic BP", "diastolic") ||
+        !checkRange(formData.spo2, 50, 100, "Oxygen Saturation", "spo2") ||
+        !checkRange(formData.d_dimer, 169, 67421, "D-dimer", "d_dimer") ||
+        !checkRange(formData.hemoglobin, 4, 21, "Hemoglobin", "hemoglobin")
+      ) {
+        return; // ❌ หยุด ไม่ยิง API
+      }
 
       // อ่าน mode จากปุ่ม (ตั้งไว้ตอน checkPredictionStatus)
       const mode = predictBtn?.dataset.mode || "predict";
@@ -267,12 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
       //   return;
       // }
 
-      clearErrors();
-      const isValid = validateForm(); // ไม่ต้องส่ง formData เพราะฟังก์ชันคุณดึงจาก DOM โดยตรง
-      if (!isValid) { // ถ้า "ไม่" valid
-        alert("กรุณากรอกข้อมูลให้ครบถ้วน");
-        return;
-      }
+      
 
       let risk = null;
       let idPredict = null;
