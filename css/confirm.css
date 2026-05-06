@@ -8,7 +8,6 @@ body {
   background: linear-gradient(180deg, #e5efff 0%, #c3d5ff 50%, #a9c4ff 100%);
 }
 
-/* กลางจอมือถือ */
 .page {
   min-height: 100vh;
   display: flex;

@@ -21,13 +21,6 @@
   font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-} */
-
 body {
   min-height: 100vh;
   display: flex;
@@ -49,11 +42,11 @@ body {
 }
 
 .card {
-  position: relative; /* สำคัญที่สุด: เป็นจุดอ้างอิงให้ปุ่ม close-btn */
-  width: 90%;         /* ตัวอย่าง: ให้กว้าง 90% ของจอมือถือ */
-  max-width: 450px;   /* แต่ไม่เกิน 450px ในคอม */
-  margin: 20px auto;  /* จัดให้อยู่กลางจอ */
-  padding: 40px 25px; /* เพิ่มพื้นที่ด้านบนเผื่อให้ปุ่ม */
+  position: relative; 
+  width: 90%;         
+  max-width: 450px;   
+  margin: 20px auto;  
+  padding: 40px 25px;
   background: #fff;
   border-radius: 16px;
   box-shadow: var(--shadow-md);
@@ -79,14 +72,13 @@ body {
   position: absolute;
   background: none;
   border: none;
-  /* ปรับพื้นที่กดให้เป็น 44x44px เพื่อให้กดง่ายในมือถือ */
   width: 44px;
   height: 44px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* จัดให้อยู่กลางแนวตั้ง */
-  align-items: center;     /* จัดให้อยู่กลางแนวนอน */
-  gap: 5px;                /* ระยะห่างระหว่างเส้น (เพิ่มจาก 4px ให้ดูโปร่งขึ้น) */
+  justify-content: center; 
+  align-items: center;     
+  gap: 5px;                
   cursor: pointer;
   padding: 0;
   right: 0.05px;
@@ -94,19 +86,17 @@ body {
 
 .menu-btn span {
   display: block;
-  width: 25px;             /* ขนาดความกว้างของเส้นที่เหมาะสม */
-  height: 2.5px;             /* เพิ่มความหนาจาก 1.5px เป็น 2px ให้ดูแข็งแรงขึ้น */
+  width: 25px;
+  height: 2.5px;             
   background: #000;
-  border-radius: 2px;      /* มนพอดีกับความหนาของเส้น */
-  transition: 0.3s;        /* เผื่อไว้สำหรับทำ Animation ตอนเปิด/ปิด */
+  border-radius: 2px;      
+  transition: 0.3s;        
 }
 
-
-/* ตัวคลุมเพื่อให้เรียงกันแนวนอน */
 .search-container {
   display: flex;
   align-items: center;
-  gap: 12px; /* ระยะห่างระหว่างกล่องค้นหากับปฏิทิน */
+  gap: 12px; 
   width: 100%;
 }
 
@@ -117,8 +107,8 @@ body {
     display: flex;
     align-items: center;
     box-sizing: border-box; 
-    align-items: center;    /* กึ่งกลางแนวตั้ง */
-    justify-content: center; /* กึ่งกลางแนวนอน */
+    align-items: center;    
+    justify-content: center; 
 }
 
 .search-box {
@@ -126,7 +116,7 @@ body {
     background: #fff;
     border-radius: 12px;
     border: 1px solid #e5e7eb;
-    overflow: hidden;    /* ป้องกัน input ทะลุขอบมน */
+    overflow: hidden;    
 }
 
 .search-input {
@@ -165,14 +155,8 @@ body {
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  /* box-shadow: 0 2px 4px rgba(0,0,0,0.05); */
-  /* background: #ffffff;  */
-  /* border: 1px solid #e5e7eb; */
-  /* border-radius: 12px; */
 }
 
-
-/* ทำให้รูปไอคอนดูน่ากด */
 .calendar-trigger:hover {
     opacity: 1;
     transform: scale(1.05);
@@ -180,7 +164,6 @@ body {
     transform: translateY(-1px);
 }
 
-/* ตกแต่งตัว Popup */
 .flatpickr-calendar {
     box-shadow: 0 10px 25px rgba(0,0,0,0.1);
     border: none;
@@ -196,20 +179,19 @@ body {
 
 }
 
-/* สีของเดือนที่ถูกเลือก */
 .flatpickr-monthSelect-month.selected {
-    background: #1a73e8 !important; /* สีน้ำเงินโลโก้ของคุณ */
+    background: #1a73e8 !important;
     color: #fff;
 }
 
 .flatpickr-monthSelect-month.today {
-    border: none !important; /* ลบเส้นขอบออก */
-    box-shadow: none !important; /* ลบเงาที่อาจทำให้ดูเหมือนมีกรอบออก */
+    border: none !important; 
+    box-shadow: none !important; 
 }
 
 .flatpickr-monthSelect-month.today {
     font-weight: bold;
-    color: #000000; /* เปลี่ยนเป็นสีน้ำเงินเพื่อให้รู้ว่าเป็นเดือนปัจจุบันแทนการใช้กรอบ */
+    color: #000000; 
     background-color: #ffffff;
 }
 
@@ -223,7 +205,7 @@ body {
 
 /* ตั้งค่าหัวตาราง (Th) */
 .table-card th {
-    font-weight: 500;       /* ตัวหนาเหมือนในรูป */
+    font-weight: 500;       
     color: #000000;
     padding: 12px 15px;
     text-align: left;
@@ -234,7 +216,7 @@ body {
 }
 
 .table-card td {
-    font-weight: 400;       /* ตัวธรรมดา */
+    font-weight: 400;      
     color: #000000;
     padding: 12px 15px;
     font-size: 14px;
@@ -242,20 +224,14 @@ body {
     border-bottom: 1.5px solid #eae2e2 !important;
 }
 
-/* ปรับสีพื้นหลังแถวเมื่อเอาเมาส์ไปชี้ (Hover) */
 .table-card tbody tr:hover {
     background-color: #e7eaf1; 
     transition: 0.2s;
 }
 
-/* สลับสีแถว เว้นแถว */
-/* .table-card tbody tr:nth-child(even) {
-    background-color: #ffffff;
-} */
-
 .table-card {
     background: #ffffff;
-    border-radius: 15px;     /* ความโค้งมนของกรอบตาราง */
+    border-radius: 15px;    
     border: 1px solid #d0d1d5;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -265,17 +241,16 @@ body {
 
 .table-info-note {
     font-family: 'Poppins', sans-serif;
-    font-size: 12px;           /* ขนาดเล็กพอเหมาะ */
-    color: #888;               /* สีเทาอ่อน */
-    margin: 18px 0px 0px 5px;    /* ระยะห่างจากช่องค้นหาและตาราง */
-    font-style: italic;        /* ทำเป็นตัวเอียงให้ดูเป็นหมายเหตุ */
-    text-align: left;          /* ชิดซ้ายให้ตรงกับขอบตาราง */
+    font-size: 12px;           
+    color: #888;               
+    margin: 18px 0px 0px 5px;    
+    font-style: italic;        
+    text-align: left;          
 }
 
-/* สไตล์ใหม่สำหรับปุ่มในตาราง */
 .btn-predict-action {
-    background-color: #f8f9fa; /* สีพื้นหลังอ่อนๆ */
-    border: 1.5px dashed #6c757d; /* เส้นประเพื่อให้ดูเหมือนรอการยืนยัน */
+    background-color: #f8f9fa; 
+    border: 1.5px dashed #6c757d; 
     color: #495057;
     padding: 8px 16px;
     border-radius: 10px;
@@ -287,12 +262,12 @@ body {
     line-height: 1.4;
 }
 
-/* เมื่อเอาเมาส์ไปชี้ปุ่ม */
+
 .btn-predict-action:hover {
     background-color: #e9ecef;
-    border-color: #007bff; /* เปลี่ยนสีเส้นประเป็นน้ำเงิน */
+    border-color: #007bff; 
     color: #007bff;
-    transform: translateY(-1px); /* ขยับขึ้นเล็กน้อย */
+    transform: translateY(-1px); 
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
@@ -304,8 +279,8 @@ body {
     font-weight: 150;
     color: white;
 }
-.status-confirmed-pe { background-color: #ed5555; } /* สีแดง */
-.status-confirmed-none { background-color: #2ecc71; } /* สีเขียว */
+.status-confirmed-pe { background-color: #ed5555; } 
+.status-confirmed-none { background-color: #2ecc71; }
 
 .modal-overlay {
     display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;

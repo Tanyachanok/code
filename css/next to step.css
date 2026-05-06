@@ -9,7 +9,6 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  /* background: linear-gradient(to bottom, #ffffff, #c7dcff); */
   background-color: #ffffff;
 }
 
@@ -37,7 +36,6 @@ body {
 
 .logo {
     width: 100px;
-    /* height: 120px; */
     display: flex;
     padding: 3px;
 }
@@ -45,25 +43,24 @@ body {
 .menu-btn {
   background: none;
   border: none;
-  /* ปรับพื้นที่กดให้เป็น 44x44px เพื่อให้กดง่ายในมือถือ */
   width: 44px;
   height: 44px;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* จัดให้อยู่กลางแนวตั้ง */
-  align-items: center;     /* จัดให้อยู่กลางแนวนอน */
-  gap: 5px;                /* ระยะห่างระหว่างเส้น (เพิ่มจาก 4px ให้ดูโปร่งขึ้น) */
+  justify-content: center; 
+  align-items: center;     
+  gap: 5px;              
   cursor: pointer;
   padding: 0;
 }
 
 .menu-btn span {
   display: block;
-  width: 25px;             /* ขนาดความกว้างของเส้นที่เหมาะสม */
-  height: 2.5px;             /* เพิ่มความหนาจาก 1.5px เป็น 2px ให้ดูแข็งแรงขึ้น */
+  width: 25px;            
+  height: 2.5px;             
   background: #000;
-  border-radius: 2px;      /* มนพอดีกับความหนาของเส้น */
-  transition: 0.3s;        /* เผื่อไว้สำหรับทำ Animation ตอนเปิด/ปิด */
+  border-radius: 2px;    
+  transition: 0.3s;    
 }
 
 /* content */
@@ -83,7 +80,6 @@ body {
   font-size: 16px;
   font-weight: 500;
   text-align: center;
-  /* margin-top: -20px; */
 }
 
 .model-card {
@@ -154,12 +150,12 @@ body {
 /* คอนเทนเนอร์จัดกึ่งกลาง */
 .risk-container {
   display: flex;
-  flex-direction: column; /* จัดองค์ประกอบภายในเป็นแนวตั้ง */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 20px auto; /* auto ฝั่งซ้ายขวาจะช่วยผลักให้กึ่งกลาง */
+  margin: 20px auto; 
   position: relative;
-  width: 220px; /* กำหนดความกว้างให้ชัดเจนเท่ากับขนาด SVG */
+  width: 220px; 
 }
 
 svg {
@@ -174,13 +170,11 @@ svg {
 .progress-bar {
   stroke: #3b82f6; 
   stroke-linecap: round;
-  /*transition: stroke-dashoffset 1s ease-out; /* อนิเมชั่นการวิ่งของเส้น */
 }
 
 /* ตัวเลขเปอร์เซ็นต์กึ่งกลางวงกลม */
 .inner-text {
   position: absolute;
-  /* text-align: center; */
   font-family: 'Poppins', sans-serif;
 }
 
@@ -227,7 +221,7 @@ svg {
 .warning-icon{
   margin-top: -8px;
   margin-left: 5px;
-  font-size: 20px;   /* ปรับขนาดไอคอน (กรณีเป็น Icon Font เช่น FontAwesome) */
+  font-size: 20px; 
 }
 
 .recommend-text {
@@ -237,12 +231,9 @@ svg {
 
 /* buttons */
 .btn-row {
-  /* display: flex; */
-  /* justify-content: space-between; */
   gap: 16px;
   margin: 8px auto;
   width: 100%;
-  /* align-items: center; */
 }
 
 .btn {
@@ -257,7 +248,6 @@ svg {
   font-size: 18px;
   line-height: 1.2;
   cursor: pointer;
-  /* box-shadow: 0 8px 18px rgba(59,130,246,.35); */
   transition: transform .02s ease, background .15s ease;
   margin: 30px  auto;
 }
@@ -288,7 +278,6 @@ svg {
 .container {
   padding: 18px 18px;
   box-shadow: none;
-  /* margin-top: 2em; */
   border-radius: 0px;
   box-shadow: none;
   border: none;

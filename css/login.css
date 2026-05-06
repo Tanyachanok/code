@@ -13,17 +13,13 @@
     --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.08);
   }
   
-  /* * { box-sizing: border-box; } */
-  /* html, body { height: 100%; }   */
-
   * { box-sizing: border-box; } 
 
 html, body { 
     height: 100%; 
     margin: 0;
     padding: 0; 
-    overflow-x: hidden; /* ล็อคไม่ให้หน้าจอโยกซ้ายขวา */
-    /* position: fixed;     */
+    overflow-x: hidden; 
 } 
 
   body {
@@ -31,7 +27,6 @@ html, body {
   min-height: 100dvh;
   font-family: 'Poppins', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji';
   color: var(--text);
-  /*background: linear-gradient(180deg, var(--bg-gradient-start), var(--bg-gradient-end)); */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -42,25 +37,13 @@ html, body {
   justify-content: center;
   align-items: flex-start;
 }
-  
-  /* .card {
-  position: relative;
-  width: 100%;
-  max-width: 400px;
-  min-height: auto;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(10px); */
-  /* border-radius: var(--radius-lg); */
-  /* padding: 15px 25px; */
-  /* box-shadow: var(--shadow-md); */
-/* } */
 
   .card {
-  position: relative; /* สำคัญที่สุด: เป็นจุดอ้างอิงให้ปุ่ม close-btn */
-  width: 90%;         /* ตัวอย่าง: ให้กว้าง 90% ของจอมือถือ */
-  max-width: 450px;   /* แต่ไม่เกิน 450px ในคอม */
-  margin: 20px auto;  /* จัดให้อยู่กลางจอ */
-  padding: 40px 25px; /* เพิ่มพื้นที่ด้านบนเผื่อให้ปุ่ม */
+  position: relative; 
+  width: 90%;         
+  max-width: 450px;   
+  margin: 20px auto;  
+  padding: 40px 25px; 
   background: #fff;
   border-radius: 16px;
   box-shadow: var(--shadow-md);
@@ -70,10 +53,8 @@ html, body {
   .logo {
   display: block;
   margin: 0 auto 0px;
-  /* margin-top: -45px; */
   max-width: 80%;
   height: auto;
-  /* border-radius: 50%; */
 }
   
   .form {display: grid; gap: 16px;
@@ -82,7 +63,6 @@ html, body {
   .field label {
   display: block;
   margin-top: 0px;
-  /* font-weight: 525; */
   font-size: 12px;
   margin-bottom: 10px;
 
@@ -110,11 +90,10 @@ html, body {
   
   .input-wrap input{
     width: 100%;
-    padding: 12px 12px 12px 40px; /* เผื่อไอคอน */
+    padding: 12px 12px 12px 40px; 
     border-radius: var(--radius-lg);
     border: 1px solid #e5e7eb;
     background: var(--white);
-    /* box-shadow: var(--shadow-sm); */
     font-size: 14px;
     outline: none;
     transition: border-color .2s, box-shadow .2s;
@@ -125,7 +104,6 @@ html, body {
   .input-wrap input:focus{
     border-color: var(--primary);
     background: var(--white);
-    /* box-shadow: 0 0 0 4px var(--ring); */
   } 
 
   .eye-icon {
@@ -137,7 +115,7 @@ html, body {
   }
 
   .eye-icon:hover {
-  opacity: 0.3; /* ให้สีชัดขึ้นเมื่อเอาเมาส์ไปชี้ */
+  opacity: 0.3; 
 }
   
   .row{
@@ -163,7 +141,6 @@ html, body {
     width:18px; 
     height:18px;
     accent-color: var(--primary-600);
-    /* transform: translateY(0.5px) */
   }
   
   .link{ color: var(--primary-600); text-decoration: underline; }
@@ -184,7 +161,6 @@ html, body {
     font-size: 18px;
     line-height: 1.2;
     cursor: pointer;
-    /* box-shadow: 0 8px 18px rgba(59,130,246,.35); */
     transition: transform .02s ease, background .15s ease;
   }
   .btn-primary:hover{ background: #1646d0; }
@@ -198,10 +174,10 @@ html, body {
   }
 
   .close-btn {
-  position: absolute; /* ลอยตัวภายใน .card */
-  top: 10px;          /* ระยะห่างจากขอบบนของการ์ด */
-  left: 10px;         /* ระยะห่างจากขอบซ้ายของการ์ด */
-  width: 44px;        /* ขนาดปุ่มมาตรฐานที่นิ้วกดง่าย (Apple/Google Guide) */
+  position: absolute; 
+  top: 10px;          
+  left: 10px;        
+  width: 44px;    
   height: 44px;
   display: flex;
   align-items: center;
@@ -210,23 +186,22 @@ html, body {
   border: none;
   cursor: pointer;
   color: #333;
-  z-index: 10;        /* ให้อยู่เหนือโลโก้ */
-  -webkit-tap-highlight-color: transparent; /* ลบสีฟ้าตอนกดในมือถือ */
+  z-index: 10;       
+  -webkit-tap-highlight-color: transparent; 
 }
 
 .close-btn svg {
   width: 30px;
   height: 25px;
-  pointer-events: none; /* ให้การกดทะลุไปที่ปุ่ม */
+  pointer-events: none; 
   margin-left: -20px;
-  /* padding: 6px 16px; */
 }
 
 .error-text{
   margin-top: -14px;
   font-size: 12px;
   color: #c53030;
-  min-height: 16px; /* กัน layout กระโดด */
+  min-height: 16px;
 }
   
 @media (max-width: 480px) {

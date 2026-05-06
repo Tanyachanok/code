@@ -12,13 +12,13 @@
 
   .page {
   width: 100%;
-  max-width: 430px;    /* ขนาดความกว้างมือถือ */
-  margin: 0 auto;       /* จัดกึ่งกลางหน้าจอคอม */
+  max-width: 430px;    
+  margin: 0 auto;       
   min-height: 100vh;
   display: flex;
   flex-direction: column; 
-  align-items: stretch; /* ให้เนื้อหาขยายเต็มความกว้างภายใน */
-  padding: 0;           /* เคลียร์ padding เพื่อให้เส้นคั่นชิดขอบ */
+  align-items: stretch; 
+  padding: 0;           
   background: #ffffff;
   border-radius: 28px;
   box-shadow: 0 10px 24px rgba(15, 23, 42, 0.15);
@@ -47,7 +47,7 @@
   }
   
   .close-btn img {
-    width: 27px;  /* ปรับค่านี้ให้เล็กลงตามต้องการ (เช่น 12px หรือ 14px) */
+    width: 27px;  
     height: auto;
     display: block;
     margin-top: -5px;
@@ -68,10 +68,6 @@
     padding: 18px 0 8px;
     margin-right: 15px;
   }
-
-  /* .item:hover { */
-  /* background: #f8fafc;      เพิ่มลูกเล่นเวลาเอาเมาส์ชี้ */
-/* } */
   
   .icon {
     width: 26px;
