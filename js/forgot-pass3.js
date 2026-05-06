@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      showMessage("เปลี่ยนรหัสผ่านสำเร็จ ✅", "success");
+      showMessage("success");
       localStorage.removeItem("pe_reset_email");
       window.location.href = "/forgot-pass4.html";
     } catch (err) {
