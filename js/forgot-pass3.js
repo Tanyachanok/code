@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try { data = text ? JSON.parse(text) : {}; } catch (_) {}
 
       if (!res.ok) {
-        const detail = data.detail || data.message || text || "เปลี่ยนรหัสผ่านไม่สำเร็จ";
+        const detail = data.detail || data.message || text || "success";
         showMessage(typeof detail === "string" ? detail : JSON.stringify(detail), "error");
         return;
       }
