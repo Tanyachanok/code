@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const sectionUser = document.getElementById("sectionUser");
   const menuBtn = document.querySelector(".menu-btn");
 
-  const ACCESS_TOKEN_KEY = "pe_access_token"; // ✅ ใช้ key เดียวกับหน้าอื่น
+  const ACCESS_TOKEN_KEY = "pe_access_token"; 
 
   function isLoggedIn() {
     const token = localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -36,7 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (menuBtn) {
     menuBtn.addEventListener("click", () => {
-      // ✅ ตัดสินจากการ login จริง (token)
       window.location.href = isLoggedIn() ? "/ham-log.html" : "/ham-guest.html";
     });
   }

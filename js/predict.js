@@ -12,7 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // 🌟 อ่านข้อมูลที่หน้า home4log เซฟไว้
   const LOGIN_BASIC_KEY = "pe_login_basic";
   let loginBasic = null;
   try {
@@ -34,20 +33,17 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("อ่าน pe_gender จาก localStorage ไม่ได้:", e);
   }
 
-  // 👇 element สำหรับ Gender แบบใหม่
-  const genderDisplay = document.getElementById("gender_display"); // ปุ่มสีน้ำเงิน
-  const genderValueInput = document.getElementById("gender_value"); // hidden input
+  const genderDisplay = document.getElementById("gender_display"); 
+  const genderValueInput = document.getElementById("gender_value"); 
 
-  // ตั้งค่า gender: ดึงจาก pe_gender -> pe_login_basic -> default
   if (genderDisplay && genderValueInput) {
     let g =
-      genderFromLocal ||          // ⭐ ดึงจาก localStorage: pe_gender
-      loginBasic?.gender ||       // เผื่อเซฟอยู่ใน object
+      genderFromLocal ||        
+      loginBasic?.gender ||      
       loginBasic?.sex ||
       genderValueInput.value ||
       "Male";
 
-    // รองรับรูปแบบ M / F จาก backend
     if (g === "M") g = "Male";
     if (g === "F") g = "Female";
 
@@ -55,10 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
     genderValueInput.value = g;
   }
 
-  // root URL (devtunnel)
   const API_ROOT = "https://webapp-pe.onrender.com";
 
-  // สำหรับยิง predict แบบ user
   const PREDICT_API = `${API_ROOT}/clinical/predict/user`;
   const CURRENT_PATIENT_API = `${API_ROOT}/api/current-patient-id`;
   const PREDICTION_STATUS_API = `${API_ROOT}/api/prediction-status`;
@@ -83,27 +77,22 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!patientInput) return;
 
     try {
-      //  ถ้าแนบมาใน URL (?patient_id=...)
       const params = new URLSearchParams(window.location.search);
       const pidFromUrl = params.get("patient_id");
 
       if (pidFromUrl) {
-         // ลบ query ออกจาก URL
         window.history.replaceState({}, document.title, window.location.pathname);
       }
 
       console.log("patientId =", pidFromUrl);
 
-      // ถ้ามีใน localStorage (จาก home4log)
       if (loginBasic?.no) {
         patientInput.value = loginBasic.no;
-        //checkPredictionStatus(loginBasic.no);
         return;
       }
 
       if (pidFromUrl) {
         patientInput.value = pidFromUrl;
-        //checkPredictionStatus(pidFromUrl);
         return;
       }
 
@@ -189,7 +178,6 @@ document.addEventListener("DOMContentLoaded", () => {
       hemaSection?.classList.add("hidden");
     } else if (typeHema && typeHema.checked) {
 
-      // hemaSection?.classList.remove("hidden");
       hemaSection?.classList.remove("hidden");
       solidSection?.classList.add("hidden");
     }
@@ -229,8 +217,8 @@ document.addEventListener("DOMContentLoaded", () => {
       const formData = collectFormData();
 
       clearErrors();
-      const isValid = validateForm(); // ไม่ต้องส่ง formData เพราะฟังก์ชันคุณดึงจาก DOM โดยตรง
-      if (!isValid) { // ถ้า "ไม่" valid
+      const isValid = validateForm(); 
+      if (!isValid) { 
         alert("กรุณากรอกข้อมูลให้ครบถ้วน");
         return;
       }
@@ -243,16 +231,13 @@ document.addEventListener("DOMContentLoaded", () => {
         !checkRange(formData.d_dimer, 169, 67421, "D-dimer", "d_dimer") ||
         !checkRange(formData.hemoglobin, 4, 21, "Hemoglobin", "hemoglobin")
       ) {
-        return; // ❌ หยุด ไม่ยิง API
+        return; // 
       }
 
-      // อ่าน mode จากปุ่ม (ตั้งไว้ตอน checkPredictionStatus)
       const mode = predictBtn?.dataset.mode || "predict";
 
-      // 🌟 Number of Patient ที่โชว์ในฟอร์ม (no)
       const no = formData.patient_id || loginBasic?.no || "";
 
-      // 🌟 รหัส PNT ที่ backend generate มา (ใช้ตัวนี้เป็น id_patients)
       const patientInternalId = loginBasic?.patient_id || null;
 
       console.log("mode:", mode);
@@ -271,7 +256,6 @@ document.addEventListener("DOMContentLoaded", () => {
        * เคส 1: มี prediction อยู่แล้ว → ไปหน้า confirm เลย
        * ================================ */
       if (mode === "next") {
-        // ไม่ต้อง validate และไม่ต้อง predict ใหม่
         localStorage.setItem(
           "pe_predict_basic",
           JSON.stringify({
@@ -289,20 +273,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "/confirm.html?" + params.toString();
         return;
       }
-
-      /* ================================
-       * เคส 2: ยังไม่มี prediction → ต้อง predict ใหม่ แล้วไปหน้า next-step
-       * ================================ */
-
-      // clearErrors();
-      // const hasError = validateForm(formData);
-      // if (hasError) {
-      //   alert("กรุณากรอกข้อมูลให้ครบถ้วน");
-      //   return;
-      // }
-
       
-
       let risk = null;
       let idPredict = null;
 
@@ -348,7 +319,6 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify(payload),
         });
 
-        // ถ้า status ไม่ใช่ 2xx → จบเลย
         if (!response.ok) {
           const text = await response.text();
           console.error("Backend error:", response.status, text);
@@ -358,7 +328,6 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        // พยายามอ่าน JSON
         let result = {};
         try {
           result = await response.json();
@@ -383,39 +352,10 @@ document.addEventListener("DOMContentLoaded", () => {
           resultObj.risk_probability ??
           null;
 
-// 🔥 ถ้า POST ไม่ส่ง risk → ไป GET ต่อด้วย idPredict
-//if ((risk === null || Number.isNaN(Number(risk))) && idPredict) {
-//console.log("risk not found from POST → fetching by idPredict...");
-//risk = await fetchRiskByPredictId(idPredict);
-//}
-
-// ❌ ถ้ายังไม่มี = error จริง
 if (risk === null || Number.isNaN(Number(risk))) {
 alert("Backend ไม่ได้ส่งค่าความเสี่ยงกลับมา");
 return;
 }
-
-        //async function fetchRiskByPredictId(idPredict) {
-          //const res = await fetch(`${API_ROOT}/predict/${encodeURIComponent(idPredict)}`, {
-            //method: "GET",
-           // headers: {
-            //    Accept: "application/json",
-            //    Authorization: `Bearer ${token}`,
-            //  },
-            //});
-          
-            //if (!res.ok) return null;
-          
-            //const data = await res.json();
-            //const result = data.result || data;
-          
-            //return (
-             // result.prob_risk ??
-             // result.risk_percent ??
-             // result.risk_probability ??
-             // null
-           // );
-          //}
       } catch (err) {
         console.error("Fetch error:", err);
         alert("ไม่สามารถเชื่อมต่อเซิร์ฟเวอร์ได้");
@@ -436,17 +376,15 @@ return;
       );
 
       const params = new URLSearchParams({
-        patient_id: no,      // ส่ง Number of Patient ไปโชว์ใน next-step
+        patient_id: no,      
         sex: formData.sex,
         risk: roundedRisk,
       });
 
-      // แนบ id_predict ไปด้วย ถ้ามี
       if (idPredict) {
         params.append("id_predict", idPredict);
       }
 
-      // 👉 ไปหน้า next to step (ชื่อไฟล์ต้องตรงกับของจริง)
       window.location.href = "/next to step.html?" + params.toString();
     });
   }
@@ -480,154 +418,12 @@ return;
   
     data.hemoptysis = getRadio("hemoptysis");
   
-    // ใน HTML Acute Dyspnea ใช้ name="pcp"
     data.acute_dyspnea = getRadio("pcp");
   
     data.edema = getRadio("edema");
   
     return data;
   }
-
-//   function clearErrors() {
-//     document
-//       .querySelectorAll(".input-error, .select-error, .radio-error")
-//       .forEach((el) =>
-//         el.classList.remove("input-error", "select-error", "radio-error")
-//       );
-
-//     document.querySelectorAll(".error-message").forEach((el) => el.remove());
-//   }
-
-//   function validateForm(data) {
-//     let hasError = false;
-
-//     const showError = (element, msg, className) => {
-//       if (!element) return;
-//       hasError = true;
-//       if (className) element.classList.add(className);
-
-//       const err = document.createElement("div");
-//       err.className = "error-message";
-//       err.style.color = "#e63946";
-//       err.style.fontSize = "11px";
-//       err.style.marginTop = "4px";
-//       err.textContent = msg;
-
-//       if (element.parentNode) {
-//         element.parentNode.appendChild(err);
-//       }
-//     };
-
-//     const patientInputEl = document.getElementById("patient_id");
-//     if (!data.patient_id) {
-//       showError(patientInputEl, "กรุณากรอก Number of Patient", "input-error");
-//     }
-
-//     // 👇 ปรับ validate ให้รองรับ gender แบบปุ่มเดียว
-//     const sexElement =
-//       document.getElementById("gender_display") ||
-//       document.querySelector('input[name="sex"]')?.closest(".toggle-group");
-//     if (!data.sex && sexElement) {
-//       showError(sexElement, "กรุณาเลือกเพศ", "radio-error");
-//     }
-
-//     const ageInput = document.querySelector('input[placeholder="Years"]');
-//     if (!data.age) {
-//       showError(ageInput, "กรุณากรอกอายุ", "input-error");
-//     }
-
-//     const ecogGroup = document
-//       .querySelector('input[name="ecog"]')
-//       ?.closest(".toggle-group");
-//     if (!data.ecog) {
-//       showError(ecogGroup, "กรุณาเลือก ECOG status", "radio-error");
-//     }
-
-//     const hrInput = document.querySelector('input[placeholder="bpm"]');
-//     if (!data.heart_rate) {
-//       showError(hrInput, "กรุณากรอก Heart Rate", "input-error");
-//     }
-
-//     const mmHgInputs = Array.from(
-//       document.querySelectorAll('input[placeholder="mmHg"]')
-//     );
-//     if (!data.systolic_bp && mmHgInputs[0]) {
-//       showError(mmHgInputs[0], "กรุณากรอก Systolic BP", "input-error");
-//     }
-//     if (!data.diastolic_bp && mmHgInputs[1]) {
-//       showError(mmHgInputs[1], "กรุณากรอก Diastolic BP", "input-error");
-//     }
-
-//     const p95100 = Array.from(
-//       document.querySelectorAll('input[placeholder="95–100"]')
-//     );
-//     if (!data.spo2 && p95100[0]) {
-//       showError(p95100[0], "กรุณากรอก SpO₂", "input-error");
-//     }
-//     if (!data.fio2 && p95100[1]) {
-//       showError(p95100[1], "กรุณากรอก FiO₂", "input-error");
-//     }
-
-//     const radioCheck = (name, msg) => {
-//       const group = document
-//         .querySelector(`input[name="${name}"]`)
-//         ?.closest(".toggle-group");
-//       if (!data[name]) {
-//         showError(group, msg, "radio-error");
-//       }
-//     };
-
-//     radioCheck("hemoptysis", "กรุณาเลือก Hemoptysis");
-//     radioCheck("pcp", "กรุณาเลือก Pleuritic chest pain");
-//     radioCheck("syncope", "กรุณาเลือก Syncope");
-//     radioCheck("edema", "กรุณาเลือก One leg edema");
-
-//     const typeGroup = document
-//       .querySelector('input[name="type_cancer"]')
-//       ?.closest(".toggle-group");
-//     if (!data.type_cancer) {
-//       showError(typeGroup, "กรุณาเลือกชนิดมะเร็ง", "radio-error");
-//     } else if (data.type_cancer === "solid") {
-//       const solidSelect = document.getElementById("solid_select");
-//       if (!data.solid_cancer_type) {
-//         showError(
-//           solidSelect,
-//           "กรุณาเลือก Solid cancer type",
-//           "select-error"
-//         );
-//       }
-//     } else if (data.type_cancer === "hematologic") {
-//       const hemaSelect = document.getElementById("hema_select");
-//       if (!data.hema_cancer_type) {
-//         showError(
-//           hemaSelect,
-//           "กรุณาเลือก Hematologic cancer type",
-//           "select-error"
-//         );
-//       }
-//     }
-
-//     const lungGroup = document
-//       .querySelector('input[name="lung_meta"]')
-//       ?.closest(".toggle-group");
-//     if (!data.lung_meta) {
-//       showError(lungGroup, "กรุณาเลือก Lung metastasis", "radio-error");
-//     }
-
-//     const cxrSelect = document.getElementById("cxr_select");
-//     if (!data.cxr_type) {
-//       showError(cxrSelect, "กรุณาเลือก Chest X-ray type", "select-error");
-//     }
-
-//     const ddimerInput = document.querySelector('input[placeholder="Value"]');
-//     if (!data.d_dimer) {
-//       showError(ddimerInput, "กรุณากรอกค่า D-dimer", "input-error");
-//     }
-
-//     return hasError;
-//   }
-// });
-
 
 // ----------------------------
   // VALIDATION + RED *
@@ -690,7 +486,6 @@ return;
   });
 
   document.addEventListener("DOMContentLoaded", function() {
-    // สำหรับ Text Inputs: หายทันทีที่พิมพ์
     document.querySelectorAll("input.text-input").forEach(input => {
         input.addEventListener("input", function() {
             if (this.value.trim() !== "") {
@@ -699,7 +494,6 @@ return;
         });
     });
 
-    // สำหรับ Dropdowns: หายทันทีที่เลือกค่า
     document.querySelectorAll(".dropdown-select").forEach(select => {
         select.addEventListener("change", function() {
             if (this.value !== "") {
@@ -708,13 +502,11 @@ return;
         });
     });
 
-    // adio Groups: หายทันทีที่คลิกเลือกข้อใดข้อหนึ่ง
     const radioNames = ["sex", "ecog", "hemoptysis", "pcp", "syncope", "edema", "type_cancer", "lung_meta"];
     radioNames.forEach(name => {
         const radios = document.querySelectorAll(`input[name="${name}"]`);
         radios.forEach(radio => {
             radio.addEventListener("change", function() {
-                // เมื่อเลือกปุ่มใดปุ่มหนึ่งในกลุ่ม ให้เอา error ของกลุ่มนั้นออก
                 this.closest(".form-group").classList.remove("has-error");
             });
         });

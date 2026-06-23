@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeBtn = document.querySelector(".close-btn");
   const passwordError = document.getElementById("password-error");
 
-  // --- ส่วนที่เพิ่มใหม่: ตัวแปรสำหรับปุ่มเปิดตา ---
   const togglePassword = document.getElementById("togglePassword");
 
   if (!form || !usernameInput || !passwordInput || !submitButton || !passwordError) return;
@@ -15,14 +14,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const showPasswordError = (text) => { passwordError.textContent = text || ""; };
   const clearPasswordError = () => { passwordError.textContent = ""; };
 
-  // --- ส่วนที่เพิ่มใหม่: Logic เปิดตา/ปิดตา ---
   if (togglePassword) {
     togglePassword.addEventListener("click", function() {
-      // สลับ type ระหว่าง password และ text
       const isPassword = passwordInput.getAttribute("type") === "password";
       passwordInput.setAttribute("type", isPassword ? "text" : "password");
 
-      // สลับรูปไอคอน (เปลี่ยน path ตามชื่อไฟล์จริงของคุณ)
       this.src = isPassword ? "/view.png" : "/hide.png";
     });
   }
@@ -31,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
   usernameInput.addEventListener("input", clearPasswordError);
   passwordInput.addEventListener("input", clearPasswordError);
 
-  // remember me
   const savedUsername = localStorage.getItem("pe_username");
   if (savedUsername) {
     usernameInput.value = savedUsername;

@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Dropdown (ยกเว้นที่อยู่ใน .hidden)
+    // Dropdown
     const selects = document.querySelectorAll(".dropdown-select");
     selects.forEach((sel) => {
       const hiddenWrap = sel.closest(".hidden");
@@ -236,10 +236,9 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error(err);
 
         if (err.message === "out of range") {
-          return; // ❌ ไม่ต้อง alert ซ้ำ
+          return; 
         }
-
-        //alert("มีข้อมูลบางช่องไม่ถูกต้อง (เช่น d-dimer ต้องเป็นตัวเลข)");
+        
         return;
       }
 
@@ -253,7 +252,7 @@ document.addEventListener("DOMContentLoaded", () => {
           body: JSON.stringify(payload),
         });
 
-        const text = await res.text(); // อ่านครั้งเดียวพอ
+        const text = await res.text(); 
         if (!res.ok) {
           console.error("Backend error:", res.status, text);
           alert("เกิดข้อผิดพลาดในการส่งข้อมูลไปยังเซิร์ฟเวอร์");
@@ -301,7 +300,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", function() {
-    // สำหรับ Text Inputs: หายทันทีที่พิมพ์
     document.querySelectorAll("input.text-input").forEach(input => {
         input.addEventListener("input", function() {
             if (this.value.trim() !== "") {
@@ -310,7 +308,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // สำหรับ Dropdowns: หายทันทีที่เลือกค่า
     document.querySelectorAll(".dropdown-select").forEach(select => {
         select.addEventListener("change", function() {
             if (this.value !== "") {
@@ -319,13 +316,11 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // adio Groups: หายทันทีที่คลิกเลือกข้อใดข้อหนึ่ง
     const radioNames = ["sex", "hemoptysis", "acute_dyspnea", "edema"];
     radioNames.forEach(name => {
         const radios = document.querySelectorAll(`input[name="${name}"]`);
         radios.forEach(radio => {
             radio.addEventListener("change", function() {
-                // เมื่อเลือกปุ่มใดปุ่มหนึ่งในกลุ่ม ให้เอา error ของกลุ่มนั้นออก
                 this.closest(".form-group").classList.remove("has-error");
             });
         });

@@ -2,8 +2,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector(".form");
   const countInput = document.getElementById("count");
-  const dropdownList = document.getElementById("custom-dropdown"); // ตรวจสอบ ID ให้ตรงกับ HTML
-  const dropdownArrow = document.querySelector(".dropdown-arrow"); // ตัวสามเหลี่ยม
+  const dropdownList = document.getElementById("custom-dropdown"); 
+  const dropdownArrow = document.querySelector(".dropdown-arrow"); 
   const sexInputs = document.querySelectorAll('input[name="sex"]');
   const menuBtn = document.querySelector(".menu-btn");
 
@@ -87,29 +87,26 @@ document.addEventListener("DOMContentLoaded", () => {
   // 4) Events สำหรับ Dropdown
   // ------------------------------------
   
-  dropdownArrow.style.pointerEvents = "auto"; // มั่นใจว่าคลิกได้
+  dropdownArrow.style.pointerEvents = "auto"; 
   dropdownArrow.addEventListener("click", (e) => {
     e.stopPropagation();
-    // ถ้าปิดอยู่ให้เปิด (โชว์ทั้งหมด), ถ้าเปิดอยู่ให้ปิด
     if (dropdownList.style.display === "block") {
       dropdownList.style.display = "none";
     } else {
-      renderDropdown("", true); // "" คือไม่มีฟิลเตอร์, true คือโชว์ทั้งหมด
+      renderDropdown("", true); // 
     }
   });
 
-  // กฎข้อที่ 2: กล่องข้อความเป็นแบบพิมพ์เพื่อกรอง
   countInput.addEventListener("input", (e) => {
     const val = e.target.value;
     if (val.trim() === "") {
       dropdownList.style.display = "none";
     } else {
-      renderDropdown(val, false); // กรองตามตัวหนังสือที่พิมพ์
+      renderDropdown(val, false); 
     }
     syncGender(val);
   });
 
-  // คลิกเลือกจากรายการ
   dropdownList.addEventListener("click", (e) => {
     if (e.target.classList.contains("dropdown-item")) {
       const selectedNo = e.target.getAttribute("data-no");
@@ -119,7 +116,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // คลิกที่อื่นให้ปิด
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".input-wrap")) {
       dropdownList.style.display = "none";
@@ -208,13 +204,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // เซฟลง localStorage
     localStorage.setItem("pe_hn", hn);
     localStorage.setItem("pe_patient_id", generatedId);
     localStorage.setItem("pe_gender", sex);
     localStorage.setItem("pe_login_basic", JSON.stringify({ no: hn, patient_id: generatedId, gender: sex }));
 
-    // เช็ก prediction เดิม
     try {
       const url = `${PREDICTION_API}/${encodeURIComponent(hn)}`;
       const res = await fetch(url, {
