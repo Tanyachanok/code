@@ -13,7 +13,6 @@ if (menuBtn) {
   const params = new URLSearchParams(window.location.search);
   const predictId = params.get("id");
 
-  // ลบ id ออกจาก URL ที่โชว์
   if (window.location.search) {
   window.history.replaceState({}, document.title, window.location.pathname);
   }
@@ -24,10 +23,6 @@ if (menuBtn) {
     window.location.href = "/login.html";
     return;
   }
-  // if (!predictId) {
-  //   alert("ไม่พบ predict id");
-  //   return;
-  // }
 
   const API_RECORD = `${BASE_URL}/record/${encodeURIComponent(predictId)}`;
   const API_TIMELINE = `${BASE_URL}/record/timeline`; // ?no=xxxx
@@ -41,7 +36,6 @@ if (menuBtn) {
 
   const yesNo = (v) => (v === true ? "Yes" : v === false ? "No" : "-");
 
-  // ดึงค่าจาก object ตาม key หลายชื่อ (กันชื่อ field ไม่ตรง)
   const pick = (obj, keys) => {
     if (!obj) return undefined;
     for (const k of keys) {
@@ -50,7 +44,6 @@ if (menuBtn) {
     return undefined;
   };
 
-  // แปลง iso date → เวลา
   function formatThaiDateTime(iso) {
     if (!iso) return "-";
 
@@ -63,16 +56,6 @@ if (menuBtn) {
     const d = new Date(isoString);
     if (Number.isNaN(d.getTime())) return "-";
 
-    //const thaiTime = new Date(d.getTime() + (7 * 60 * 60 * 1000));
-
-    //const day = String(thaiTime.getUTCDate()).padStart(2, "0");
-    //const month = String(thaiTime.getUTCMonth() + 1).padStart(2, "0");
-    //const year = thaiTime.getUTCFullYear();
-
-    //const hh = String(thaiTime.getUTCHours()).padStart(2, "0");
-    //const mm = String(thaiTime.getUTCMinutes()).padStart(2, "0");
-    
-    //return `${day}-${month}-${year} ${hh}:${mm}`;
 
     const parts = new Intl.DateTimeFormat("en-GB", {
       timeZone: "Asia/Bangkok",
@@ -98,15 +81,12 @@ if (menuBtn) {
     if (["solid", "solid cancer", "s"].includes(s)) return "solid";
     if (["hematologic", "haematologic", "heme", "h"].includes(s)) return "hematologic";
 
-    // บางที backend ส่งเป็น 0/1 หรือ enum
     if (s === "0") return "solid";
     if (s === "1") return "hematologic";
 
     return s; // เผื่อส่งเป็นคำเต็มอื่น ๆ
   }
 
-  // แปลง PE Confirm ให้เป็นข้อความที่โชว์
-  // รองรับ: true/false, "PE Confirm", "No PE", "yes/no", "1/0"
   function normalizePeConfirm(v) {
     if (v === undefined || v === null) return "-";
 
@@ -119,11 +99,9 @@ if (menuBtn) {
     if (["true", "yes", "y", "pe", "pe confirm", "confirm", "positive", "1"].includes(s)) return "Positive";
     if (["false", "no", "n", "no pe", "negative", "0"].includes(s)) return "Negative";
 
-    // ถ้า backend ส่งเป็นข้อความอยู่แล้วก็คืนกลับ
     return String(v);
   }
 
-  // show/hide row ตาม label text (กรณีไม่มี id แถว)
   function toggleRowByLabel(labelText, show) {
     const rows = document.querySelectorAll(".info-table .info-row");
     rows.forEach((row) => {
@@ -136,13 +114,9 @@ if (menuBtn) {
     });
   }
 
-  // เงื่อนไขแสดง solid/hema row
   function applyCancerRowCondition(typeCancerRaw) {
     const t = normalizeCancerType(typeCancerRaw);
 
-    // ชื่อ label ใน HTML ของเธอคือ:
-    // "Solid Cancer Type"
-    // "Hematologic Cancer Type"
     if (t === "solid") {
       toggleRowByLabel("Solid Cancer Type", true);
       toggleRowByLabel("Hematologic Cancer Type", false);
@@ -150,7 +124,6 @@ if (menuBtn) {
       toggleRowByLabel("Solid Cancer Type", false);
       toggleRowByLabel("Hematologic Cancer Type", true);
     } else {
-      // unknown → ซ่อนไว้ทั้งคู่ หรือจะโชว์ทั้งคู่ก็ได้
       toggleRowByLabel("Solid Cancer Type", false);
       toggleRowByLabel("Hematologic Cancer Type", false);
     }
@@ -176,7 +149,6 @@ if (menuBtn) {
 
     const text = await res.text();
     console.log("TIMELINE STATUS =", res.status);
-    // console.log("TIMELINE RAW TEXT =", text);
 
     let raw = {};
     try {
@@ -218,7 +190,6 @@ if (menuBtn) {
 
     const text = await res.text();
     console.log("RECORD STATUS =", res.status);
-    // console.log("RECORD RAW TEXT =", text);
 
     let data = {};
     try {
@@ -251,7 +222,6 @@ if (menuBtn) {
       "timestamp",
     ]);
 
-    // ถ้าใน record ไม่มี date → ไป timeline
     if (!dateIso && hn) {
       try {
         const timelineList = await fetchTimelineList(hn);

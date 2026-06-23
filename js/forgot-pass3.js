@@ -7,9 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const BASE_URL = "https://webapp-pe.onrender.com";
   const RESET_ENDPOINT = "/auth/reset"; 
-  // 👆 สำคัญ: เปลี่ยนให้ “ตรงกับ Swagger ของ backend” ของเธอ
-  // ถ้าใน Swagger เป็น /auth/reset ก็ใส่ "/auth/reset"
-  // ถ้าเป็น /auth/reset_password ก็ใช้แบบนี้
 
   // message box
   const messageBox = document.createElement("p");
@@ -24,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
       type === "error" ? "#c53030" : type === "success" ? "#2f855a" : "#4a5568";
   }
 
-  // ✅ อ่าน token จาก URL (เมลใช้ ref ก็ได้)
+  // อ่าน token จาก URL
   const params = new URLSearchParams(window.location.search);
   const token = params.get("ref") || params.get("token");
 
@@ -60,7 +57,6 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // ✅ payload ตามที่เธอบอก backend ต้องการ
     const payload = {
       token: token,
       new_password: newPassword,
@@ -82,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
         cache: "no-store",
       });
 
-      // ✅ debug เวลาเจอ 422 จะเห็น detail ชัด
       const text = await res.text();
       let data = {};
       try { data = text ? JSON.parse(text) : {}; } catch (_) {}

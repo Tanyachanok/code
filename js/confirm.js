@@ -19,8 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const ACCESS_TOKEN_KEY = "pe_access_token";
   const token = localStorage.getItem(ACCESS_TOKEN_KEY);
 
-  // ✅ เก็บค่าที่ผู้ใช้เลือก (ยังไม่บันทึกจนกด Done)
-  let selectedIsPe = null; // null = ยังไม่เลือก, true/false = เลือกแล้ว
+  // เก็บค่าที่ผู้ใช้เลือก (ยังไม่บันทึกจนกด Done)
+  let selectedIsPe = null; 
 
   // ===== menu =====
   if (menuBtn) {
@@ -43,7 +43,6 @@ document.addEventListener("DOMContentLoaded", () => {
     console.error("CONFIRM: parse localStorage failed:", e);
   }
 
-  // ===== helper: แปลงเพศ =====
   function normalizeGender(g) {
     if (!g) return "-";
     if (typeof g !== "string") return String(g);
@@ -81,7 +80,6 @@ document.addEventListener("DOMContentLoaded", () => {
         result?.risk ??
         0;
 
-      // ถ้าเป็น 0-1 ให้แปลงเป็น %
       if (typeof prob === "number" && prob <= 1) prob = prob * 100;
       probPercent = Number(prob);
     }
@@ -94,7 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ===== initial Confirm PE text =====
   if (confirmPill) {
-    // ถ้ามีใน localStorage อยู่แล้วก็โชว์
     const idPredictInit =
       result?.id_predict ||
       result?.id_predict_result ||
@@ -111,7 +108,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (confirmPill) confirmPill.textContent = statusText;
 
-    // persist confirm_pe ใน pe_login_result (เพื่อให้หน้าเดิมจำค่าได้)
     try {
       const raw = localStorage.getItem("pe_login_result");
       let data = raw ? JSON.parse(raw) : {};
@@ -168,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
       headers: {
         "Content-Type": "application/json",
         "Accept": "application/json",
-        Authorization: `Bearer ${token}`, // ✅ สำคัญมาก
+        Authorization: `Bearer ${token}`, 
       },
       body: JSON.stringify(payload),
       cache: "no-store",
@@ -206,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         const { data, idPredict } = await sendConfirmToBackend(selectedIsPe);
 
-        // ✅ เก็บผล confirm ต่อ predictId (ให้ history2 ดึงได้)
+        // เก็บผล confirm ต่อ predictId 
         const confirmText = selectedIsPe ? "PE Confirm" : "No PE";
         localStorage.setItem(`pe_confirm_${idPredict}`, confirmText);
 

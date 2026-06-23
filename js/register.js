@@ -94,7 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// --- ฟังก์ชันเสริม (Helper Functions) อยู่ข้างนอกได้ ---
 function clearErrors() {
     document.querySelectorAll(".field").forEach((field) => {
         field.classList.remove("has-error");

@@ -1,6 +1,6 @@
 // js/detail.js
 document.addEventListener("DOMContentLoaded", async () => {
-  console.log("DETAIL: script loaded ✅");
+  console.log("DETAIL: script loaded");
 
   // -----------------------------
   // 1) ดึง element จากหน้า HTML
@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   const avatarInitialEl = document.getElementById("avatarInitial");
 
 
-  // helper ใส่ค่า + log
   function setField(el, value) {
     if (!el) return;
     console.log("DETAIL: setField ->", el.id, "=", `"${value}"`);
@@ -33,7 +32,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const initials = (fi + li).toUpperCase();
     if (initials) return initials;
   
-    // fallback: ใช้ตัวแรกของ fullname/username/email
     const fb = (fallback || "").toString().trim();
     return fb ? fb[0].toUpperCase() : "?";
   }
@@ -55,7 +53,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   // 3) CONFIG BACKEND
   // -----------------------------
   const API_ROOT = "https://webapp-pe.onrender.com";
-  const ME_API = `${API_ROOT}/user/me`;   // ✅ ใช้ path นี้ตามที่บอก
+  const ME_API = `${API_ROOT}/user/me`;  
 
   try {
     console.log("DETAIL: call ->", ME_API);
@@ -71,7 +69,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("DETAIL: profile status =", response.status);
 
     if (!response.ok) {
-      // ถ้า token หมดอายุ
       if (response.status === 401 || response.status === 403) {
         alert("เซสชันหมดอายุ กรุณาเข้าสู่ระบบใหม่");
         localStorage.removeItem(ACCESS_TOKEN_KEY);
@@ -79,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         return;
       }
 
-      // กรณีอื่น เช่น 404
+      //404
       setField(fullNameEl, "-");
       setField(usernameEl, "-");
       setField(emailEl, "-");
@@ -89,7 +86,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const rawData = await response.json();
     console.log("DETAIL: raw profile data =", rawData);
 
-    const data = rawData.result || rawData;   // เผื่อ backend ห่อใน result
+    const data = rawData.result || rawData;   
     console.log("DETAIL: user object =", data);
 
     // -----------------------------
@@ -148,7 +145,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
- // ✅ ปุ่ม menu
+ // ปุ่ม menu
  const menu = document.querySelector(".menu");
  if (menu) {
    menu.addEventListener("click", () => {

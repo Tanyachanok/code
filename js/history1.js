@@ -7,19 +7,16 @@ function formatThaiDateTime(isoString) {
 
 let selectedPredictId = null;
 
-// ฟังก์ชันจัดการตอนกดปุ่ม Confirm (ไม่ให้มันเปลี่ยนหน้า)
 function handleConfirm(event, id) {
-    event.stopPropagation(); // กันไม่ให้คลิกแล้วไปหน้า history2
+    event.stopPropagation(); 
     selectedPredictId = id;
     document.getElementById("confirmModal").style.display = "flex";
 }
 
-// 2. ฟังก์ชันปิด Popup
 function closeConfirmModal() {
     document.getElementById("confirmModal").style.display = "none";
 }
 
-// 3. ฟังก์ชันบันทึกลงฐานข้อมูลและโชว์ผลทันที
 async function submitConfirmation(status) {
     const token = localStorage.getItem("pe_access_token");
     const CONFIRM_URL = "https://webapp-pe.onrender.com/pe/confirm";
@@ -44,14 +41,10 @@ async function submitConfirmation(status) {
           });
 
          if (res.ok) {
-        //     alert("ยืนยันผลสำเร็จ และบันทึกลงคอลัมน์ pe_result แล้ว");
             closeConfirmModal();
              location.reload(); 
          } else {
-        //     // ถ้ายังไม่ได้ ให้ดูรายละเอียด Error ตรงนี้ใน Console
              const errorDetail = await res.json();
-        //     console.log("รายละเอียด Error 422:", errorDetail);
-        //     alert("บันทึกไม่สำเร็จ: ข้อมูลไม่ตรงตามที่ระบบต้องการ");
          }
     } catch (err) {
         console.error("Error:", err);
@@ -92,12 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tableBody = document.getElementById("tableBody");
     tableBody.innerHTML = "";
 
-    // if (!data || data.length === 0) {
-    //   tableBody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>ไม่พบข้อมูล</td></tr>";
-    //   return;
-    // }
     if (!data || data.length === 0) {
-    // const noDataRow = document.createElement("tr");
     tableBody.innerHTML = `<tr><td colspan="3" style="text-align:center; padding: 30px; color: #888;">ไม่พบข้อมูล</td></tr>`;
     return;
   }
@@ -140,17 +128,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const titleElement = document.getElementById("timeline-title");
     
     try {
-        // 1. จัดการสถานะการโหลดและหัวข้อ (Title)
         tableBody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>กำลังโหลด...</td></tr>";
-        // if (listCard) listCard.innerHTML = "กำลังโหลด...";
 
-        // เช็คจาก API URL ว่าเป็นเส้นทางหลัก (Timeline) หรือไม่
         const isTimelineApi = url.includes("/timeline");
 
         if (isTimelineApi) {
-            if (titleElement) titleElement.style.display = "block"; // โชว์ "*"
+            if (titleElement) titleElement.style.display = "block"; 
         } else {
-            if (titleElement) titleElement.style.display = "none";  // ซ่อน "*" เมื่อค้นหา HN/ปฏิทิน
+            if (titleElement) titleElement.style.display = "none";  
         }
       
       const res = await fetch(url, {
@@ -167,10 +152,8 @@ document.addEventListener("DOMContentLoaded", () => {
       try { raw = text ? JSON.parse(text) : {}; } catch (_) { }
 
       if (!res.ok) {
-        // ดึงข้อความจาก API มาก่อน
         let detail = raw.detail || "ไม่พบข้อมูล";
 
-        // ตรวจสอบว่าถ้ามีคำว่า "No data found" ให้เปลี่ยนเป็นภาษาไทย
         if (typeof detail === 'string' && detail.includes("No data found")) {
             detail = "ไม่พบข้อมูลในระบบ";
         }
@@ -183,7 +166,6 @@ document.addEventListener("DOMContentLoaded", () => {
       console.log("Data received from Timeline API:", list);
 
       renderList(Array.isArray(list) ? list : []);
-      // if (listCard) listCard.innerHTML = ""; // ล้างสถานะเมื่อโหลดเสร็จ
     } catch (err) {
       console.error("ERROR timeline:", err);
       tableBody.innerHTML = "<tr><td colspan='3' style='text-align:center;'>เชื่อมต่อเซิร์ฟเวอร์ผิดพลาด</td></tr>";

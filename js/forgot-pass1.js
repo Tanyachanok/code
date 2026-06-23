@@ -46,10 +46,10 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // ✅ เก็บอีเมลไว้ให้หน้า 2 แสดง
+      // เก็บอีเมลไว้ให้หน้า 2 แสดง
       localStorage.setItem("pe_reset_email", email);
 
-      // ✅ เด้งไปหน้า 2
+      // เด้งไปหน้า 2
       window.location.href = "/forgot-pass2.html";
     } catch (err) {
       console.error(err);
