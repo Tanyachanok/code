@@ -72,19 +72,17 @@ if (menuBtn) {
     return `${get("day")}-${get("month")}-${get("year")} ${get("hour")}:${get("minute")}`;
   }
 
-  // normalize type cancer ให้เหลือ solid / hematologic / unknown
   function normalizeCancerType(v) {
     if (v === undefined || v === null) return "unknown";
     const s = String(v).trim().toLowerCase();
 
-    // รองรับหลายรูปแบบ
     if (["solid", "solid cancer", "s"].includes(s)) return "solid";
     if (["hematologic", "haematologic", "heme", "h"].includes(s)) return "hematologic";
 
     if (s === "0") return "solid";
     if (s === "1") return "hematologic";
 
-    return s; // เผื่อส่งเป็นคำเต็มอื่น ๆ
+    return s;
   }
 
   function normalizePeConfirm(v) {
@@ -270,7 +268,6 @@ if (menuBtn) {
     setText("val-solid_type", subtypeCancer);
     setText("val-hema_type", subtypeCancer);
 
-    // เงื่อนไขแสดงแถว solid/hema
     applyCancerRowCondition(typeCancerRaw);
 
     setText("val-lung_met", yesNo(pick(data, ["lung_met", "metastasis_to_lung"])));
@@ -278,9 +275,8 @@ if (menuBtn) {
     setText("val-d_dimer", pick(data, ["d_dimer"]));
 
     // -----------------------------
-    // 3.4 PE CONFIRM (สำคัญ)
+    // 3.4 PE CONFIRM
     // -----------------------------
-    // พยายามดึงจาก record ก่อน
     let peConfirmRaw = pick(data, [
       "pe",
       "pe_confirm",
@@ -292,7 +288,6 @@ if (menuBtn) {
 
     console.log("PE_CONFIRM_RAW(from record) =", peConfirmRaw);
 
-    // ถ้า record ไม่มี → ลอง timeline item (บางระบบ timeline จะมี confirm)
     if ((peConfirmRaw === undefined || peConfirmRaw === null) && hn) {
       try {
         const timelineList = await fetchTimelineList(hn);
